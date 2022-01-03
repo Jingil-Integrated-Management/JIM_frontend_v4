@@ -1,4 +1,4 @@
-export interface Part {
+export default interface Part {
   id?: number;
   x: string;
   y: string;

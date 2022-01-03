@@ -1,4 +1,4 @@
-export interface Drawing {
+export default interface Drawing {
   id?: number;
   name: string;
   created_at: string;

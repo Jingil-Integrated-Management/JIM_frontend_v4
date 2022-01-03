@@ -1,4 +1,4 @@
-export interface Outsource {
+export default interface Outsource {
   id?: number;
   material_price?: string | null;
   milling_price?: string | null;
