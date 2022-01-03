@@ -1,0 +1,60 @@
+#dashboard-content {
+  width: 1440px;
+  height: calc(100% - 104px);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 1740px) {
+  #dashboard-content {
+    width: 1260px;
+  }
+}
+
+@media (max-width: 1560px) {
+  #dashboard-content {
+    width: 1080px;
+  }
+}
+
+@media (max-width: 1380px) {
+  #dashboard-content {
+    width: calc(100% - 20px);
+  }
+}
+
+#dashboard-content::-webkit-scrollbar {
+  display: none;
+}
+
+.collapse-open {
+  background-color: #e6e6ea;
+}
+
+.collapse-row-opened > td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 0px !important;
+}
+
+.collapse-row-opened > td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 0px !important;
+}
+
+.collapse-row-opened:hover {
+  background-color: #e6e6ea !important;
+}
+
+.collapse-table-open {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.collapse-box-open {
+  background-color: #e6e6ea;
+  border: 15px;
+}
+
+.collapse-table-close {
+  background-color: white;
+}
