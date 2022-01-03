@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //router
 import { useHistory } from 'react-router';
@@ -24,13 +24,12 @@ interface NavigationProps {
 }
 
 const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
-  const [currentTab, setCurrentTab] = useState('dashboard');
+  const [currentTab, setCurrentTab] = useState('/');
   const [isClientListOpen, setIsClientListOpen] = useState(false);
-  const [currentClient, setCurrentClient] = useState('');
   const [clientList, setClientList] = useState<ClientData[]>([]);
   const history = useHistory();
 
-  const getNaviList = async () => {
+  const getNavigationClientList = async () => {
     try {
       const response: AxiosResponse = await webClient.get('navi/');
       setClientList(response.data as ClientData[]);
@@ -39,32 +38,26 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
     }
   };
 
-  const handleClick = (navigate: string) => {
-    if (navigate === '/') {
-      history.push('/');
-      history.go(0);
-    } else {
-      if (navigate === 'dashboard') {
-        history.push('/');
-      } else {
-        history.push(`/${navigate}`);
-      }
-      setCurrentTab(navigate);
-      setIsClientListOpen(false);
-      setCurrentClient('');
-    }
+  const route = (current: string) => {
+    history.push(current);
+    setCurrentTab(current);
+    setIsClientListOpen(false);
   };
 
-  useLayoutEffect(() => {
-    getNaviList();
+  useEffect(() => {
+    getNavigationClientList();
   }, []);
 
   return (
-    <div id="navigation" className="flex flex-col pt-40 pb-40 pl-24 pr-24">
+    <div
+      id="navigation-container"
+      className="flex flex-col w-280 pt-40 pb-40 pl-24 pr-24"
+    >
       <div
         className="cursor-pointer"
         onClick={() => {
-          handleClick('/');
+          route('/');
+          history.go(0);
         }}
       >
         <Logo />
@@ -73,17 +66,17 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
         <div className="flex flex-col">
           <div
             className={
-              'w-232 h-40 flex items-center pl-10 cursor-pointer item-border hover-tab' +
-              (currentTab === 'dashboard' ? ' focus-tab' : '')
+              'flex items-center w-232 h-40 pl-10 cursor-pointer hover:bg-palette-grey-2-hover rounded-8' +
+              (currentTab === '/' ? ' navigation-focus-tab' : '')
             }
             onClick={() => {
-              handleClick('dashboard');
+              route('/');
             }}
           >
             <span>한눈에 보기</span>
           </div>
           <div
-            className="w-232 h-40 flex items-center pl-10 cursor-pointer item-border justify-between"
+            className="flex justify-between items-center w-232 h-40 pl-10 cursor-pointer rounded-8"
             onClick={() => setIsClientListOpen(!isClientListOpen)}
           >
             <span>회사별로 보기</span>
@@ -98,26 +91,24 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
             <ClientList
               clientList={clientList}
               setCurrentTab={setCurrentTab}
-              currentClient={currentClient}
-              setCurrentClient={setCurrentClient}
-              getNaviList={getNaviList}
+              getNavigationClientList={getNavigationClientList}
             />
           ) : (
             <></>
           )}
           <div
             className={
-              'w-232 h-40 flex items-center pl-10 cursor-pointer item-border hover-tab' +
-              (currentTab === 'statistics' ? ' focus-tab' : '')
+              'w-232 h-40 flex items-center pl-10 cursor-pointer rounded-8 hover:bg-palette-grey-2-hover' +
+              (currentTab === '/statistics' ? ' navigation-focus-tab' : '')
             }
             onClick={() => {
-              handleClick('statistics');
+              route('/statistics');
             }}
           >
             <span>통계 확인하기</span>
           </div>
           <div
-            className="w-232 h-40 flex items-center pl-10 cursor-pointer item-border hover-tab"
+            className="flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8 hover:bg-palette-grey-2-hover"
             onClick={() => {
               setOpenSetting(!openSetting);
             }}

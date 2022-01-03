@@ -1,9 +1,5 @@
-#navigation {
+#navigation-container {
   background-color: #f1f1f4;
-  width: 280px;
-}
-
-span {
   font-family: NotoSansKR;
   font-size: 14px;
   font-weight: 500;
@@ -15,23 +11,19 @@ span {
   color: #25252d;
 }
 
-.focus-tab {
+.navigation-focus-tab {
   background-color: #e6e6ea;
 }
 
-.focus-tab > div > span {
+.navigation-focus-tab > span {
   color: #7047eb;
 }
 
-.hover-tab:hover {
-  background-color: #e6e6ea;
+.navigation-focus-tab > div > span {
+  color: #7047eb;
 }
 
-.item-border {
-  border-radius: 8px;
-}
-
-.client-item {
+.navigation-client-item {
   color: #6c6c84;
 }
 
@@ -41,6 +33,10 @@ span {
 
 .pin-icon > path {
   fill: #f1f1f4;
+}
+
+.hover-tab:hover {
+  background-color: #e6e6ea;
 }
 
 .hover-tab:hover > .pin-icon > path {
