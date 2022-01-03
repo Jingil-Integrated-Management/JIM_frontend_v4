@@ -9,9 +9,6 @@ import { ClientData } from '../../types';
 //icons
 import { ReactComponent as PinnedIcon } from '../../resources/pinned.svg';
 
-//axios
-import webClient from '../../utils/Webclient';
-
 interface clientListProps {
   clientList: ClientData[];
   setCurrentTab: Function;
@@ -23,23 +20,6 @@ interface clientListProps {
 const ClientList = (props: clientListProps) => {
   const [isHoverPin, setIsHoverPin] = useState(false);
   const history = useHistory();
-
-  const updateClientPin = async (client: number, isPinned: number) => {
-    try {
-      if (isPinned === 1) {
-        await webClient.patch(`client/${client}`, {
-          is_pinned: 2,
-        });
-      } else if (isPinned === 2) {
-        await webClient.patch(`client/${client}`, {
-          is_pinned: 1,
-        });
-      }
-      props.getNaviList();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <>
@@ -66,9 +46,6 @@ const ClientList = (props: clientListProps) => {
             className={
               'pin-icon mr-25' + (c.is_pinned === 2 ? ' pinned-icon' : '')
             }
-            onClick={() => {
-              updateClientPin(c.id, c.is_pinned);
-            }}
             onMouseEnter={() => {
               setIsHoverPin(true);
             }}
