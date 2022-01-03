@@ -1,53 +1,22 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { changeClientList } from '../../redux/action/clientAction';
+import DrawingTable from '../tables/DrawingTable';
+import PartTable from '../tables/PartTable';
 
-interface Client {
-  id: number;
-  name: string;
-  is_pinned: number;
-}
-
-const Dashboard = (props: any) => {
-  useEffect(() => {
-    console.log('client data => ', props.clientList);
-  }, [props.clientList]);
-
-  const changeClientList = () => {
-    props.dispatchChangeClientList([
-      { id: 1, name: '블라블라', is_pinned: 0 },
-      { id: 2, name: '블라블라', is_pinned: 0 },
-    ]);
-  };
-
+const Dashboard = () => {
   return (
     <div
       id="dashboard-container"
       className="flex h-100p w-100p overflow-hidden justify-center"
     >
-      Dashboard
       <div
-        onClick={() => changeClientList()}
-        style={{
-          backgroundColor: 'gray',
-          width: '100px',
-          height: '100px',
-          cursor: 'pointer',
-        }}
+        id="dashboard-content"
+        className="flex flex-col items-center justify-start h-100p w-100p overflow-scroll scroll-hide"
       >
-        client list 변경
+        <div className="flex w-100p mb-18">
+          <PartTable clientId={324} />
+        </div>
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = {
-  dispatchChangeClientList: (clientList: Client[]) =>
-    changeClientList(clientList),
-};
-
-const mapStateToProps = (state: any) => ({
-  clientList: state.clientReducer.clientList,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;
