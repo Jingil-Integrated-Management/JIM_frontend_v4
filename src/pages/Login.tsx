@@ -8,7 +8,7 @@ import webClient from '../utils/Webclient';
 import { useHistory } from 'react-router-dom';
 
 //types
-import { token } from '../types';
+import { Token } from '../types';
 
 const Login = () => {
   return (

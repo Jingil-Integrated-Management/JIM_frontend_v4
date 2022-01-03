@@ -1,5 +1,5 @@
-export interface Client {
-  id: number;
+export default interface Client {
+  id?: number;
   name: string;
-  is_pinned: number;
+  is_pinned?: number;
 }
