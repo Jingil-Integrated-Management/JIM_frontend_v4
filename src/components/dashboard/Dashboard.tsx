@@ -1,4 +1,5 @@
 import DrawingTable from '../tables/DrawingTable';
+import PartTable from '../tables/PartTable';
 
 const Dashboard = () => {
   return (
@@ -11,7 +12,7 @@ const Dashboard = () => {
         className="flex flex-col items-center justify-start h-100p w-100p overflow-scroll scroll-hide"
       >
         <div className="flex w-100p mb-18">
-          <DrawingTable type="dashboard" clientId={7} />
+          <PartTable clientId={7} />
         </div>
       </div>
     </div>
