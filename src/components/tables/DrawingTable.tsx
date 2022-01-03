@@ -65,6 +65,7 @@ const DrawingTable = (props: drawingTableProps) => {
 
   useEffect(() => {
     setList([]);
+    setClientName(getClientName(props.clientList, props.clientId));
   }, [props.month, props.clientId]);
 
   useEffect(() => {

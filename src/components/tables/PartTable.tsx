@@ -80,6 +80,7 @@ const PartTable = (props: partTableProps) => {
     setDateRange([null, null]);
     setIsFiltered(false);
     setIsOutSource(undefined);
+    setClientName(getClientName(props.clientList, props.clientId));
   }, [props.clientId]);
 
   useEffect(() => {
