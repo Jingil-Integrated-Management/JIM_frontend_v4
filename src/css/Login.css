@@ -1,0 +1,30 @@
+.login-content {
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-color: rgba(236, 233, 255, 0.9);
+}
+
+.login-form {
+  border-radius: 15px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-color: #ece9ff;
+}
+
+.login-input {
+  line-height: 16px;
+  border-radius: 8px;
+  border-color: rgba(100, 77, 237, 1);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+  color: #abacbe;
+}
+
+.login-button {
+  border-radius: 8px;
+}
+
+input:focus {
+  outline: 0;
+}

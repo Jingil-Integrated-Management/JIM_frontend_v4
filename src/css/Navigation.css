@@ -1,0 +1,56 @@
+#navigation {
+  background-color: #f1f1f4;
+  width: 280px;
+}
+
+span {
+  font-family: NotoSansKR;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #25252d;
+}
+
+.focus-tab {
+  background-color: #e6e6ea;
+}
+
+.focus-tab > div > span {
+  color: #7047eb;
+}
+
+.hover-tab:hover {
+  background-color: #e6e6ea;
+}
+
+.item-border {
+  border-radius: 8px;
+}
+
+.client-item {
+  color: #6c6c84;
+}
+
+.pin-icon:hover > path {
+  fill: rgba(108, 108, 132, 0.3) !important;
+}
+
+.pin-icon > path {
+  fill: #f1f1f4;
+}
+
+.hover-tab:hover > .pin-icon > path {
+  fill: #e6e6ea;
+}
+
+.focus-tab > .pin-icon > path {
+  fill: #e6e6ea;
+}
+
+.pinned-icon > path {
+  fill: #6c6c84 !important;
+}

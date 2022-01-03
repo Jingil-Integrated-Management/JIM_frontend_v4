@@ -1,0 +1,96 @@
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper::-webkit-scrollbar {
+  display: none !important;
+}
+
+.title-text {
+  font-family: NotoSansKR;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #25252d;
+}
+
+.group-text {
+  flex-grow: 0;
+  font-family: NotoSansKR;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: #808192;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.setting-input {
+  width: 512px;
+  height: 48px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f3f3f8;
+}
+
+.setting-button {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.highlighted-button-text {
+  color: #484964 !important;
+}
+
+.client-list-box {
+  background: #fdfdfd;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08),
+    0px 0px 1px rgba(67, 90, 111, 0.47);
+  border-radius: 8px;
+}
+
+.client-list-item-text {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  color: #25252d;
+  order: 0;
+  flex-grow: 0;
+}
+
+.client-list-item-hover:hover {
+  background: #e6e6ea;
+  border-radius: 8px;
+  color: #25252d;
+}
+
+.correct-value-text {
+  color: #7047eb;
+}
+
+.clicked-list-item {
+  background-color: rgba(100, 77, 237, 0.08) !important;
+  color: #7047eb !important;
+  border-radius: 8px;
+}
+
+.incorrect-input-value:focus {
+  background-color: rgba(255, 33, 140, 0.04);
+  border: 1px solid #ff218c;
+}
