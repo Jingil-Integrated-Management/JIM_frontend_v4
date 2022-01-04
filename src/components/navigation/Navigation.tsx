@@ -26,7 +26,7 @@ interface NavigationProps {
 
 const Navigation = (props: NavigationProps) => {
   const [currentTab, setCurrentTab] = useState<string>('/');
-  const [currentClient, setCurrentClient] = useState<string>('');
+  const [currentClient, setCurrentClient] = useState<number | null>(null);
   const [isClientListOpen, setIsClientListOpen] = useState<boolean>(false);
   const [clientList, setClientList] = useState<ClientData[]>([]);
   const history = useHistory();
@@ -45,7 +45,7 @@ const Navigation = (props: NavigationProps) => {
     history.push(current);
     setCurrentTab(current);
     setIsClientListOpen(false);
-    setCurrentClient('');
+    setCurrentClient(null);
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const Navigation = (props: NavigationProps) => {
     } else if (location.pathname.includes('client')) {
       setCurrentTab('/client');
       setIsClientListOpen(true);
-      // TODO : 특정 클라이언트 포커스
+      setCurrentClient(Number(location.pathname.replace(/[^0-9]/g, '')));
     } else if (location.pathname.includes('statistics')) {
       setCurrentTab('/statistics');
     }
