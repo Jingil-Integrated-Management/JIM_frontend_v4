@@ -1,21 +1,23 @@
 {
   "files": {
-    "main.css": "/JIM_frontend_v4/static/css/main.d924d5c1.chunk.css",
-    "main.js": "/JIM_frontend_v4/static/js/main.fde7e53c.chunk.js",
-    "main.js.map": "/JIM_frontend_v4/static/js/main.fde7e53c.chunk.js.map",
+    "main.css": "/JIM_frontend_v4/static/css/main.9648836d.chunk.css",
+    "main.js": "/JIM_frontend_v4/static/js/main.c982eb0d.chunk.js",
+    "main.js.map": "/JIM_frontend_v4/static/js/main.c982eb0d.chunk.js.map",
     "runtime-main.js": "/JIM_frontend_v4/static/js/runtime-main.8538500c.js",
     "runtime-main.js.map": "/JIM_frontend_v4/static/js/runtime-main.8538500c.js.map",
     "static/css/2.169d8ab9.chunk.css": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css",
-    "static/js/2.5e3bfb2a.chunk.js": "/JIM_frontend_v4/static/js/2.5e3bfb2a.chunk.js",
-    "static/js/2.5e3bfb2a.chunk.js.map": "/JIM_frontend_v4/static/js/2.5e3bfb2a.chunk.js.map",
+    "static/js/2.edb16dd3.chunk.js": "/JIM_frontend_v4/static/js/2.edb16dd3.chunk.js",
+    "static/js/2.edb16dd3.chunk.js.map": "/JIM_frontend_v4/static/js/2.edb16dd3.chunk.js.map",
     "static/js/3.134dc124.chunk.js": "/JIM_frontend_v4/static/js/3.134dc124.chunk.js",
     "static/js/3.134dc124.chunk.js.map": "/JIM_frontend_v4/static/js/3.134dc124.chunk.js.map",
     "index.html": "/JIM_frontend_v4/index.html",
     "static/css/2.169d8ab9.chunk.css.map": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css.map",
-    "static/css/main.d924d5c1.chunk.css.map": "/JIM_frontend_v4/static/css/main.d924d5c1.chunk.css.map",
-    "static/js/2.5e3bfb2a.chunk.js.LICENSE.txt": "/JIM_frontend_v4/static/js/2.5e3bfb2a.chunk.js.LICENSE.txt",
+    "static/css/main.9648836d.chunk.css.map": "/JIM_frontend_v4/static/css/main.9648836d.chunk.css.map",
+    "static/js/2.edb16dd3.chunk.js.LICENSE.txt": "/JIM_frontend_v4/static/js/2.edb16dd3.chunk.js.LICENSE.txt",
     "static/media/Vector-1.71296f86.svg": "/JIM_frontend_v4/static/media/Vector-1.71296f86.svg",
     "static/media/Vector.22e5993f.svg": "/JIM_frontend_v4/static/media/Vector.22e5993f.svg",
+    "static/media/close.d79596e1.svg": "/JIM_frontend_v4/static/media/close.d79596e1.svg",
+    "static/media/edit.1ebf86ea.svg": "/JIM_frontend_v4/static/media/edit.1ebf86ea.svg",
     "static/media/empty_dashboard.e82a60f5.svg": "/JIM_frontend_v4/static/media/empty_dashboard.e82a60f5.svg",
     "static/media/empty_table.110c7c8c.svg": "/JIM_frontend_v4/static/media/empty_table.110c7c8c.svg",
     "static/media/icon.png": "/JIM_frontend_v4/static/media/icon.7549f51e.png",
@@ -25,8 +27,8 @@
   "entrypoints": [
     "static/js/runtime-main.8538500c.js",
     "static/css/2.169d8ab9.chunk.css",
-    "static/js/2.5e3bfb2a.chunk.js",
-    "static/css/main.d924d5c1.chunk.css",
-    "static/js/main.fde7e53c.chunk.js"
+    "static/js/2.edb16dd3.chunk.js",
+    "static/css/main.9648836d.chunk.css",
+    "static/js/main.c982eb0d.chunk.js"
   ]
 }
