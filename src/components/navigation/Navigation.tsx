@@ -45,6 +45,7 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
     history.push(current);
     setCurrentTab(current);
     setIsClientListOpen(false);
+    setCurrentClient('');
   };
 
   useEffect(() => {
