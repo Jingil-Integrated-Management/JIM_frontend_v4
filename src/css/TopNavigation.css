@@ -1,0 +1,70 @@
+.search-open {
+  border: 1px solid #7047eb;
+}
+
+.search-open > .search-input-text {
+  font-family: NotoSansKR;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #6c6c84;
+  width: 190px;
+}
+
+.icon-button:hover {
+  background-color: #e6e6ea;
+}
+
+#client-list-input::-webkit-calendar-picker-indicator {
+  color: white;
+}
+
+.top-navigation {
+  width: 1440px;
+}
+
+@media (max-width: 1740px) {
+  .top-navigation {
+    width: 1260px;
+  }
+}
+
+@media (max-width: 1560px) {
+  .top-navigation {
+    width: 1080px;
+  }
+}
+
+@media (max-width: 1380px) {
+  .top-navigation {
+    width: calc(100% - 20px);
+  }
+}
+
+.current-focus-text {
+  font-family: NotoSansKR;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #25252d;
+}
+
+.unfocus-text {
+  color: #6c6c84;
+  font-family: NotoSansKR;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+}
