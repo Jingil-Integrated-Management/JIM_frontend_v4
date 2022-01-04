@@ -58,7 +58,7 @@ const ClientList = (props: clientListProps) => {
             onClick={() => {
               setCurrentClient(c.name);
               props.setCurrentTab('/client');
-              history.push(`/client`);
+              history.push(`/client/part`);
             }}
             className="w-190"
           >

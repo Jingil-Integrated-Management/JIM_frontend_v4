@@ -14,6 +14,7 @@ module.exports = {
       borderRadius: {
         panel: '16px',
         8: '8px',
+        15: '15px',
         20: '20px',
       },
     },
@@ -182,6 +183,7 @@ module.exports = {
       208: '208px',
       220: '220px',
       232: '232px',
+      240: '240px',
       256: '256px',
       280: '280px',
       288: '288px',
