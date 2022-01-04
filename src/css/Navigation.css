@@ -15,6 +15,10 @@
   background-color: #e6e6ea;
 }
 
+.hover-tab:hover {
+  background-color: #e6e6ea;
+}
+
 .navigation-focus-tab > span {
   color: #7047eb;
 }
@@ -35,15 +39,11 @@
   fill: #f1f1f4;
 }
 
-.hover-tab:hover {
-  background-color: #e6e6ea;
-}
-
 .hover-tab:hover > .pin-icon > path {
   fill: #e6e6ea;
 }
 
-.focus-tab > .pin-icon > path {
+.navigation-focus-tab > .pin-icon > path {
   fill: #e6e6ea;
 }
 
