@@ -47,26 +47,22 @@
     {
       "title": "총 매출",
       "is_positive": true,
-      "value": "total_revenue",
-      "denominator": "total_revenue"
+      "value": "total_revenue"
     },
     {
       "title": "총 순이익",
       "is_positive": false,
-      "value": "total_profit",
-      "denominator": "total_revenue"
+      "value": "total_profit"
     },
     {
       "title": "연마 매출 합계",
       "is_positive": false,
-      "value": "pol_revenue",
-      "denominator": "total_revenue"
+      "value": "pol_revenue"
     },
     {
       "title": "제작 매출 합계",
       "is_positive": true,
-      "value": "os_revenue",
-      "denominator": "total_revenue"
+      "value": "os_revenue"
     }
   ]
 }
