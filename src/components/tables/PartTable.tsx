@@ -141,7 +141,7 @@ const PartTable = (props: partTableProps) => {
         </div>
         {list?.length === 0 ? (
           <div className="w-100p h-700">
-            {/* TODO <TableEmpty category={'파트'} />*/}
+            <TableEmpty category="파트" />
           </div>
         ) : (
           <>
