@@ -15,8 +15,7 @@ const generateURL = (data: TableData) => {
   baseURL += data.category === 'part' ? 'part/' : 'drawing/';
   baseURL += `?client=${data.client}`;
   baseURL += `&is_closed=${data.type === 'client'}`;
-
-  if (data.page) baseURL += `&page=${data.page}`;
+  baseURL += `&page=${data.page}`;
 
   if (data.month) {
     baseURL += `&created_at__gte=${data.month}-01`;
