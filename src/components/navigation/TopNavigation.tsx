@@ -94,7 +94,7 @@ const ClientTableToggle = (props: tableToggleProps) => {
     <div className="flex h-44 items-center">
       <div
         onClick={() => route('part')}
-        className="flex items-center cursor-pointer p-16 h-44"
+        className="flex items-center cursor-pointer p-16 h-44 hover-toggle-tab"
       >
         <span
           className={
@@ -107,7 +107,7 @@ const ClientTableToggle = (props: tableToggleProps) => {
       </div>
       <div
         onClick={() => route('drawing')}
-        className="flex items-center cursor-pointer p-16 h-44"
+        className="flex items-center cursor-pointer p-16 h-44 hover-toggle-tab"
       >
         <span
           className={
