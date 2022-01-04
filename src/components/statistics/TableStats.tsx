@@ -3,7 +3,7 @@ import formatPrice from '../../utils/formatPrice';
 interface StatsProps {
   title: string;
   is_positive: boolean;
-  gross: number | string;
+  gross: string;
   value: string | undefined | null;
 }
 
@@ -12,20 +12,7 @@ const TableStats = (props: StatsProps) => {
     <div className="statistics-table-stats flex text-palette-black bg-palette-light-theme justify-between mt-18 mb-12 mr-16 px-16 py-6 h-48">
       <div className="flex flex-col justify-center">
         <div className="statistics-stat-table-title flex">{props.title}</div>
-        <div
-          className={
-            'statistics-stat-table-info flex ' +
-            (props.title !== '연마 매출 합계' &&
-            props.title !== '제작 매출 합계' &&
-            props.title !== '제작 순이익'
-              ? 'text-palette-purple-on'
-              : props.is_positive === true ||
-                props.gross === 0 ||
-                props.gross === '0'
-              ? 'text-palette-purple-on'
-              : 'text-palette-word-2')
-          }
-        >
+        <div className="statistics-stat-table-info flex text-palette-purple-on">
           {props.title === '연마 매출 합계' || props.title === '제작 매출 합계'
             ? '전체 매출의 '
             : props.title === '외주비 합계' || props.title === '제작 순이익'

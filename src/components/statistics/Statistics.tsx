@@ -15,7 +15,7 @@ import { ko } from 'date-fns/esm/locale';
 import TableStats from './TableStats';
 import MonthStats from './MonthStats';
 
-import getGross from '../../utils/statUtils';
+import getGross from '../../utils/getGross';
 import formatDate from '../../utils/formatDate';
 //import StatsFilter from '../filter/StatsFilter';
 import getClientName from '../../utils/getClientName';
@@ -34,20 +34,30 @@ const Statistics = (props: { clientList: ClientData[] }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
-  const getValue = <K extends keyof StatsData>(key: K) => {
-    if (currentStats) return currentStats[key];
-    return null;
+  const getValue = <K extends keyof StatsData>(
+    key: K,
+    stat: StatsData | undefined
+  ) => {
+    if (stat) return stat[key];
+    return undefined;
   };
 
   useEffect(() => {
     if (client <= 0) return;
     const getStats = async () => {
-      let dateParam = formatMonth(date);
       try {
-        const response: AxiosResponse = await webClient.get(
+        let dateParam = formatMonth(date);
+        let response: AxiosResponse = await webClient.get(
           `stats?client=${client}&date=${dateParam}`
         );
         setCurrentStats(response.data as StatsData);
+        dateParam = formatMonth(
+          new Date(date.getTime() - 1000 * 60 * 60 * 24 * 15)
+        );
+        response = await webClient.get(
+          `stats?client=${client}&date=${dateParam}`
+        );
+        setPrevStats(response.data as StatsData);
       } catch (error) {
         console.log(error);
       }
@@ -126,12 +136,11 @@ const Statistics = (props: { clientList: ClientData[] }) => {
             return (
               <MonthStats
                 title={stat.title}
-                is_positive={stat.is_positive}
                 gross={getGross(
-                  getValue(stat.value as keyof StatsData),
-                  getValue(stat.denominator as keyof StatsData)
+                  getValue(stat.value as keyof StatsData, currentStats),
+                  getValue(stat.value as keyof StatsData, prevStats)
                 )}
-                value={getValue(stat.value as keyof StatsData)}
+                value={getValue(stat.value as keyof StatsData, currentStats)}
                 key={index}
               />
             );
@@ -178,10 +187,10 @@ const Statistics = (props: { clientList: ClientData[] }) => {
                   title={stat.title}
                   is_positive={stat.is_positive}
                   gross={getGross(
-                    getValue(stat.value as keyof StatsData),
-                    getValue(stat.denominator as keyof StatsData)
+                    getValue(stat.value as keyof StatsData, currentStats),
+                    getValue(stat.denominator as keyof StatsData, currentStats)
                   )}
-                  value={getValue(stat.value as keyof StatsData)}
+                  value={getValue(stat.value as keyof StatsData, currentStats)}
                   key={index}
                 />
               );
