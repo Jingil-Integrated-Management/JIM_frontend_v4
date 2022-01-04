@@ -127,7 +127,6 @@ const PartTable = (props: partTableProps) => {
               <button
                 onClick={() => {
                   setOpenFilter(!openFilter);
-                  console.log('partTable', isFiltered);
                 }}
                 className={
                   'text-palette-word-2 bg-palette-grey ml-12 px-16 h-44 flex items-center font-medium flex-row justify-center ' +
