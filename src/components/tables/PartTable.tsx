@@ -15,7 +15,7 @@ import useFetch from './InfiniteScroll';
 import { PartData, ClientData } from '../../types';
 import getClientName from '../../utils/getClientName';
 
-// import { TableEmpty } from './EmptyTable';
+import { TableEmpty } from './EmptyTable';
 // import Filter from '../filter/Filter';
 
 interface partTableProps {
