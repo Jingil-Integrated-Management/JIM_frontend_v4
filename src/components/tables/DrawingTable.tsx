@@ -15,6 +15,7 @@ import useFetch from './InfiniteScroll';
 
 import { ClientData, DrawingData } from '../../types';
 import getClientName from '../../utils/getClientName';
+import { TableEmpty } from './EmptyTable';
 
 interface drawingTableProps {
   clientId: number;
@@ -98,13 +99,15 @@ const DrawingTable = (props: drawingTableProps) => {
           </div>
         </div>
         {list?.length === 0 && props.type !== 'dashboard' ? (
-          <div className="w-100p ">
-            {/* TODO
-            (props.type === 'statistics_pol' || props.type === 'statistics_os'
+          <div
+            className={
+              'w-100p ' +
+              (props.type === 'statistics_pol' || props.type === 'statistics_os'
                 ? 'h-280'
-                : 'h-700') 
-            */}
-            {/* TODO<TableEmpty category={'도면'} />*/}
+                : 'h-700')
+            }
+          >
+            <TableEmpty category="도면" />
           </div>
         ) : (
           <>
