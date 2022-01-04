@@ -1,0 +1,23 @@
+.empty-text {
+  color: #abacbe;
+  font-family: NotoSansKR;
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.empty-text > span {
+  color: #7047eb;
+  font-family: NotoSansKR;
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}

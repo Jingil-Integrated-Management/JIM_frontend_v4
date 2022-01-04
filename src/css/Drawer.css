@@ -1,0 +1,129 @@
+.container {
+  overflow-x: none;
+  overflow-y: scroll;
+  height: 100%;
+  width: 544px;
+  font-family: NotoSansKR;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: #484964;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.index {
+  background-color: #e9e8fc;
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  height: 40px;
+  padding: 9px 16px 8px;
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: #f7f7f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.two {
+  width: 256px;
+}
+
+.three {
+  width: 160px;
+}
+.os_drawer_input {
+  height: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: #f3f3f8;
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  width: 608px;
+  height: 1922px;
+  border-radius: 8px;
+  background-color: rgba(100, 77, 237, 0.08);
+  width: 60px;
+  height: 40px;
+  flex-grow: 0;
+  font-family: NotoSansKR;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: center;
+  color: #644ded;
+  margin-top: 20px;
+}
+
+.imageButton {
+  width: 99%;
+  height: 222px;
+  margin: 30px 0;
+  border-radius: 8px;
+  border: dashed 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.osBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 40px;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+
+.offOsBox {
+  background-color: #e6e6ea;
+  color: #abacbe;
+}
+
+.onOsBox {
+  background-color: #faf3e1;
+  color: black;
+}
+
+.offOsButton {
+  background-color: #f3f3f8;
+  color: #abacbe;
+}
+
+.onOsButton {
+  background-color: #e9e8fc;
+  color: #7047eb;
+}
+
+.imageBox {
+  border-width: 1px;
+  border-style: dashed;
+}
+
+.drawer-container {
+  font-family: NotoSansKR;
+}
+
+.drawer-container::-webkit-scrollbar {
+  display: none;
+}
