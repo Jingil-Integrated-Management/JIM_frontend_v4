@@ -20,6 +20,7 @@ interface drawingTableProps {
   clientId: number;
   clientList: ClientData[];
   type: string;
+  tableInfo?: string;
   month?: string;
 }
 
@@ -91,7 +92,7 @@ const DrawingTable = (props: drawingTableProps) => {
           <div className="flex items-center pb-12 justify-between">
             <div className="flex justify-center items-center">
               <div className="client-name text-palette-black bg-palette-grey px-16 h-44 flex items-center">
-                {clientName}
+                {props.tableInfo ? props.tableInfo : clientName}
               </div>
             </div>
           </div>

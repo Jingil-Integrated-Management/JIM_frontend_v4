@@ -1,0 +1,131 @@
+#statistics-content {
+  width: 1440px;
+}
+
+@media (max-width: 1726px) {
+  #statistics-content {
+    width: 1260px;
+  }
+}
+
+@media (max-width: 1560px) {
+  #statistics-content {
+    width: 1080px;
+  }
+}
+@media (max-width: 1380px) {
+  #statistics-content {
+    width: calc(100% - 20px);
+  }
+}
+
+#statistics-stats-container {
+  min-height: 100px;
+}
+
+.statistics-filter {
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.statistics-month-stats {
+  min-width: 288px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+  box-shadow: 0 0 1px 0 rgba(67, 90, 111, 0.47), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.statistics-month-stat-info {
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: right;
+}
+.statistics-month-stat-value {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: right;
+}
+
+.statistics-stat-currency {
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: right;
+}
+
+.statistics-table-stats {
+  min-width: 318px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+  box-shadow: 0 0 1px 0 rgba(67, 90, 111, 0.47), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.statistics-stat-table-title {
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.statistics-stat-table-info {
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: right;
+}
+
+.statistics-stat-table-value {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: right;
+}
+
+.statistics-table-stats-container {
+  min-height: 100px;
+}
+
+#statistics-stats-container {
+  min-height: 100px;
+}
+
+.statistics-filter:hover {
+  @apply bg-palette-grey-2-hover;
+}

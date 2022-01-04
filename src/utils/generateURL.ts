@@ -1,35 +1,36 @@
 import formatDate from './formatDate';
 import { TableData } from '../types';
 
+const getLastDate = (month: string) => {
+  return new Date(
+    Number(month.split('-')[0]),
+    Number(month.split('-')[1]) % 12,
+    0
+  ).getDate();
+};
+
 const generateURL = (data: TableData) => {
-  let baseURL = data.category === 'part' ? 'part/' : 'drawing/';
+  let baseURL = '';
+
+  baseURL += data.category === 'part' ? 'part/' : 'drawing/';
   baseURL += `?client=${data.client}`;
+  baseURL += `&is_closed=${data.type === 'client'}`;
+  baseURL += `&page=${data.page}`;
 
-  if (data.page) baseURL += `&page=${data.page}`;
-  if (data.month !== undefined) {
-    let lastDate = new Date(
-      Number(data.month.split('-')[0]),
-      Number(data.month.split('-')[1]) % 12,
-      0
-    ).getDate();
+  if (data.month) {
     baseURL += `&created_at__gte=${data.month}-01`;
-    baseURL += `&created_at__lte=${data.month}-${lastDate}`;
+    baseURL += `&created_at__lte=${data.month}-${getLastDate(data.month)}`;
   }
-  if (data.type === 'dashboard') baseURL += '&is_closed=false';
-  else if (data.type === 'client') baseURL += '&is_closed=true';
 
-  if (data.main_division && data.main_division.length !== 0)
-    baseURL += `&main_division=${data.main_division}`;
-  if (data.sub_division && data.sub_division?.length !== 0)
-    baseURL += `&sub_division=${data.sub_division}`;
+  if (data.main_division) baseURL += `&main_division=${data.main_division}`;
+  if (data.sub_division) baseURL += `&sub_division=${data.sub_division}`;
 
-  if (data.startDate && data.endDate)
-    baseURL += `&created_at__gte=${formatDate(
-      data.startDate
-    )}&created_at__lte=${formatDate(data.endDate)}`;
+  if (data.startDate && data.endDate) {
+    baseURL += `&created_at__gte=${formatDate(data.startDate)}`;
+    baseURL += `&created_at__lte=${formatDate(data.endDate)}`;
+  }
 
-  if (data.is_outsource === true) baseURL += '&is_outsource=true';
-  else if (data.is_outsource === false) baseURL += '&is_outsource=false';
+  if (data.is_outsource) baseURL += `&is_outsource=${data.is_outsource}`;
 
   return baseURL;
 };
