@@ -7,6 +7,7 @@ import logo from '../../resources/jingil_logo.png';
 
 //router
 import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 //types
 import { ClientData } from '../../types';
@@ -31,17 +32,17 @@ interface SearchProps {
 const TopNavigation = (props: topNaviProps) => {
   const [current, setCurrent] = useState<string>('');
   const { clientList } = props;
-  const path = decodeURI(window.location.pathname);
+  const location = useLocation();
 
   useEffect(() => {
-    if (path.includes('client')) {
+    if (location.pathname.includes('client')) {
       setCurrent('client');
-    } else if (path.includes('statistics')) {
+    } else if (location.pathname.includes('statistics')) {
       setCurrent('statistics');
     } else {
       setCurrent('dashboard');
     }
-  }, [path]);
+  }, [location, props]);
 
   return (
     <div className="flex w-100p justify-center bg-white pt-32 pb-26">
@@ -71,15 +72,15 @@ const TopNavigation = (props: topNaviProps) => {
 const ClientTableToggle = (props: tableToggleProps) => {
   const [currentView, setCurrentView] = useState('part');
   const history = useHistory();
-  const path = decodeURI(window.location.pathname);
+  const location = useLocation();
 
   useEffect(() => {
-    if (path.includes('/part')) {
+    if (location.pathname.includes('/part')) {
       setCurrentView('part');
-    } else if (path.includes('/drawing')) {
+    } else if (location.pathname.includes('/drawing')) {
       setCurrentView('drawing');
     }
-  }, [props, path]);
+  }, [props, location]);
 
   const route = (route: string) => {
     if (route === 'part') {
