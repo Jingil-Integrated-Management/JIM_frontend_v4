@@ -2,8 +2,7 @@ import formatPrice from '../../utils/formatPrice';
 
 interface StatsProps {
   title: string;
-  is_positive: boolean;
-  gross: number | string;
+  gross: string;
   value: string | undefined | null;
 }
 
@@ -14,23 +13,14 @@ const MonthStats = (props: StatsProps) => {
       <div
         className={
           'statistics-month-stat-info flex justify-end ' +
-          (props.is_positive === true ||
-          props.title !== '총 매출' ||
-          props.gross === 0 ||
-          props.gross === '0'
+          (Number(props.gross) >= 100 && props.gross !== 'Infinity'
             ? 'text-palette-purple-on'
             : 'text-palette-word-2')
         }
       >
-        전 월 대비
-        {props.gross === 0 || props.gross === '0'
-          ? ' '
-          : props.title === '총 매출'
-          ? props.is_positive === true
-            ? ' +'
-            : ' -'
-          : ' '}
-        {props.gross}%
+        {props.gross === 'Infinity'
+          ? '전 월 매출이 없습니다.'
+          : `전 월 대비 ${props.gross}%`}
       </div>
       <div className="statistics-month-stat-value flex justify-end">
         {formatPrice(props.value)}
