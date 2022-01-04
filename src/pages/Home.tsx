@@ -12,7 +12,7 @@ import Setting from '../components/setting/Setting';
 import { Switch, Route } from 'react-router-dom';
 
 const Home = () => {
-  const [openSetting, setOpenSetting] = useState(false);
+  const [openSetting, setOpenSetting] = useState<boolean>(false);
   const [drawerHide, setDrawerShow] = useState<string>('hidden');
 
   return (
