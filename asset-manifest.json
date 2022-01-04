@@ -1,25 +1,30 @@
 {
   "files": {
-    "main.css": "/JIM_frontend_v4/static/css/main.e601c621.chunk.css",
-    "main.js": "/JIM_frontend_v4/static/js/main.3eac6595.chunk.js",
-    "main.js.map": "/JIM_frontend_v4/static/js/main.3eac6595.chunk.js.map",
-    "runtime-main.js": "/JIM_frontend_v4/static/js/runtime-main.8d6ead8a.js",
-    "runtime-main.js.map": "/JIM_frontend_v4/static/js/runtime-main.8d6ead8a.js.map",
-    "static/js/2.618b16f7.chunk.js": "/JIM_frontend_v4/static/js/2.618b16f7.chunk.js",
-    "static/js/2.618b16f7.chunk.js.map": "/JIM_frontend_v4/static/js/2.618b16f7.chunk.js.map",
-    "static/js/3.a10a7a02.chunk.js": "/JIM_frontend_v4/static/js/3.a10a7a02.chunk.js",
-    "static/js/3.a10a7a02.chunk.js.map": "/JIM_frontend_v4/static/js/3.a10a7a02.chunk.js.map",
+    "main.css": "/JIM_frontend_v4/static/css/main.f586cb4e.chunk.css",
+    "main.js": "/JIM_frontend_v4/static/js/main.57affef0.chunk.js",
+    "main.js.map": "/JIM_frontend_v4/static/js/main.57affef0.chunk.js.map",
+    "runtime-main.js": "/JIM_frontend_v4/static/js/runtime-main.8538500c.js",
+    "runtime-main.js.map": "/JIM_frontend_v4/static/js/runtime-main.8538500c.js.map",
+    "static/css/2.169d8ab9.chunk.css": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css",
+    "static/js/2.1853f8ca.chunk.js": "/JIM_frontend_v4/static/js/2.1853f8ca.chunk.js",
+    "static/js/2.1853f8ca.chunk.js.map": "/JIM_frontend_v4/static/js/2.1853f8ca.chunk.js.map",
+    "static/js/3.134dc124.chunk.js": "/JIM_frontend_v4/static/js/3.134dc124.chunk.js",
+    "static/js/3.134dc124.chunk.js.map": "/JIM_frontend_v4/static/js/3.134dc124.chunk.js.map",
     "index.html": "/JIM_frontend_v4/index.html",
-    "static/css/main.e601c621.chunk.css.map": "/JIM_frontend_v4/static/css/main.e601c621.chunk.css.map",
-    "static/js/2.618b16f7.chunk.js.LICENSE.txt": "/JIM_frontend_v4/static/js/2.618b16f7.chunk.js.LICENSE.txt",
+    "static/css/2.169d8ab9.chunk.css.map": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css.map",
+    "static/css/main.f586cb4e.chunk.css.map": "/JIM_frontend_v4/static/css/main.f586cb4e.chunk.css.map",
+    "static/js/2.1853f8ca.chunk.js.LICENSE.txt": "/JIM_frontend_v4/static/js/2.1853f8ca.chunk.js.LICENSE.txt",
+    "static/media/Vector-1.71296f86.svg": "/JIM_frontend_v4/static/media/Vector-1.71296f86.svg",
+    "static/media/Vector.22e5993f.svg": "/JIM_frontend_v4/static/media/Vector.22e5993f.svg",
     "static/media/icon.png": "/JIM_frontend_v4/static/media/icon.7549f51e.png",
     "static/media/jim_logo.f508e0b0.svg": "/JIM_frontend_v4/static/media/jim_logo.f508e0b0.svg",
     "static/media/pinned.9ded3dba.svg": "/JIM_frontend_v4/static/media/pinned.9ded3dba.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8d6ead8a.js",
-    "static/js/2.618b16f7.chunk.js",
-    "static/css/main.e601c621.chunk.css",
-    "static/js/main.3eac6595.chunk.js"
+    "static/js/runtime-main.8538500c.js",
+    "static/css/2.169d8ab9.chunk.css",
+    "static/js/2.1853f8ca.chunk.js",
+    "static/css/main.f586cb4e.chunk.css",
+    "static/js/main.57affef0.chunk.js"
   ]
 }
