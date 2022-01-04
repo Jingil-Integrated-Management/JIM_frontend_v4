@@ -68,3 +68,12 @@
   letter-spacing: normal;
   text-align: left;
 }
+
+.hover-toggle-tab:hover {
+  background-color: #e6e6ea;
+  border-radius: 15px;
+}
+
+.hover-toggle-tab:hover > span {
+  color: #6c6c84;
+}
