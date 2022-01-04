@@ -144,7 +144,7 @@ const Row = (props: drawingRowProps) => {
                     <TableRow key={part.id}>
                       <TableCell>{part.division__main_division}</TableCell>
                       <TableCell>{part.division__sub_division}</TableCell>
-                      <TableCell>{part.drawing}</TableCell>
+                      <TableCell>{part.drawing__name}</TableCell>
                       <TableCell>{part.x}</TableCell>
                       <TableCell>{part.y}</TableCell>
                       <TableCell>{part.z}</TableCell>

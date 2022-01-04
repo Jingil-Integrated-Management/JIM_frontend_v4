@@ -31,7 +31,7 @@ const Row = (props: partRowProps) => {
       >
         <TableCell>{props.part.division__main_division}</TableCell>
         <TableCell>{props.part.division__sub_division}</TableCell>
-        <TableCell>{props.part.drawing}</TableCell>
+        <TableCell>{props.part.drawing__name}</TableCell>
         <TableCell>{props.part.x}</TableCell>
         <TableCell>{props.part.y}</TableCell>
         <TableCell>{props.part.z}</TableCell>
