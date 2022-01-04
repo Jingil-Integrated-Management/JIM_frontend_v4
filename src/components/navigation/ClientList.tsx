@@ -16,11 +16,13 @@ interface clientListProps {
   clientList: ClientData[];
   setCurrentTab: Function;
   getNavigationClientList: Function;
+  currentClient: string;
+  setCurrentClient: Function;
 }
 
 const ClientList = (props: clientListProps) => {
   const [isHoverPin, setIsHoverPin] = useState(false);
-  const [currentClient, setCurrentClient] = useState('');
+  // const [currentClient, setCurrentClient] = useState('');
   const history = useHistory();
 
   const updateClientPin = async (
@@ -49,14 +51,14 @@ const ClientList = (props: clientListProps) => {
         <div
           className={
             'flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8' +
-            (c.name === currentClient ? ' navigation-focus-tab' : '') +
+            (c.name === props.currentClient ? ' navigation-focus-tab' : '') +
             (!isHoverPin ? ' hover-tab' : '')
           }
           key={c.id}
         >
           <div
             onClick={() => {
-              setCurrentClient(c.name);
+              props.setCurrentClient(c.name);
               props.setCurrentTab('/client');
               history.push(`/client/part`);
             }}

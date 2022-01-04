@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 //router
 import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 //icons
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -24,10 +25,12 @@ interface NavigationProps {
 }
 
 const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
-  const [currentTab, setCurrentTab] = useState('/');
-  const [isClientListOpen, setIsClientListOpen] = useState(false);
+  const [currentTab, setCurrentTab] = useState<string>('/');
+  const [currentClient, setCurrentClient] = useState<string>('');
+  const [isClientListOpen, setIsClientListOpen] = useState<boolean>(false);
   const [clientList, setClientList] = useState<ClientData[]>([]);
   const history = useHistory();
+  const location = useLocation();
 
   const getNavigationClientList = async () => {
     try {
@@ -47,6 +50,19 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
   useEffect(() => {
     getNavigationClientList();
   }, []);
+
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname === '/') {
+      setCurrentTab('/');
+    } else if (location.pathname.includes('client')) {
+      setCurrentTab('/client');
+      setIsClientListOpen(true);
+      // TODO : 특정 클라이언트 포커스
+    } else if (location.pathname.includes('statistics')) {
+      setCurrentTab('/statistics');
+    }
+  }, [location]);
 
   return (
     <div
@@ -92,6 +108,8 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
               clientList={clientList}
               setCurrentTab={setCurrentTab}
               getNavigationClientList={getNavigationClientList}
+              currentClient={currentClient}
+              setCurrentClient={setCurrentClient}
             />
           ) : (
             <></>
