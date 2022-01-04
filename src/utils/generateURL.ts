@@ -14,7 +14,7 @@ const generateURL = (data: TableData) => {
 
   baseURL += data.category === 'part' ? 'part/' : 'drawing/';
   baseURL += `?client=${data.client}`;
-  baseURL += `&is_closed=${data.type === 'client'}`;
+  baseURL += `&is_closed=${data.type !== 'dashboard'}`;
   baseURL += `&page=${data.page}`;
 
   if (data.month) {
@@ -30,7 +30,9 @@ const generateURL = (data: TableData) => {
     baseURL += `&created_at__lte=${formatDate(data.endDate)}`;
   }
 
-  if (data.is_outsource) baseURL += `&is_outsource=${data.is_outsource}`;
+  if (data.type === 'statistics_os') baseURL += '&is_outsource=true';
+  else if (data.type === 'statistics_pol') baseURL += '&is_outsource=false';
+  else if (data.is_outsource) baseURL += `&is_outsource=${data.is_outsource}`;
 
   return baseURL;
 };
