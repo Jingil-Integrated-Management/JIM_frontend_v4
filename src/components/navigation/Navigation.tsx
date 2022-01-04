@@ -24,7 +24,7 @@ interface NavigationProps {
   setOpenSetting: Function;
 }
 
-const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
+const Navigation = (props: NavigationProps) => {
   const [currentTab, setCurrentTab] = useState<string>('/');
   const [currentClient, setCurrentClient] = useState<string>('');
   const [isClientListOpen, setIsClientListOpen] = useState<boolean>(false);
@@ -128,7 +128,7 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
           <div
             className="flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8 hover:bg-palette-grey-2-hover"
             onClick={() => {
-              setOpenSetting(!openSetting);
+              props.setOpenSetting(!props.openSetting);
             }}
           >
             <span>설정하기</span>

@@ -18,6 +18,7 @@ export default interface Part {
   division__main_division?: string;
   division__sub_division?: string;
   drawing__name?: string;
+  drawing__is_outsource?: boolean;
   outsource_info?: [] | null;
   fileSrc?: string;
 }

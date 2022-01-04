@@ -28,7 +28,7 @@ const Home = () => {
             <Route exact path="/">
               <Dashboard />
             </Route>
-            <Route path="/client">
+            <Route path="/client/:id">
               <Client />
             </Route>
             <Route path="/statistics">

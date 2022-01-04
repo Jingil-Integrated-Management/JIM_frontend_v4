@@ -155,7 +155,7 @@ const Row = (props: drawingRowProps) => {
                       <TableCell>{part.created_at}</TableCell>
                       <TableCell>{part.material}</TableCell>
                       <TableCell>
-                        {part.outsource_info === null ? '연마' : '제작'}
+                        {part.drawing__is_outsource ? '제작' : '연마'}
                       </TableCell>
                     </TableRow>
                   ))}

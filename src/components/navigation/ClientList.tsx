@@ -47,31 +47,33 @@ const ClientList = (props: clientListProps) => {
 
   return (
     <>
-      {props.clientList?.map(c => (
+      {props.clientList?.map((client) => (
         <div
           className={
             'flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8' +
-            (c.name === props.currentClient ? ' navigation-focus-tab' : '') +
+            (client.name === props.currentClient
+              ? ' navigation-focus-tab'
+              : '') +
             (!isHoverPin ? ' hover-tab' : '')
           }
-          key={c.id}
+          key={client.id}
         >
           <div
             onClick={() => {
-              props.setCurrentClient(c.name);
+              props.setCurrentClient(client.name);
               props.setCurrentTab('/client');
-              history.push(`/client/part`);
+              history.push(`/client/${client.id}/part`);
             }}
             className="w-190"
           >
-            <span className="navigation-client-item">{c.name}</span>
+            <span className="navigation-client-item">{client.name}</span>
           </div>
           <PinnedIcon
             className={
-              'pin-icon mr-25' + (c.is_pinned === 2 ? ' pinned-icon' : '')
+              'pin-icon mr-25' + (client.is_pinned === 2 ? ' pinned-icon' : '')
             }
             onClick={() => {
-              updateClientPin(c.id, c.is_pinned);
+              updateClientPin(client.id, client.is_pinned);
             }}
             onMouseEnter={() => {
               setIsHoverPin(true);

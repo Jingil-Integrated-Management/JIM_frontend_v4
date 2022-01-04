@@ -39,7 +39,9 @@ const Row = (props: partRowProps) => {
         <TableCell align="right">{formatPrice(props.part.price)}</TableCell>
         <TableCell>{props.part.created_at}</TableCell>
         <TableCell>{props.part.material}</TableCell>
-        <TableCell>{props.part.outsource_info ? '제작' : '연마'}</TableCell>
+        <TableCell>
+          {props.part.drawing__is_outsource ? '제작' : '연마'}
+        </TableCell>
         <TableCell>{props.part.comment ? props.part.comment : ''}</TableCell>
       </TableRow>
       <Drawer
