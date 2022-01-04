@@ -52,7 +52,6 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(location.pathname);
     if (location.pathname === '/') {
       setCurrentTab('/');
     } else if (location.pathname.includes('client')) {
