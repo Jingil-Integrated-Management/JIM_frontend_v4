@@ -1,4 +1,5 @@
 import { PartData, OutsourceData } from '../../../types';
+import { ReactComponent as ImageEmpty } from '../../../resources/image_empty.svg';
 
 interface PartInfoProps {
   part: PartData;
@@ -25,7 +26,7 @@ const PartInfo = (props: PartInfoProps) => {
       <div className="flex justify-center items-center">
         {!part.file_name ? (
           <div className="w-504 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
-            <label>선택된 이미지가 없습니다.</label>
+            <ImageEmpty />
           </div>
         ) : (
           <img
