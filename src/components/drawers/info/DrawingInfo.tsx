@@ -25,36 +25,36 @@ const DrawingInfo = (props: drawingInfoProps) => {
       </div>
       <div className="mt-24 h-72 flex">
         <div className="w-256">
-          <div className="w-full text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             도면명
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.name}
           </div>
         </div>
         <div className="w-256 ml-32">
-          <div className="w-full text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             담당회사
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.client__name}
           </div>
         </div>
       </div>
       <div className="mt-12 h-72 flex">
         <div className="w-256">
-          <div className="w-full text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             날짜
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.created_at}
           </div>
         </div>
         <div className="w-256 ml-32">
-          <div className="w-full text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             비고
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.comment}
           </div>
         </div>

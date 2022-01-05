@@ -37,18 +37,18 @@ const PartInfo = (props: PartInfoProps) => {
       </div>
       <div className="mt-24 h-72 flex">
         <div className="w-256">
-          <div className="w-full text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             메인 구분
           </div>
-          <div className="client w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.division__main_division}
           </div>
         </div>
         <div className="w-256 ml-32">
-          <div className="w-full text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             세부 구분
           </div>
-          <div className="client w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.division__sub_division === null
               ? ''
               : part.division__sub_division}
@@ -57,62 +57,62 @@ const PartInfo = (props: PartInfoProps) => {
       </div>
       <div className="mt-12 flex">
         <div className="w-160">
-          <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트크기- X
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.x}
           </div>
         </div>
         <div className="ml-32 w-160">
-          <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트크기- Y
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.y}
           </div>
         </div>
         <div className="ml-32 w-160">
-          <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트크기- Z
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.z}
           </div>
         </div>
       </div>
       <div className="mt-12 flex flex-row">
         <div className="w-256">
-          <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             소재
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.material}
           </div>
         </div>
         <div className="w-256 ml-32">
-          <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트 개수
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.quantity}
           </div>
         </div>
       </div>
       <div className="mt-12 flex flex-row">
         <div className="w-256">
-          <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             가격
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.price}
           </div>
         </div>
         <div className="w-256 ml-32">
-          <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+          <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             비고
           </div>
-          <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.comment}
           </div>
         </div>
@@ -178,18 +178,18 @@ const OutsourcePartInfo = (props: OutsourcePartInfoProps) => {
           return (
             <div key={index.toString()} className="mt-12 flex flex-row">
               <div className="w-256">
-                <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+                <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
                   {outsource.subject} 업체
                 </div>
-                <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+                <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
                   {outsource.client}
                 </div>
               </div>
               <div className="w-256 ml-32">
-                <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
+                <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
                   가격
                 </div>
-                <div className="w-full h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+                <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
                   {outsource.price}
                 </div>
               </div>

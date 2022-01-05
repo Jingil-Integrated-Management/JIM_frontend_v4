@@ -127,3 +127,7 @@
 .drawer-container::-webkit-scrollbar {
   display: none;
 }
+
+.part-input-upload-image {
+  color: #6c6c84;
+}
