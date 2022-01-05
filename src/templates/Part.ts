@@ -4,11 +4,11 @@ const Part = (): PartData => ({
   x: '',
   y: '',
   z: '',
-  quantity: -1,
+  quantity: 0,
   price: null,
   drawing: -1,
   division: -1,
-  material: '',
+  material: 'SKS3',
   outsource: null,
   file: null,
 });
