@@ -29,12 +29,6 @@ interface SearchProps {
   clientList: ClientData[];
 }
 
-const parseClientId = (path: string) => {
-  const clientId = path.split('/')[2];
-
-  return clientId;
-};
-
 const TopNavigation = (props: topNaviProps) => {
   const [current, setCurrent] = useState<string>('');
   const { clientList } = props;
@@ -88,8 +82,15 @@ const ClientTableToggle = (props: tableToggleProps) => {
     }
   }, [props, location]);
 
+  const parseClientId = (path: string) => {
+    const clientId = path.split('/')[2];
+
+    return clientId;
+  };
+
   const route = (route: string) => {
     const clientId = parseClientId(location.pathname);
+
     if (route === 'part') {
       history.push(`/client/${clientId}/part`);
     } else if (route === 'drawing') {
@@ -159,9 +160,7 @@ const Search = (props: SearchProps) => {
     const searchedClient = props.clientList.find(getClientDetail);
 
     if (searchedClient) {
-      history.push(
-        `/client/${searchedClient?.id}/${searchedClient?.name}/part`
-      );
+      history.push(`/client/${searchedClient?.id}/part`);
       setInputValue('');
       setIsSearchOpen(false);
     } else {
@@ -187,7 +186,7 @@ const Search = (props: SearchProps) => {
             autoComplete="off"
             className="search-input-text"
             placeholder="검색하기"
-            onChange={(event) => {
+            onChange={event => {
               setInputValue(event.target.value);
             }}
             onKeyPress={searchButtonEnter}

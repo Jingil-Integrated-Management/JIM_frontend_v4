@@ -21,6 +21,7 @@ import { AxiosResponse } from 'axios';
 import formatPrice from '../../../utils/formatPrice';
 
 import Drawer from '@mui/material/Drawer';
+import Info from '../../drawers/info/Info';
 
 export interface drawingRowProps {
   drawing: DrawingData;
@@ -71,7 +72,7 @@ const Row = (props: drawingRowProps) => {
             ? ' arrow-focus'
             : '')
         }
-        onClick={(event) => openDrawer(event)}
+        onClick={event => openDrawer(event)}
       >
         <TableCell>{props.drawing.name}</TableCell>
         <TableCell>{props.drawing.part_count}</TableCell>
@@ -171,22 +172,13 @@ const Row = (props: drawingRowProps) => {
         ModalProps={{ onBackdropClick: closeDrawer }}
         className="z-50"
       >
-        {/*revise ? (
-          <AddDrawing
-            drawing={props.drawing}
-            mode="revise_drawing"
-            setRevise={setRevise}
-            parts={parts}
-          />
-        ) : (
-          <Info
-            target="drawing"
-            setRevise={setRevise}
-            parts={parts}
-            drawing={props.drawing}
-            setOpen={setOpen}
-          />
-        )*/}
+        <Info
+          target="drawing"
+          setRevise={setRevise}
+          parts={parts}
+          drawing={props.drawing}
+          setOpen={setOpen}
+        />
       </Drawer>
     </>
   );
