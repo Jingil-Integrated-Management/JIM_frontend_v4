@@ -23,4 +23,5 @@ export default interface Part {
   drawing__is_outsource?: boolean;
   outsource_info?: OutsourceData | null;
   fileSrc?: string;
+  fileData?: FormData;
 }
