@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { DrawingData, OutsourceData, PartData } from '../types';
+import validatePost from './validatePost';
 import webClient from './Webclient';
 
 const postDrawing = async (
@@ -8,8 +9,7 @@ const postDrawing = async (
   osParts: OutsourceData[]
 ) => {
   try {
-    // TODO Validate Post
-    //if (!validateInput(parts, osParts, drawing)) return;
+    if (!validatePost(drawing, parts)) return;
 
     const createdDrawing: AxiosResponse = await webClient.post(
       'drawing/',
