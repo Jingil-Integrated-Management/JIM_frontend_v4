@@ -1,11 +1,12 @@
 import { AxiosResponse } from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { DivisionData, PartData } from '../../../types';
+import { DivisionData, OutsourceData, PartData } from '../../../types';
 import getDivisionID from '../../../utils/getDivisionID';
 import getSubDivisionName from '../../../utils/getSubDivisionName';
 import webClient from '../../../utils/Webclient';
 
 import { ReactComponent as UploadImage } from '../../../resources/upload_image.svg';
+import OutSourceInput from './OutSourceInput';
 
 interface partListControlProps {
   index: number;
@@ -17,6 +18,8 @@ interface partInputProps {
   clientId: number;
   parts: PartData[];
   setParts: Function;
+  osParts: OutsourceData[];
+  setOsParts: Function;
   splicePart: Function;
   isOutsource: boolean;
   mainDivisions: { main_division: string }[];
@@ -302,11 +305,15 @@ const PartInput = (props: partInputProps) => {
           ></input>
         </div>
       </div>
-      {/*part.drawing__is_outsource && part.outsource_info ? (
-        <OutsourcePartInfo outsource_info={part.outsource_info} />
+      {props.isOutsource ? (
+        <OutSourceInput
+          osParts={props.osParts}
+          setOsParts={props.setOsParts}
+          index={props.index}
+        />
       ) : (
         <></>
-      )*/}
+      )}
       {props.focusedIndex === props.index ? (
         <PartListControl index={props.index} splicePart={props.splicePart} />
       ) : (

@@ -103,6 +103,8 @@ const AddDrawing = (props: addDrawingProps) => {
               clientId={drawing.client}
               parts={parts}
               setParts={setParts}
+              osParts={osParts}
+              setOsParts={setOsParts}
               splicePart={splicePart}
               isOutsource={drawing.is_outsource}
               mainDivisions={mainDivisions}
@@ -115,7 +117,7 @@ const AddDrawing = (props: addDrawingProps) => {
         <div className="flex justify-end mt-44">
           {parts.length === 0 ? (
             <button
-              className="w-105 h-40 rounded-8"
+              className="w-105 text-sm h-40 rounded-8"
               onClick={() => splicePart(parts.length - 1, 'add')}
             >
               파트 추가하기
@@ -124,7 +126,7 @@ const AddDrawing = (props: addDrawingProps) => {
             <></>
           )}
           <button
-            className="w-76 h-40 rounded-8 text-palette-purple-on bg-palette-accent-opac-8"
+            className="w-76 text-sm h-40 rounded-8 text-palette-purple-on bg-palette-accent-opac-8"
             onClick={() => {
               postDrawing(drawing, parts, osParts);
             }}
