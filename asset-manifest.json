@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/JIM_frontend_v4/static/css/main.c5f4777e.chunk.css",
-    "main.js": "/JIM_frontend_v4/static/js/main.48b34c75.chunk.js",
-    "main.js.map": "/JIM_frontend_v4/static/js/main.48b34c75.chunk.js.map",
+    "main.css": "/JIM_frontend_v4/static/css/main.953bfe9d.chunk.css",
+    "main.js": "/JIM_frontend_v4/static/js/main.3df8f8c8.chunk.js",
+    "main.js.map": "/JIM_frontend_v4/static/js/main.3df8f8c8.chunk.js.map",
     "runtime-main.js": "/JIM_frontend_v4/static/js/runtime-main.84e9a382.js",
     "runtime-main.js.map": "/JIM_frontend_v4/static/js/runtime-main.84e9a382.js.map",
     "static/css/2.169d8ab9.chunk.css": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.55430045.chunk.js.map": "/JIM_frontend_v4/static/js/3.55430045.chunk.js.map",
     "index.html": "/JIM_frontend_v4/index.html",
     "static/css/2.169d8ab9.chunk.css.map": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css.map",
-    "static/css/main.c5f4777e.chunk.css.map": "/JIM_frontend_v4/static/css/main.c5f4777e.chunk.css.map",
+    "static/css/main.953bfe9d.chunk.css.map": "/JIM_frontend_v4/static/css/main.953bfe9d.chunk.css.map",
     "static/js/2.d700eb98.chunk.js.LICENSE.txt": "/JIM_frontend_v4/static/js/2.d700eb98.chunk.js.LICENSE.txt",
     "static/media/Vector-1.d6c68b0b.svg": "/JIM_frontend_v4/static/media/Vector-1.d6c68b0b.svg",
     "static/media/Vector.75707dbb.svg": "/JIM_frontend_v4/static/media/Vector.75707dbb.svg",
@@ -21,6 +21,7 @@
     "static/media/empty_dashboard.46620818.svg": "/JIM_frontend_v4/static/media/empty_dashboard.46620818.svg",
     "static/media/empty_table.fe375b9a.svg": "/JIM_frontend_v4/static/media/empty_table.fe375b9a.svg",
     "static/media/icon.png": "/JIM_frontend_v4/static/media/icon.7549f51e.png",
+    "static/media/image_empty.507c2007.svg": "/JIM_frontend_v4/static/media/image_empty.507c2007.svg",
     "static/media/jim_logo.62a25896.svg": "/JIM_frontend_v4/static/media/jim_logo.62a25896.svg",
     "static/media/pinned.79a0e535.svg": "/JIM_frontend_v4/static/media/pinned.79a0e535.svg",
     "static/media/upload_image.fd3a93ca.svg": "/JIM_frontend_v4/static/media/upload_image.fd3a93ca.svg"
@@ -29,7 +30,7 @@
     "static/js/runtime-main.84e9a382.js",
     "static/css/2.169d8ab9.chunk.css",
     "static/js/2.d700eb98.chunk.js",
-    "static/css/main.c5f4777e.chunk.css",
-    "static/js/main.48b34c75.chunk.js"
+    "static/css/main.953bfe9d.chunk.css",
+    "static/js/main.3df8f8c8.chunk.js"
   ]
 }
