@@ -1,15 +1,16 @@
 import { PartData } from '../types';
 
-export const Part = (): PartData => ({
+const Part = (): PartData => ({
   x: '',
   y: '',
   z: '',
   quantity: -1,
-  price: '',
-  comment: '',
+  price: null,
   drawing: -1,
   division: -1,
   material: '',
-  outsource: -1,
+  outsource: null,
   file: null,
 });
+
+export default Part;
