@@ -16,7 +16,7 @@ import { ClientData } from '../../types';
 import { connect } from 'react-redux';
 
 interface topNaviProps {
-  setDrawerShow: Function;
+  setDrawerOpen: Function;
   clientList: ClientData[];
 }
 
@@ -63,7 +63,10 @@ const TopNavigation = (props: topNaviProps) => {
 
         <div className="flex items-center">
           <Search clientList={clientList} />
-          <button className="w-40 h-40 ml-4 flex justify-center items-center rounded-8 icon-button cursor-pointer">
+          <button
+            className="w-40 h-40 ml-4 flex justify-center items-center rounded-8 icon-button cursor-pointer"
+            onClick={() => props.setDrawerOpen(true)}
+          >
             <AddIcon />
           </button>
           <div className="w-40 h-40 ml-4 flex justify-center items-center rounded-8">
