@@ -22,6 +22,7 @@ import formatPrice from '../../../utils/formatPrice';
 
 import Drawer from '@mui/material/Drawer';
 import Info from '../../drawers/info/Info';
+import Patch from '../../drawers/patch/Patch';
 
 export interface drawingRowProps {
   drawing: DrawingData;
@@ -172,13 +173,23 @@ const Row = (props: drawingRowProps) => {
         ModalProps={{ onBackdropClick: closeDrawer }}
         className="z-50"
       >
-        <Info
-          target="drawing"
-          setRevise={setRevise}
-          parts={parts}
-          drawing={props.drawing}
-          setOpen={setOpen}
-        />
+        {revise ? (
+          <Patch
+            target="drawing"
+            setRevise={setRevise}
+            parts={parts}
+            drawing={props.drawing}
+            setOpen={setOpen}
+          />
+        ) : (
+          <Info
+            target="drawing"
+            setRevise={setRevise}
+            parts={parts}
+            drawing={props.drawing}
+            setOpen={setOpen}
+          />
+        )}
       </Drawer>
     </>
   );
