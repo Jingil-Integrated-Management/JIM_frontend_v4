@@ -22,7 +22,7 @@ interface tableDrawerProps {
 
 const Info = (props: tableDrawerProps) => {
   const finishDrawing = async () => {
-    if (isOutstanding()) return;
+    if (!isClosed()) return;
 
     try {
       await webClient.patch(`drawing/${props.drawing?.id}`, {
@@ -72,15 +72,15 @@ const Info = (props: tableDrawerProps) => {
     }
   };
 
-  const isOutstanding = () => {
+  const isClosed = () => {
     for (let i = 0; i < props.parts.length; i++) {
       if (props.parts[i].price === '' || props.parts[i].price === null) {
         alert('가격이 확정되지 않은 파트가 존재합니다.');
-        return true;
+        return false;
       }
     }
 
-    return false;
+    return true;
   };
 
   return (

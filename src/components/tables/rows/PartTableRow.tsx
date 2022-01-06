@@ -12,6 +12,7 @@ import formatPrice from '../../../utils/formatPrice';
 //drawer
 import Drawer from '@mui/material/Drawer';
 import Info from '../../drawers/info/Info';
+import Patch from '../../drawers/patch/Patch';
 // import AddDrawing from '../../drawers/addDrawing/AddDrawing';
 
 interface partRowProps {
@@ -50,12 +51,21 @@ const Row = (props: partRowProps) => {
         ModalProps={{ onBackdropClick: closeDrawer }}
         className="z-50"
       >
-        <Info
-          target="part"
-          setRevise={setRevise}
-          parts={[props.part]}
-          setOpen={setOpen}
-        />
+        {revise ? (
+          <Patch
+            target="part"
+            setRevise={setRevise}
+            parts={[props.part]}
+            setOpen={setOpen}
+          />
+        ) : (
+          <Info
+            target="part"
+            setRevise={setRevise}
+            parts={[props.part]}
+            setOpen={setOpen}
+          />
+        )}
       </Drawer>
     </>
   );
