@@ -8,6 +8,7 @@ import formatDate from '../../../utils/formatDate';
 import getClientID from '../../../utils/getClientID';
 
 interface drawingInputProps {
+  setDrawerModified: Function;
   drawing: DrawingData;
   setDrawing: Function;
   clientList: ClientData[];
@@ -20,6 +21,7 @@ const DrawingInput = (props: drawingInputProps) => {
     key: K,
     value: V
   ) => {
+    props.setDrawerModified(true);
     props.setDrawing((prevDrawing: DrawingData) => {
       let tmpDrawing = { ...prevDrawing };
       tmpDrawing[key] = value;

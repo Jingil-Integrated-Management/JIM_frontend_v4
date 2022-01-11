@@ -17,7 +17,7 @@ import MonthStats from './MonthStats';
 
 import getGross from '../../utils/getGross';
 import formatDate from '../../utils/formatDate';
-//import StatsFilter from '../filter/StatsFilter';
+import StatsFilter from '../filters/StatsFilter';
 import getClientName from '../../utils/getClientName';
 
 import STATS from '../../constants/STATS.json';
@@ -114,19 +114,19 @@ const Statistics = (props: { clientList: ClientData[] }) => {
               inline
             />
           )}
-          {/* TODO isFilterOpen && (
+          {isFilterOpen && (
             <div className="stats_filter absolute z-100">
               {isFilterOpen && (
                 <StatsFilter
                   openFilter={isFilterOpen}
                   setOpenFilter={setIsFilterOpen}
-                  client={client}
+                  clientId={client}
                   setClient={setClient}
-                  clientList={clientList}
+                  clientList={props.clientList}
                 />
               )}
             </div>
-              )*/}
+          )}
         </div>
         <div
           id="statistics-stats-container"
