@@ -31,6 +31,7 @@ const useFetch = (props: TableData) => {
               sub_division: props.sub_division,
               startDate: props.startDate,
               endDate: props.endDate,
+              drawingName: props.drawingName,
             })
           );
 
@@ -89,6 +90,7 @@ const useFetch = (props: TableData) => {
     props.is_outsource,
     props.startDate,
     props.endDate,
+    props.drawingName,
   ]);
 
   return { hasMore, list, isLoading, setList };
