@@ -18,6 +18,7 @@ interface tableDrawerProps {
   parts: PartData[];
   setRevise: Function;
   setOpen: Function;
+  type?: string;
 }
 
 const Info = (props: tableDrawerProps) => {
@@ -118,7 +119,7 @@ const Info = (props: tableDrawerProps) => {
           >
             수정하기
           </button>
-          {props.drawing && (
+          {props.drawing && props.type === 'dashboard' ? (
             <button
               onClick={() => {
                 finishDrawing();
@@ -127,6 +128,8 @@ const Info = (props: tableDrawerProps) => {
             >
               완료하기
             </button>
+          ) : (
+            <></>
           )}
         </div>
       </div>

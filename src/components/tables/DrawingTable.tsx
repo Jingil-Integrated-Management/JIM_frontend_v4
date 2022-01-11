@@ -174,6 +174,7 @@ const DrawingTable = (props: drawingTableProps) => {
                   <Row
                     key={index}
                     drawing={data}
+                    type={props.type}
                     selectedCollapse={selectedCollapse}
                     selectCurrentCollapse={selectCurrentCollapse}
                   />
