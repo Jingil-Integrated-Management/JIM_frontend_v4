@@ -115,7 +115,7 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            list="main_division_list"
+            list={`main_division_list_${index}`}
             value={partInputForm.main_division}
             onChange={e => {
               setPartInputForm({
@@ -125,7 +125,7 @@ const PatchPart = (props: PatchPartProps) => {
               getExistSubDivision(e.target.value);
             }}
           />
-          <datalist id="main_division_list">
+          <datalist id={`main_division_list_${index}`}>
             {mainDivisionList.map(
               (division: { main_division: string }, index: number) => {
                 return <option key={index} value={division.main_division} />;
@@ -218,7 +218,7 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            list="material_list"
+            list={`material_list_${index}`}
             value={partPatchForm.material}
             onChange={e => {
               setPartPatchForm({
@@ -227,7 +227,7 @@ const PatchPart = (props: PatchPartProps) => {
               });
             }}
           />
-          <datalist id="material_list">
+          <datalist id={`material_list_${index}`}>
             {materialList.map((material: { name: string }, index: number) => {
               return <option key={index} value={material.name} />;
             })}
