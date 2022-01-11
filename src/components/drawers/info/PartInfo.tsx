@@ -1,5 +1,6 @@
 import { PartData, OutsourceData } from '../../../types';
 import { ReactComponent as ImageEmpty } from '../../../resources/image_empty.svg';
+import formatPrice from '../../../utils/formatPrice';
 
 interface PartInfoProps {
   part: PartData;
@@ -106,7 +107,7 @@ const PartInfo = (props: PartInfoProps) => {
             가격
           </div>
           <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
-            {part.price}
+            {formatPrice(part.price)}
           </div>
         </div>
         <div className="w-256 ml-32">
