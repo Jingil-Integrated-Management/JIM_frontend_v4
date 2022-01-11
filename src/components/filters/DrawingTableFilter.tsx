@@ -97,7 +97,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
           readOnly
         />
         {isCalendarOpen && (
-          <div className="absolute z-100 top-256 left-16">
+          <div className="absolute z-100 top-150 left-16">
             <DatePicker
               onInputClick={() => setIsCalendarOpen(!isCalendarOpen)}
               onClickOutside={() => setIsCalendarOpen(false)}
