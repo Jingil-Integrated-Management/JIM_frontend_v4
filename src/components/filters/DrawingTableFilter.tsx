@@ -5,7 +5,7 @@ import webClient from '../../utils/Webclient';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import formatDate from '../../utils/formatDate';
-import { ReactComponent as ClearIcon } from '../../resources/icon-24-trash-2.svg';
+import { ReactComponent as ClearIcon } from '../../resources/svg/clearIcon.svg';
 
 interface DrawingTableFilterProps {
   openFilter: boolean;
@@ -97,7 +97,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
           readOnly
         />
         {isCalendarOpen && (
-          <div className="absolute z-100 top-256 left-16">
+          <div className="absolute z-100 top-150 left-16">
             <DatePicker
               onInputClick={() => setIsCalendarOpen(!isCalendarOpen)}
               onClickOutside={() => setIsCalendarOpen(false)}
