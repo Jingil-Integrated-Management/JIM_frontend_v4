@@ -91,15 +91,16 @@ const PatchPart = (props: PatchPartProps) => {
 
   const uploadFile = async (file: File) => {
     const formData = new FormData();
-    console.log(file);
     formData.append('file', file);
+
     const response: AxiosResponse = await webClient.post('files/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
 
-    console.log(response);
+    setPartPatchForm({ ...partPatchForm, file: response.data.id });
+    setFileName(response.data.file);
   };
 
   return (
