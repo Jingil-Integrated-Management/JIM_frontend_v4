@@ -65,7 +65,6 @@ const PatchPart = (props: PatchPartProps) => {
       const response: AxiosResponse = await webClient.get(
         `/division/?client=${props.part.client__id}&main_division=${mainDivision}`
       );
-      console.log(response.data);
       setSubDivisionList(response.data);
     } catch (error) {
       console.log(error);
@@ -158,7 +157,7 @@ const PatchPart = (props: PatchPartProps) => {
               return (
                 <option
                   key={index}
-                  value={division.sub_division ? division.sub_division : ''}
+                  value={division.sub_division ? division.sub_division : '없음'}
                 />
               );
             })}
