@@ -16,6 +16,7 @@ import useFetch from './InfiniteScroll';
 import { ClientData, DrawingData } from '../../types';
 import getClientName from '../../utils/getClientName';
 import { TableEmpty } from './EmptyTable';
+import DrawingTableFilter from '../filters/DrawingTableFilter';
 
 interface drawingTableProps {
   clientId: number;
@@ -29,12 +30,23 @@ const DrawingTable = (props: drawingTableProps) => {
   const [selectedCollapse, setSelectedCollapse] = useState<null | number>(null);
   const [pageNum, setPageNum] = useState<number>(1);
   const [clientName, setClientName] = useState<string>('');
+  const [openFilter, setOpenFilter] = useState<boolean>(false);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
+  const [drawingName, setDrawingName] = useState<string>('');
+  const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
+    null,
+    null,
+  ]);
+  const [startDate, endDate] = dateRange;
   const { list, hasMore, isLoading, setList } = useFetch({
     type: props.type,
     page: pageNum,
     client: props.clientId,
     category: 'drawing',
     month: props.month,
+    drawingName: drawingName,
+    startDate: startDate,
+    endDate: endDate,
   });
 
   const observerRef = useRef();
@@ -66,7 +78,10 @@ const DrawingTable = (props: drawingTableProps) => {
   };
 
   useEffect(() => {
+    setPageNum(1);
     setList([]);
+    setDrawingName('');
+    setDateRange([null, null]);
     setClientName(getClientName(props.clientList, props.clientId));
   }, [props.month, props.clientId]);
 
@@ -81,6 +96,21 @@ const DrawingTable = (props: drawingTableProps) => {
         'w-100p' + (props.type === 'client' ? ' h-100p overflow-hidden' : ' ')
       }
     >
+      {openFilter && (
+        <div className="filter absolute z-100">
+          <DrawingTableFilter
+            openFilter={openFilter}
+            setOpenFilter={setOpenFilter}
+            clientId={props.clientId}
+            setDrawingName={setDrawingName}
+            startDate={startDate}
+            endDate={endDate}
+            setDateRange={setDateRange}
+            setPageNum={setPageNum}
+            setList={setList}
+          />
+        </div>
+      )}
       <TableContainer
         className={
           'w-100p' +
@@ -95,6 +125,17 @@ const DrawingTable = (props: drawingTableProps) => {
               <div className="client-name text-palette-black bg-palette-grey px-16 h-44 flex items-center">
                 {props.tableInfo ? props.tableInfo : clientName}
               </div>
+              <button
+                onClick={() => {
+                  setOpenFilter(!openFilter);
+                }}
+                className={
+                  'text-palette-word-2 bg-palette-grey ml-12 px-16 h-44 flex items-center font-medium flex-row justify-center ' +
+                  (!isFiltered ? 'filter_button' : 'filter_button_on')
+                }
+              >
+                필터 설정하기
+              </button>
             </div>
           </div>
         </div>

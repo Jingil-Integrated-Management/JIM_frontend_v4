@@ -9,4 +9,5 @@ export default interface TableData {
   sub_division?: string;
   startDate?: Date | null;
   endDate?: Date | null;
+  drawingName?: string;
 }

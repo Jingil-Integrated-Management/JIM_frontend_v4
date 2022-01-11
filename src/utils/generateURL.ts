@@ -34,6 +34,9 @@ const generateURL = (data: TableData) => {
   else if (data.type === 'statistics_pol') baseURL += '&is_outsource=false';
   else if (data.is_outsource) baseURL += `&is_outsource=${data.is_outsource}`;
 
+  if (data.category === 'drawing' && data.drawingName)
+    baseURL += `&name=${data.drawingName}`;
+
   return baseURL;
 };
 
