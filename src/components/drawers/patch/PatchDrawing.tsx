@@ -5,6 +5,12 @@ import { DrawingData, ClientData } from '../../../types';
 
 //utils
 import getClientID from '../../../utils/getClientID';
+import dateConverter from '../../../utils/dateConverter';
+import formatDate from '../../../utils/formatDate';
+
+//date-picker
+import DatePicker from 'react-datepicker';
+import { ko } from 'date-fns/esm/locale';
 
 interface PatchDrawingProps {
   drawing: DrawingData;
@@ -13,8 +19,6 @@ interface PatchDrawingProps {
 }
 
 const PatchDrawing = (props: PatchDrawingProps) => {
-  // TODO : 날짜 수정
-
   const [drawingPatchForm, setDrawingPatchForm] = useState({
     name: props.drawing.name,
     client: props.drawing.client,
@@ -23,6 +27,9 @@ const PatchDrawing = (props: PatchDrawingProps) => {
   });
   const [clientName, setClientName] = useState<string>(
     props.drawing.client__name ? props.drawing.client__name : ''
+  );
+  const [date, setDate] = useState<Date>(
+    dateConverter(props.drawing.created_at)
   );
 
   useEffect(() => {
@@ -87,15 +94,17 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             날짜
           </div>
-          <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={drawingPatchForm.created_at}
-            onChange={e =>
+          <DatePicker
+            selected={date}
+            locale={ko}
+            onChange={(changedDate: Date) => {
+              setDate(changedDate);
               setDrawingPatchForm({
                 ...drawingPatchForm,
-                created_at: e.target.value,
-              })
-            }
+                created_at: formatDate(changedDate),
+              });
+            }}
+            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input"
           />
         </div>
         <div className="w-256 ml-32">
