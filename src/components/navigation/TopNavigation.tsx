@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 //icons
-import { ReactComponent as SearchIcon } from '../../resources/Vector-1.svg';
-import { ReactComponent as AddIcon } from '../../resources/Vector.svg';
-import logo from '../../resources/jingil_logo.png';
+import { ReactComponent as SearchIcon } from '../../resources/svg/searchIcon.svg';
+import { ReactComponent as AddIcon } from '../../resources/svg/addIcon.svg';
+import logo from '../../resources/png/jingil_logo.png';
 
 //router
 import { useHistory } from 'react-router';

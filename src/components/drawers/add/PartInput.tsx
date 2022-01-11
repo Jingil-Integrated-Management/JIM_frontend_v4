@@ -5,7 +5,7 @@ import getDivisionID from '../../../utils/getDivisionID';
 import getSubDivisionName from '../../../utils/getSubDivisionName';
 import webClient from '../../../utils/Webclient';
 
-import { ReactComponent as UploadImage } from '../../../resources/upload_image.svg';
+import { ReactComponent as UploadImage } from '../../../resources/svg/imageUpload.svg';
 import OutSourceInput from './OutSourceInput';
 
 interface partListControlProps {

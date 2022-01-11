@@ -8,7 +8,7 @@ import webClient from '../../../utils/Webclient';
 import { AxiosResponse } from 'axios';
 
 //icons
-import { ReactComponent as ImageEmpty } from '../../../resources/image_empty.svg';
+import { ReactComponent as ImageEmpty } from '../../../resources/svg/imageEmpty.svg';
 
 //utils
 import getDivisionID from '../../../utils/getDivisionID';
@@ -72,7 +72,9 @@ const PatchPart = (props: PatchPartProps) => {
   };
 
   const isExistMainDivision = (input: string) => {
-    return mainDivisionList.find(division => division.main_division === input);
+    return mainDivisionList.find(
+      (division) => division.main_division === input
+    );
   };
 
   const getExistSubDivision = (input: string) => {
@@ -117,7 +119,7 @@ const PatchPart = (props: PatchPartProps) => {
             className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`main_division_list_${index}`}
             value={partInputForm.main_division}
-            onChange={e => {
+            onChange={(e) => {
               setPartInputForm({
                 ...partInputForm,
                 main_division: e.target.value,
@@ -141,7 +143,7 @@ const PatchPart = (props: PatchPartProps) => {
             className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`sub_division_list_${index}`}
             value={partInputForm.sub_division}
-            onChange={e => {
+            onChange={(e) => {
               setPartInputForm({
                 ...partInputForm,
                 sub_division: e.target.value,
@@ -172,7 +174,7 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.x}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 x: e.target.value,
@@ -187,7 +189,7 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.y}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 y: e.target.value,
@@ -202,7 +204,7 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.z}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 z: e.target.value,
@@ -220,7 +222,7 @@ const PatchPart = (props: PatchPartProps) => {
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`material_list_${index}`}
             value={partPatchForm.material}
-            onChange={e => {
+            onChange={(e) => {
               setPartPatchForm({
                 ...partPatchForm,
                 material: e.target.value,
@@ -240,7 +242,7 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.quantity}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 quantity: Number.isInteger(Number(e.target.value))
@@ -259,7 +261,7 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.price ? partPatchForm.price : ''}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 price: e.target.value,
@@ -274,7 +276,7 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.comment ? partPatchForm.comment : ''}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 comment: e.target.value,
