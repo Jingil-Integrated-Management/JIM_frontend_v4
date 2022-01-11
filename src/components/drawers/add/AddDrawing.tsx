@@ -15,6 +15,7 @@ import post from '../../../utils/postDrawing';
 
 interface addDrawingProps {
   setOpen: Function;
+  setDrawerModified: Function;
 }
 
 const AddDrawing = (props: addDrawingProps) => {
@@ -92,7 +93,11 @@ const AddDrawing = (props: addDrawingProps) => {
             />
           </div>
         </div>
-        <DrawingInput drawing={drawing} setDrawing={setDrawing} />
+        <DrawingInput
+          setDrawerModified={props.setDrawerModified}
+          drawing={drawing}
+          setDrawing={setDrawing}
+        />
         {parts.map((_, index) => {
           return (
             <PartInput
@@ -116,7 +121,10 @@ const AddDrawing = (props: addDrawingProps) => {
           {parts.length === 0 ? (
             <button
               className="w-105 text-sm h-40 rounded-8"
-              onClick={() => splicePart(parts.length - 1, 'add')}
+              onClick={() => {
+                splicePart(parts.length - 1, 'add');
+                props.setDrawerModified(true);
+              }}
             >
               파트 추가하기
             </button>
