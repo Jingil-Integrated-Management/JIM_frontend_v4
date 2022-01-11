@@ -17,25 +17,28 @@ interface DrawingTableFilterProps {
   setDateRange: Function;
   setPageNum: Function;
   setList: Function;
+  drawingName: string;
 }
 const DrawingTableFilter = (props: DrawingTableFilterProps) => {
   const [drawingNameList, setDrawingNameList] = useState<{ name: string }[]>(
     []
   );
-  const [selectedName, setSelectedName] = useState<string>('');
+  const [selectedName, setSelectedName] = useState<string>(
+    props.drawingName ? props.drawingName : ''
+  );
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const [selectedDateRange, setSelectedDateRange] = useState<
     [Date | null, Date | null]
   >([props.startDate, props.endDate]);
 
   const applyFilter = () => {
+    props.setPageNum(1);
+    props.setList([]);
     props.setDrawingName(selectedName);
     props.setDateRange(selectedDateRange);
   };
 
   const clearFilter = () => {
-    props.setList([]);
-    props.setPageNum(1);
     setSelectedName('');
     setDrawingNameList([]);
     setSelectedDateRange([null, null]);

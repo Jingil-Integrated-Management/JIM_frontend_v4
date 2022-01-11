@@ -96,7 +96,7 @@ const DrawingTable = (props: drawingTableProps) => {
         'w-100p' + (props.type === 'client' ? ' h-100p overflow-hidden' : ' ')
       }
     >
-      {openFilter && (
+      {openFilter && props.type !== 'dashboard' ? (
         <div className="filter absolute z-100">
           <DrawingTableFilter
             openFilter={openFilter}
@@ -108,8 +108,11 @@ const DrawingTable = (props: drawingTableProps) => {
             setDateRange={setDateRange}
             setPageNum={setPageNum}
             setList={setList}
+            drawingName={drawingName}
           />
         </div>
+      ) : (
+        <></>
       )}
       <TableContainer
         className={
@@ -125,17 +128,19 @@ const DrawingTable = (props: drawingTableProps) => {
               <div className="client-name text-palette-black bg-palette-grey px-16 h-44 flex items-center">
                 {props.tableInfo ? props.tableInfo : clientName}
               </div>
-              <button
-                onClick={() => {
-                  setOpenFilter(!openFilter);
-                }}
-                className={
-                  'text-palette-word-2 bg-palette-grey ml-12 px-16 h-44 flex items-center font-medium flex-row justify-center ' +
-                  (!isFiltered ? 'filter_button' : 'filter_button_on')
-                }
-              >
-                필터 설정하기
-              </button>
+              {props.type !== 'dashboard' && (
+                <button
+                  onClick={() => {
+                    setOpenFilter(!openFilter);
+                  }}
+                  className={
+                    'text-palette-word-2 bg-palette-grey ml-12 px-16 h-44 flex items-center font-medium flex-row justify-center ' +
+                    (!isFiltered ? 'filter_button' : 'filter_button_on')
+                  }
+                >
+                  필터 설정하기
+                </button>
+              )}
             </div>
           </div>
         </div>
