@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 //icons
 import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
 
+
 //types
 import { DrawingData, PartData, ClientData } from '../../../types';
 
