@@ -28,6 +28,9 @@ const PatchPart = (props: PatchPartProps) => {
   // TODO : 예외 처리
 
   const { part, mainDivisionList, materialList, index } = props;
+  const [fileName, setFileName] = useState<string | null | undefined>(
+    props.part.file_name
+  );
   const [partPatchForm, setPartPatchForm] = useState({
     x: props.part.x,
     y: props.part.y,
@@ -54,6 +57,7 @@ const PatchPart = (props: PatchPartProps) => {
     if (props.part.division__main_division) {
       getSubDivisionList(props.part.division__main_division);
     }
+    console.log(fileName);
   }, []);
 
   useEffect(() => {
@@ -85,6 +89,19 @@ const PatchPart = (props: PatchPartProps) => {
     }
   };
 
+  const uploadFile = async (file: File) => {
+    const formData = new FormData();
+    console.log(file);
+    formData.append('file', file);
+    const response: AxiosResponse = await webClient.post('files/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    console.log(response);
+  };
+
   return (
     <div>
       <div className="flex flex-row mt-50">
@@ -95,19 +112,30 @@ const PatchPart = (props: PatchPartProps) => {
           파트 정보
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        {!part.file_name ? (
+      <input
+        type="file"
+        id={`file_${index}`}
+        className="hidden"
+        onChange={e => {
+          if (e.target.files) uploadFile(e.target.files[0]);
+        }}
+      />
+      <label
+        className="flex justify-center items-center cursor-pointer"
+        htmlFor={`file_${index}`}
+      >
+        {!fileName ? (
           <div className="w-504 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
             <ImageEmpty />
           </div>
         ) : (
           <img
             className="w-504 h-306 mt-32 rounded-8"
-            src={`https://storage.googleapis.com/jim-storage/${part.file_name}`}
+            src={`https://storage.googleapis.com/jim-storage/${fileName}`}
             alt="part_image"
           />
         )}
-      </div>
+      </label>
       <div className="mt-24 h-72 flex">
         <div className="w-256">
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
