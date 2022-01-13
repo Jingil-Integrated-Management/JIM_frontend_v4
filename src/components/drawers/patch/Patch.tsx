@@ -40,25 +40,21 @@ const Patch = (props: PatchProps) => {
     { main_division: string }[]
   >([]);
   const [materialList, setMaterialList] = useState<{ name: string }[]>([]);
-  const [targetPartList, setTargetPartList] = useState<PartData[]>([]);
-  const [targetDrawing, setTargetDrawing] = useState<DrawingData | null>(() => {
-    if (props.drawing) {
-      return {
-        name: props.drawing.name,
-        client: props.drawing.client,
-        created_at: props.drawing.created_at,
-        comment: props.drawing.comment ? props.drawing.comment : '',
-      } as DrawingData;
-    } else {
-      return null;
-    }
-  });
-  const [targetOutSourcePartIdList, setTargetOutSourcePartIdList] = useState<
-    number[]
-  >([]);
+  const [targetPartList, setTargetPartList] = useState<PartData[]>(props.parts);
+  const [targetDrawing, setTargetDrawing] = useState<DrawingData | undefined>(
+    props.drawing
+  );
   const [targetOutSourcePartList, setTargetOutSourcePartList] = useState<
     OutsourceData[]
-  >([]);
+  >(() => {
+    let initialList: OutsourceData[] = [];
+
+    props.parts.forEach(part => {
+      if (part.outsource_info) initialList.push(part.outsource_info);
+    });
+
+    return initialList;
+  });
 
   const getMaterialList = async () => {
     try {
@@ -108,16 +104,7 @@ const Patch = (props: PatchProps) => {
       try {
         const response: AxiosResponse = await webClient.patch(
           `/outsource/${outsource.id}`,
-          {
-            material_price: outsource.material_price,
-            milling_price: outsource.milling_price,
-            heat_treat_price: outsource.heat_treat_price,
-            wire_price: outsource.wire_price,
-            material_client: outsource.material_client,
-            milling_client: outsource.milling_client,
-            heat_treat_client: outsource.heat_treat_client,
-            wire_client: outsource.wire_client,
-          }
+          outsource
         );
         console.log(response);
       } catch (error) {
@@ -159,7 +146,7 @@ const Patch = (props: PatchProps) => {
             />
           </div>
         </div>
-        {props.drawing && (
+        {props.drawing && targetDrawing && (
           <PatchDrawing
             drawing={props.drawing}
             clientList={props.clientList}
@@ -176,8 +163,6 @@ const Patch = (props: PatchProps) => {
             materialList={materialList}
             targetPartList={targetPartList}
             setTargetPartList={setTargetPartList}
-            targetOutSourcePartIdList={targetOutSourcePartIdList}
-            setTargetOutSourcePartIdList={setTargetOutSourcePartIdList}
             targetOutSourcePartList={targetOutSourcePartList}
             setTargetOutSourcePartList={setTargetOutSourcePartList}
           />

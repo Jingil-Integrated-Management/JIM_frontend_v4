@@ -9,11 +9,8 @@ import getClientID from '../../../utils/getClientID';
 import OUTSOURCE from '../../../constants/OUTSOURCE.json';
 
 interface outSourceProps {
-  setOsPart: Function;
   index: number;
   clientList: ClientData[];
-  targetOutSourcePartIdList: number[];
-  setTargetOutSourcePartIdList: Function;
   targetOutSourcePartList: OutsourceData[];
   setTargetOutSourcePartList: Function;
   part: PartData;
@@ -51,51 +48,30 @@ const OutSource = (props: outSourceProps) => {
     setSelectedOs(tmpSelectdOs);
   };
 
-  const initSubject = () => {
-    if (!props.part.outsource_info) return;
-
-    const initialSubjects = new Set<string>();
-
-    if (props.part.outsource_info.material_client) {
-      initialSubjects.add('material');
-    }
-    if (props.part.outsource_info.heat_treat_client) {
-      initialSubjects.add('heat_treat');
-    }
-    if (props.part.outsource_info.milling_client) {
-      initialSubjects.add('milling');
-    }
-    if (props.part.outsource_info.wire_client) {
-      initialSubjects.add('wire');
-    }
-
-    setSelectedOs(initialSubjects);
-  };
-
   useEffect(() => {
+    const initSubject = () => {
+      if (!props.part.outsource_info) return;
+
+      const initialSubjects = new Set<string>();
+
+      if (props.part.outsource_info.material_client) {
+        initialSubjects.add('material');
+      }
+      if (props.part.outsource_info.heat_treat_client) {
+        initialSubjects.add('heat_treat');
+      }
+      if (props.part.outsource_info.milling_client) {
+        initialSubjects.add('milling');
+      }
+      if (props.part.outsource_info.wire_client) {
+        initialSubjects.add('wire');
+      }
+
+      setSelectedOs(initialSubjects);
+    };
+
     initSubject();
-  }, []);
-
-  useEffect(() => {
-    if (props.part.outsource_info) {
-      props.targetOutSourcePartList.push({
-        id: props.part.outsource_info.id,
-        material_price: props.part.outsource_info.material_price,
-        milling_price: props.part.outsource_info.milling_price,
-        heat_treat_price: props.part.outsource_info.heat_treat_price,
-        wire_price: props.part.outsource_info.wire_price,
-        material_client: props.part.outsource_info.material_client,
-        milling_client: props.part.outsource_info.milling_client,
-        heat_treat_client: props.part.outsource_info.heat_treat_client,
-        wire_client: props.part.outsource_info.wire_client,
-        material_client__name: props.part.outsource_info.material_client__name,
-        milling_client__name: props.part.outsource_info.milling_client__name,
-        heat_treat_client__name:
-          props.part.outsource_info.heat_treat_client__name,
-        wire_client__name: props.part.outsource_info.wire_client__name,
-      });
-    }
-  }, []);
+  }, [props.part.outsource_info]);
 
   return (
     <div className="mt-12">
@@ -120,13 +96,13 @@ const OutSource = (props: outSourceProps) => {
         if (selectedOs.has(subject) && props.part.outsource_info) {
           return (
             <OutSourceInput
-              subject={subject}
               key={index}
+              subject={subject}
               clientList={props.clientList}
               index={props.index}
               targetOutSourcePartList={props.targetOutSourcePartList}
               setTargetOutSourcePartList={props.setTargetOutSourcePartList}
-              outSourceInfo={props.part.outsource_info}
+              onInputChange={onInputChange}
             />
           );
         } else {
@@ -143,24 +119,10 @@ interface OutSourceInputProps {
   index: number;
   targetOutSourcePartList: OutsourceData[];
   setTargetOutSourcePartList: Function;
-  outSourceInfo: OutsourceData;
+  onInputChange: Function;
 }
 
 const OutSourceInput = (props: OutSourceInputProps) => {
-  const onInputChange = <
-    K extends keyof OutsourceData,
-    V extends OutsourceData[K]
-  >(
-    key: K,
-    value: V
-  ) => {
-    props.setTargetOutSourcePartList((prev: OutsourceData[]) => {
-      let tmp = [...prev];
-      tmp[props.index][key] = value;
-      return tmp;
-    });
-  };
-
   return (
     <div className="mt-12 flex">
       <div className="w-256">
@@ -176,11 +138,11 @@ const OutSourceInput = (props: OutSourceInputProps) => {
             ] || ''
           }
           onChange={e => {
-            onInputChange(
+            props.onInputChange(
               `${props.subject}_client` as keyof OutsourceData,
               getClientID(props.clientList, e.target.value)
             );
-            onInputChange(
+            props.onInputChange(
               `${props.subject}_client__name` as keyof OutsourceData,
               e.target.value
             );
@@ -206,7 +168,7 @@ const OutSourceInput = (props: OutSourceInputProps) => {
             ] as string) || ''
           }
           onChange={e => {
-            onInputChange(
+            props.onInputChange(
               `${props.subject}_price` as keyof OutsourceData,
               e.target.value
             );

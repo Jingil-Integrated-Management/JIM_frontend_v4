@@ -23,33 +23,15 @@ interface PatchPartProps {
   materialList: { name: string }[];
   targetPartList: PartData[];
   setTargetPartList: Function;
-  targetOutSourcePartIdList: number[];
-  setTargetOutSourcePartIdList: Function;
   targetOutSourcePartList: OutsourceData[];
   setTargetOutSourcePartList: Function;
 }
 
 const PatchPart = (props: PatchPartProps) => {
-  // TODO : OS PART일 때의 수정
-  // TODO : 예외 처리
-
   const { mainDivisionList, materialList, index } = props;
   const [fileName, setFileName] = useState<string | null | undefined>(
     props.part.file_name
   );
-  const [partPatchForm, setPartPatchForm] = useState({
-    x: props.part.x,
-    y: props.part.y,
-    z: props.part.z,
-    quantity: props.part.quantity,
-    price: props.part.price,
-    comment: props.part.comment,
-    drawing: props.part.drawing,
-    division: props.part.division,
-    material: props.part.material,
-    outsource: props.part.outsource,
-    file: props.part.file,
-  });
   const [partInputForm, setPartInputForm] = useState({
     main_division: props.part.division__main_division,
     sub_division: props.part.division__sub_division
@@ -57,45 +39,17 @@ const PatchPart = (props: PatchPartProps) => {
       : '',
   });
   const [subDivisionList, setSubDivisionList] = useState<DivisionData[]>([]);
-  const [osPart, setOsPart] = useState<OutsourceData | null | undefined>(
-    props.part.outsource_info
-  ); //
 
-  const [outSourcePartId] = useState<number | null | undefined>(() => {
-    if (props.part.drawing__is_outsource && props.part.outsource_info) {
-      return props.part.outsource_info.id;
-    }
-
-    return null;
-  });
-  const [outSourcePartPatchForm, setOutSourcePartPatchForm] =
-    useState<OutsourceData | null>(() => {
-      if (props.part.drawing__is_outsource && props.part.outsource_info) {
-        return {
-          material_price: props.part.outsource_info.material_price,
-          milling_price: props.part.outsource_info.milling_price,
-          heat_treat_price: props.part.outsource_info.heat_treat_price,
-          wire_price: props.part.outsource_info.wire_price,
-          material_client: props.part.outsource_info.material_client,
-          milling_client: props.part.outsource_info.milling_client,
-          heat_treat_client: props.part.outsource_info.heat_treat_client,
-          wire_client: props.part.outsource_info.wire_client,
-        };
-      }
-
-      return null;
+  const onInputChange = <K extends keyof PartData, V extends PartData[K]>(
+    key: K,
+    value: V
+  ) => {
+    props.setTargetPartList((prev: PartData[]) => {
+      let tmp = [...prev];
+      tmp[props.index][key] = value;
+      return tmp;
     });
-
-  useEffect(() => {
-    props.setTargetPartList([...props.targetPartList, partPatchForm]);
-    if (props.part.division__main_division) {
-      getSubDivisionList(props.part.division__main_division);
-    }
-  }, []);
-
-  useEffect(() => {
-    props.targetPartList[index] = partPatchForm;
-  }, [partPatchForm]);
+  };
 
   const getSubDivisionList = async (mainDivision: String) => {
     try {
@@ -130,9 +84,15 @@ const PatchPart = (props: PatchPartProps) => {
       },
     });
 
-    setPartPatchForm({ ...partPatchForm, file: response.data.id });
+    onInputChange('file', response.data.id);
     setFileName(response.data.file);
   };
+
+  useEffect(() => {
+    if (props.part.division__main_division) {
+      getSubDivisionList(props.part.division__main_division);
+    }
+  }, []);
 
   return (
     <div>
@@ -206,10 +166,11 @@ const PatchPart = (props: PatchPartProps) => {
                 ...partInputForm,
                 sub_division: e.target.value,
               });
-              setPartPatchForm({
-                ...partPatchForm,
-                division: getDivisionID(subDivisionList, e.target.value),
-              }); // TODO : -1일 경우
+              // TODO : -1일 경우
+              onInputChange(
+                'division',
+                getDivisionID(subDivisionList, e.target.value)
+              );
             }}
           />
           <datalist id={`sub_division_list_${index}`}>
@@ -231,13 +192,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.x}
-            onChange={e =>
-              setPartPatchForm({
-                ...partPatchForm,
-                x: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].x}
+            onChange={e => onInputChange('x', e.target.value)}
           />
         </div>
         <div className="ml-32 w-160">
@@ -246,13 +202,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.y}
-            onChange={e =>
-              setPartPatchForm({
-                ...partPatchForm,
-                y: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].y}
+            onChange={e => onInputChange('y', e.target.value)}
           />
         </div>
         <div className="ml-32 w-160">
@@ -261,13 +212,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.z}
-            onChange={e =>
-              setPartPatchForm({
-                ...partPatchForm,
-                z: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].z}
+            onChange={e => onInputChange('z', e.target.value)}
           />
         </div>
       </div>
@@ -279,13 +225,8 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`material_list_${index}`}
-            value={partPatchForm.material}
-            onChange={e => {
-              setPartPatchForm({
-                ...partPatchForm,
-                material: e.target.value,
-              });
-            }}
+            value={props.targetPartList[props.index].material}
+            onChange={e => onInputChange('material', e.target.value)}
           />
           <datalist id={`material_list_${index}`}>
             {materialList.map((material: { name: string }, index: number) => {
@@ -299,14 +240,14 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.quantity}
+            value={props.targetPartList[props.index].quantity}
             onChange={e =>
-              setPartPatchForm({
-                ...partPatchForm,
-                quantity: Number.isInteger(Number(e.target.value))
+              onInputChange(
+                'quantity',
+                Number.isInteger(Number(e.target.value))
                   ? Number(e.target.value)
-                  : 0,
-              })
+                  : 0
+              )
             }
           />
         </div>
@@ -318,13 +259,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.price ? partPatchForm.price : ''}
-            onChange={e =>
-              setPartPatchForm({
-                ...partPatchForm,
-                price: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].price || ''}
+            onChange={e => onInputChange('price', e.target.value)}
           />
         </div>
         <div className="w-256 ml-32">
@@ -333,22 +269,14 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.comment ? partPatchForm.comment : ''}
-            onChange={e =>
-              setPartPatchForm({
-                ...partPatchForm,
-                comment: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].comment || ''}
+            onChange={e => onInputChange('comment', e.target.value)}
           />
         </div>
       </div>
       {props.part.drawing__is_outsource && props.part.outsource_info ? (
         <OutSource
-          setOsPart={setOsPart}
           index={index}
-          targetOutSourcePartIdList={props.targetOutSourcePartIdList}
-          setTargetOutSourcePartIdList={props.setTargetOutSourcePartIdList}
           targetOutSourcePartList={props.targetOutSourcePartList}
           setTargetOutSourcePartList={props.setTargetOutSourcePartList}
           part={props.part}
