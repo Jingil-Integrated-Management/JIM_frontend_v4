@@ -22,6 +22,9 @@ import { connect } from 'react-redux';
 import PatchPart from './PatchPart';
 import PatchDrawing from './PatchDrawing';
 
+//utils
+import { isExistClient } from '../../../utils/validatePatch';
+
 interface PatchProps {
   target: String;
   setRevise: Function;
@@ -47,22 +50,6 @@ const Patch = (props: PatchProps) => {
     OutsourceData[]
   >([]);
 
-  useEffect(() => {
-    getMainDivisionList();
-    getMaterialList();
-  }, []);
-
-  const getMainDivisionList = async () => {
-    try {
-      const response: AxiosResponse = await webClient.get(
-        `/division/main/?client=${clientId}`
-      );
-      setMainDivisionList(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const getMaterialList = async () => {
     try {
       const response: AxiosResponse = await webClient.get('material/');
@@ -72,17 +59,8 @@ const Patch = (props: PatchProps) => {
     }
   };
 
-  const validateTargetDrawing = () => {
-    if (targetDrawing?.client === -1) {
-      alert('존재하지 않는 회사입니다.');
-      return false;
-    }
-
-    return true;
-  };
-
   const patchDrawing = async () => {
-    if (!props.drawing || !validateTargetDrawing()) {
+    if (!props.drawing || !isExistClient(targetDrawing?.client)) {
       return;
     }
 
@@ -137,6 +115,22 @@ const Patch = (props: PatchProps) => {
       }
     });
   };
+
+  useEffect(() => {
+    const getMainDivisionList = async () => {
+      try {
+        const response: AxiosResponse = await webClient.get(
+          `/division/main/?client=${clientId}`
+        );
+        setMainDivisionList(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getMainDivisionList();
+    getMaterialList();
+  }, [clientId]);
 
   return (
     <div
