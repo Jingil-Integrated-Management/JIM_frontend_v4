@@ -105,9 +105,9 @@ const PartTable = (props: partTableProps) => {
               subDivision={subDivision}
               setSubDivision={setSubDivision}
               setList={setList}
-              startDate={startDate} // for filter
-              endDate={endDate} // for filter
-              setDateRange={setDateRange} // for filter
+              startDate={startDate}
+              endDate={endDate}
+              setDateRange={setDateRange}
               isOutSource={isOutSource}
               setIsOutSource={setIsOutSource}
               isFiltered={isFiltered}

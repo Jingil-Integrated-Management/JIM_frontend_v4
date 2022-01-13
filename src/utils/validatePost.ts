@@ -1,4 +1,4 @@
-import { DrawingData, OutsourceData, PartData } from '../types';
+import { DrawingData, PartData } from '../types';
 
 const validatePost = (drawing: DrawingData, parts: PartData[]) => {
   if (drawing.name === '') {

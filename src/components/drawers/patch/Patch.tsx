@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
 //icons
-import { ReactComponent as CloseIcon } from '../../../resources/close.svg';
+import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
+
 
 //types
 import {
