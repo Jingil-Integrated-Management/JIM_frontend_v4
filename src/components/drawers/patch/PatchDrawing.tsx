@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 //types
 import { DrawingData, ClientData } from '../../../types';
@@ -15,26 +15,17 @@ import { ko } from 'date-fns/esm/locale';
 interface PatchDrawingProps {
   drawing: DrawingData;
   clientList: ClientData[];
+  targetDrawing: DrawingData | null;
   setTargetDrawing: Function;
 }
 
 const PatchDrawing = (props: PatchDrawingProps) => {
-  const [drawingPatchForm, setDrawingPatchForm] = useState({
-    name: props.drawing.name,
-    client: props.drawing.client,
-    created_at: props.drawing.created_at,
-    comment: props.drawing.comment ? props.drawing.comment : '',
-  });
   const [clientName, setClientName] = useState<string>(
     props.drawing.client__name ? props.drawing.client__name : ''
   );
   const [date, setDate] = useState<Date>(
     dateConverter(props.drawing.created_at)
   );
-
-  useEffect(() => {
-    props.setTargetDrawing(drawingPatchForm);
-  }, [drawingPatchForm]);
 
   return (
     <div className="w-full h-220">
@@ -57,10 +48,10 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={drawingPatchForm.name}
+            value={props.targetDrawing?.name || ''}
             onChange={e =>
-              setDrawingPatchForm({
-                ...drawingPatchForm,
+              props.setTargetDrawing({
+                ...props.targetDrawing,
                 name: e.target.value,
               })
             }
@@ -72,17 +63,17 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            list="client-list"
+            list="patch-drawing-client-list"
             value={clientName}
             onChange={e => {
               setClientName(e.target.value);
-              setDrawingPatchForm({
-                ...drawingPatchForm,
+              props.setTargetDrawing({
+                ...props.targetDrawing,
                 client: getClientID(props.clientList, e.target.value),
               });
             }}
           />
-          <datalist id="client-list">
+          <datalist id="patch-drawing-client-list">
             {props.clientList.map((client: ClientData, index: number) => {
               return <option key={index} value={client.name} />;
             })}
@@ -99,8 +90,8 @@ const PatchDrawing = (props: PatchDrawingProps) => {
             locale={ko}
             onChange={(changedDate: Date) => {
               setDate(changedDate);
-              setDrawingPatchForm({
-                ...drawingPatchForm,
+              props.setTargetDrawing({
+                ...props.targetDrawing,
                 created_at: formatDate(changedDate),
               });
             }}
@@ -113,10 +104,10 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           </div>
           <input
             className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={drawingPatchForm.comment}
+            value={props.targetDrawing?.comment || ''}
             onChange={e =>
-              setDrawingPatchForm({
-                ...drawingPatchForm,
+              props.setTargetDrawing({
+                ...props.targetDrawing,
                 comment: e.target.value,
               })
             }

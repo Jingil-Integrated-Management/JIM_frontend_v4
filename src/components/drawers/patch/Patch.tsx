@@ -41,8 +41,18 @@ const Patch = (props: PatchProps) => {
   >([]);
   const [materialList, setMaterialList] = useState<{ name: string }[]>([]);
   const [targetPartList, setTargetPartList] = useState<PartData[]>([]);
-  const [targetDrawing, setTargetDrawing] = useState<DrawingData | null>(null);
-
+  const [targetDrawing, setTargetDrawing] = useState<DrawingData | null>(() => {
+    if (props.drawing) {
+      return {
+        name: props.drawing.name,
+        client: props.drawing.client,
+        created_at: props.drawing.created_at,
+        comment: props.drawing.comment ? props.drawing.comment : '',
+      } as DrawingData;
+    } else {
+      return null;
+    }
+  });
   const [targetOutSourcePartIdList, setTargetOutSourcePartIdList] = useState<
     number[]
   >([]);
@@ -153,6 +163,7 @@ const Patch = (props: PatchProps) => {
           <PatchDrawing
             drawing={props.drawing}
             clientList={props.clientList}
+            targetDrawing={targetDrawing}
             setTargetDrawing={setTargetDrawing}
           />
         )}
