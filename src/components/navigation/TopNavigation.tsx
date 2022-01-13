@@ -64,7 +64,7 @@ const TopNavigation = (props: topNaviProps) => {
           >
             <AddIcon />
             {props.drawerModified && (
-              <div className="bg-font-accent w-5 h-5 absolute top-5 right-5 rounded-20"></div>
+              <div className="bg-palette-alert-red w-5 h-5 absolute top-10 right-10 rounded-20"></div>
             )}
           </button>
           <div className="w-40 h-40 flex justify-center items-center rounded-8">
