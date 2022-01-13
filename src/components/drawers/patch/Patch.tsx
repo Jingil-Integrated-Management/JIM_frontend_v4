@@ -71,11 +71,7 @@ const Patch = (props: PatchProps) => {
     }
 
     try {
-      const response: AxiosResponse = await webClient.patch(
-        `/drawing/${props.drawing.id}`,
-        targetDrawing
-      );
-      console.log(response);
+      await webClient.patch(`/drawing/${props.drawing.id}`, targetDrawing);
     } catch (error) {
       console.log(error);
     }
