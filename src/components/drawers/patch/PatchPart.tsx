@@ -89,7 +89,7 @@ const PatchPart = (props: PatchPartProps) => {
 
   return (
     <div>
-      <div className="flex flex-row mt-40">
+      <div className="flex flex-row mt-36">
         <div className="flex justify-center items-center w-40 h-40 bg-palette-purple-index rounded-panel">
           {index + 1}
         </div>
