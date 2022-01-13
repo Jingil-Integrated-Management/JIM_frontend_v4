@@ -119,11 +119,11 @@
 }
 
 .statistics-table-stats-container {
-  min-height: 100px;
+  min-height: 80px;
 }
 
 #statistics-stats-container {
-  min-height: 100px;
+  min-height: 80px;
 }
 
 .statistics-filter:hover {
