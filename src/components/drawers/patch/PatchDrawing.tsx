@@ -56,9 +56,9 @@ const PatchDrawing = (props: PatchDrawingProps) => {
             도면명
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={drawingPatchForm.name}
-            onChange={e =>
+            onChange={(e) =>
               setDrawingPatchForm({
                 ...drawingPatchForm,
                 name: e.target.value,
@@ -71,10 +71,10 @@ const PatchDrawing = (props: PatchDrawingProps) => {
             담당회사
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list="client-list"
             value={clientName}
-            onChange={e => {
+            onChange={(e) => {
               setClientName(e.target.value);
               setDrawingPatchForm({
                 ...drawingPatchForm,
@@ -104,7 +104,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
                 created_at: formatDate(changedDate),
               });
             }}
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input"
           />
         </div>
         <div className="w-256 ml-32">
@@ -112,9 +112,9 @@ const PatchDrawing = (props: PatchDrawingProps) => {
             비고
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={drawingPatchForm.comment}
-            onChange={e =>
+            onChange={(e) =>
               setDrawingPatchForm({
                 ...drawingPatchForm,
                 comment: e.target.value,

@@ -28,7 +28,7 @@ const DrawingInfo = (props: drawingInfoProps) => {
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             도면명
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.name}
           </div>
         </div>
@@ -36,7 +36,7 @@ const DrawingInfo = (props: drawingInfoProps) => {
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             담당회사
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.client__name}
           </div>
         </div>
@@ -46,7 +46,7 @@ const DrawingInfo = (props: drawingInfoProps) => {
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             날짜
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.created_at}
           </div>
         </div>
@@ -54,7 +54,7 @@ const DrawingInfo = (props: drawingInfoProps) => {
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             비고
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {props.drawing.comment}
           </div>
         </div>

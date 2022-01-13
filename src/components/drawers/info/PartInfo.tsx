@@ -16,7 +16,7 @@ const PartInfo = (props: PartInfoProps) => {
 
   return (
     <div>
-      <div className="flex flex-row mt-50">
+      <div className="flex flex-row mt-40">
         <div className="flex justify-center items-center w-40 h-40 bg-palette-purple-index rounded-panel">
           {index + 1}
         </div>
@@ -26,12 +26,12 @@ const PartInfo = (props: PartInfoProps) => {
       </div>
       <div className="flex justify-center items-center">
         {!part.file_name ? (
-          <div className="w-504 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
+          <div className="w-544 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
             <ImageEmpty />
           </div>
         ) : (
           <img
-            className="w-504 h-306 mt-32 rounded-8"
+            className="w-544 h-306 mt-32 rounded-8"
             src={`https://storage.googleapis.com/jim-storage/${part.file_name}`}
             alt="part_image"
           />
@@ -42,7 +42,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             메인 구분
           </div>
-          <div className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.division__main_division}
           </div>
         </div>
@@ -50,7 +50,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             세부 구분
           </div>
-          <div className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.division__sub_division === null
               ? ''
               : part.division__sub_division}
@@ -62,7 +62,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트크기- X
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.x}
           </div>
         </div>
@@ -70,7 +70,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트크기- Y
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.y}
           </div>
         </div>
@@ -78,7 +78,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트크기- Z
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.z}
           </div>
         </div>
@@ -88,7 +88,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             소재
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.material}
           </div>
         </div>
@@ -96,7 +96,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             파트 개수
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.quantity}
           </div>
         </div>
@@ -106,7 +106,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             가격
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {formatPrice(part.price)}
           </div>
         </div>
@@ -114,7 +114,7 @@ const PartInfo = (props: PartInfoProps) => {
           <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
             비고
           </div>
-          <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+          <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
             {part.comment}
           </div>
         </div>
@@ -183,7 +183,7 @@ const OutsourcePartInfo = (props: OutsourcePartInfoProps) => {
                 <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
                   {outsource.subject} 업체
                 </div>
-                <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+                <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
                   {outsource.client}
                 </div>
               </div>
@@ -191,7 +191,7 @@ const OutsourcePartInfo = (props: OutsourcePartInfoProps) => {
                 <div className="text-sm font-medium leading-1.14 text-palette-grey-menuicons">
                   가격
                 </div>
-                <div className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
+                <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
                   {outsource.price}
                 </div>
               </div>

@@ -72,7 +72,9 @@ const PatchPart = (props: PatchPartProps) => {
   };
 
   const isExistMainDivision = (input: string) => {
-    return mainDivisionList.find(division => division.main_division === input);
+    return mainDivisionList.find(
+      (division) => division.main_division === input
+    );
   };
 
   const getExistSubDivision = (input: string) => {
@@ -87,7 +89,7 @@ const PatchPart = (props: PatchPartProps) => {
 
   return (
     <div>
-      <div className="flex flex-row mt-50">
+      <div className="flex flex-row mt-40">
         <div className="flex justify-center items-center w-40 h-40 bg-palette-purple-index rounded-panel">
           {index + 1}
         </div>
@@ -97,12 +99,12 @@ const PatchPart = (props: PatchPartProps) => {
       </div>
       <div className="flex justify-center items-center">
         {!part.file_name ? (
-          <div className="w-504 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
+          <div className="w-544 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
             <ImageEmpty />
           </div>
         ) : (
           <img
-            className="w-504 h-306 mt-32 rounded-8"
+            className="w-544 h-306 mt-32 rounded-8"
             src={`https://storage.googleapis.com/jim-storage/${part.file_name}`}
             alt="part_image"
           />
@@ -114,10 +116,10 @@ const PatchPart = (props: PatchPartProps) => {
             메인 구분
           </div>
           <input
-            className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`main_division_list_${index}`}
             value={partInputForm.main_division}
-            onChange={e => {
+            onChange={(e) => {
               setPartInputForm({
                 ...partInputForm,
                 main_division: e.target.value,
@@ -138,10 +140,10 @@ const PatchPart = (props: PatchPartProps) => {
             세부 구분
           </div>
           <input
-            className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`sub_division_list_${index}`}
             value={partInputForm.sub_division}
-            onChange={e => {
+            onChange={(e) => {
               setPartInputForm({
                 ...partInputForm,
                 sub_division: e.target.value,
@@ -170,9 +172,9 @@ const PatchPart = (props: PatchPartProps) => {
             파트크기- X
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.x}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 x: e.target.value,
@@ -185,9 +187,9 @@ const PatchPart = (props: PatchPartProps) => {
             파트크기- Y
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.y}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 y: e.target.value,
@@ -200,9 +202,9 @@ const PatchPart = (props: PatchPartProps) => {
             파트크기- Z
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.z}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 z: e.target.value,
@@ -217,10 +219,10 @@ const PatchPart = (props: PatchPartProps) => {
             소재
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`material_list_${index}`}
             value={partPatchForm.material}
-            onChange={e => {
+            onChange={(e) => {
               setPartPatchForm({
                 ...partPatchForm,
                 material: e.target.value,
@@ -238,9 +240,9 @@ const PatchPart = (props: PatchPartProps) => {
             파트 개수
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.quantity}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 quantity: Number.isInteger(Number(e.target.value))
@@ -257,9 +259,9 @@ const PatchPart = (props: PatchPartProps) => {
             가격
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.price ? partPatchForm.price : ''}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 price: e.target.value,
@@ -272,9 +274,9 @@ const PatchPart = (props: PatchPartProps) => {
             비고
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={partPatchForm.comment ? partPatchForm.comment : ''}
-            onChange={e =>
+            onChange={(e) =>
               setPartPatchForm({
                 ...partPatchForm,
                 comment: e.target.value,
