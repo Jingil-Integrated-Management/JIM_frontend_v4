@@ -4,7 +4,12 @@ import { useEffect, useState } from 'react';
 import { ReactComponent as CloseIcon } from '../../../resources/close.svg';
 
 //types
-import { DrawingData, PartData, ClientData } from '../../../types';
+import {
+  DrawingData,
+  PartData,
+  ClientData,
+  OutsourceData,
+} from '../../../types';
 
 //axios
 import webClient from '../../../utils/Webclient';
@@ -34,6 +39,13 @@ const Patch = (props: PatchProps) => {
   const [materialList, setMaterialList] = useState<{ name: string }[]>([]);
   const [targetPartList, setTargetPartList] = useState<PartData[]>([]);
   const [targetDrawing, setTargetDrawing] = useState<DrawingData | null>(null);
+
+  const [targetOutSourcePartIdList, setTargetOutSourcePartIdList] = useState<
+    number[]
+  >([]);
+  const [targetOutSourcePartList, setTargetOutSourcePartList] = useState<
+    OutsourceData[]
+  >([]);
 
   useEffect(() => {
     getMainDivisionList();
@@ -101,6 +113,31 @@ const Patch = (props: PatchProps) => {
     }
   };
 
+  const patchOutSource = async () => {
+    if (!props.parts[0].drawing__is_outsource) return;
+
+    targetOutSourcePartList.forEach(async outsource => {
+      try {
+        const response: AxiosResponse = await webClient.patch(
+          `/outsource/${outsource.id}`,
+          {
+            material_price: outsource.material_price,
+            milling_price: outsource.milling_price,
+            heat_treat_price: outsource.heat_treat_price,
+            wire_price: outsource.wire_price,
+            material_client: outsource.material_client,
+            milling_client: outsource.milling_client,
+            heat_treat_client: outsource.heat_treat_client,
+            wire_client: outsource.wire_client,
+          }
+        );
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+
   return (
     <div
       id="patch-container"
@@ -134,16 +171,19 @@ const Patch = (props: PatchProps) => {
             materialList={materialList}
             targetPartList={targetPartList}
             setTargetPartList={setTargetPartList}
+            targetOutSourcePartIdList={targetOutSourcePartIdList}
+            setTargetOutSourcePartIdList={setTargetOutSourcePartIdList}
+            targetOutSourcePartList={targetOutSourcePartList}
+            setTargetOutSourcePartList={setTargetOutSourcePartList}
           />
         ))}
         <div className="flex justify-end mt-44">
           <button
             className="text-sm h-40"
             onClick={() => {
-              console.log(targetDrawing);
-              console.log(targetPartList);
               patchDrawing();
               patchParts();
+              patchOutSource();
             }}
           >
             완료하기

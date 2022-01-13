@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 //types
-import { PartData, DivisionData } from '../../../types';
+import { PartData, DivisionData, OutsourceData } from '../../../types';
 
 //axios
 import webClient from '../../../utils/Webclient';
@@ -13,6 +13,9 @@ import { ReactComponent as ImageEmpty } from '../../../resources/image_empty.svg
 //utils
 import getDivisionID from '../../../utils/getDivisionID';
 
+//components
+import OutSource from './PatchOutSourcePart';
+
 interface PatchPartProps {
   part: PartData;
   index: number;
@@ -20,14 +23,17 @@ interface PatchPartProps {
   materialList: { name: string }[];
   targetPartList: PartData[];
   setTargetPartList: Function;
+  targetOutSourcePartIdList: number[];
+  setTargetOutSourcePartIdList: Function;
+  targetOutSourcePartList: OutsourceData[];
+  setTargetOutSourcePartList: Function;
 }
 
 const PatchPart = (props: PatchPartProps) => {
   // TODO : OS PART일 때의 수정
-  // TODO : 도면 사진 수정
   // TODO : 예외 처리
 
-  const { part, mainDivisionList, materialList, index } = props;
+  const { mainDivisionList, materialList, index } = props;
   const [fileName, setFileName] = useState<string | null | undefined>(
     props.part.file_name
   );
@@ -51,13 +57,40 @@ const PatchPart = (props: PatchPartProps) => {
       : '',
   });
   const [subDivisionList, setSubDivisionList] = useState<DivisionData[]>([]);
+  const [osPart, setOsPart] = useState<OutsourceData | null | undefined>(
+    props.part.outsource_info
+  ); //
+
+  const [outSourcePartId] = useState<number | null | undefined>(() => {
+    if (props.part.drawing__is_outsource && props.part.outsource_info) {
+      return props.part.outsource_info.id;
+    }
+
+    return null;
+  });
+  const [outSourcePartPatchForm, setOutSourcePartPatchForm] =
+    useState<OutsourceData | null>(() => {
+      if (props.part.drawing__is_outsource && props.part.outsource_info) {
+        return {
+          material_price: props.part.outsource_info.material_price,
+          milling_price: props.part.outsource_info.milling_price,
+          heat_treat_price: props.part.outsource_info.heat_treat_price,
+          wire_price: props.part.outsource_info.wire_price,
+          material_client: props.part.outsource_info.material_client,
+          milling_client: props.part.outsource_info.milling_client,
+          heat_treat_client: props.part.outsource_info.heat_treat_client,
+          wire_client: props.part.outsource_info.wire_client,
+        };
+      }
+
+      return null;
+    });
 
   useEffect(() => {
     props.setTargetPartList([...props.targetPartList, partPatchForm]);
     if (props.part.division__main_division) {
       getSubDivisionList(props.part.division__main_division);
     }
-    console.log(fileName);
   }, []);
 
   useEffect(() => {
@@ -83,8 +116,6 @@ const PatchPart = (props: PatchPartProps) => {
     const mainDivision = isExistMainDivision(input);
 
     if (mainDivision) {
-      console.log(index);
-      console.log(mainDivision);
       getSubDivisionList(mainDivision.main_division);
     }
   };
@@ -312,6 +343,19 @@ const PatchPart = (props: PatchPartProps) => {
           />
         </div>
       </div>
+      {props.part.drawing__is_outsource && props.part.outsource_info ? (
+        <OutSource
+          setOsPart={setOsPart}
+          index={index}
+          targetOutSourcePartIdList={props.targetOutSourcePartIdList}
+          setTargetOutSourcePartIdList={props.setTargetOutSourcePartIdList}
+          targetOutSourcePartList={props.targetOutSourcePartList}
+          setTargetOutSourcePartList={props.setTargetOutSourcePartList}
+          part={props.part}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
