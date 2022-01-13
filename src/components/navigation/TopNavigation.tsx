@@ -59,7 +59,7 @@ const TopNavigation = (props: topNaviProps) => {
         <div className="flex items-center">
           <Search clientList={clientList} />
           <button
-            className="w-40 h-40 flex justify-center items-center rounded-8 icon-button cursor-pointer relative"
+            className="w-44 h-44 flex justify-center items-center rounded-8 icon-button cursor-pointer relative"
             onClick={() => props.setDrawerOpen(true)}
           >
             <AddIcon />
@@ -67,7 +67,7 @@ const TopNavigation = (props: topNaviProps) => {
               <div className="bg-palette-alert-red w-5 h-5 absolute top-10 right-10 rounded-20"></div>
             )}
           </button>
-          <div className="w-40 h-40 flex justify-center items-center rounded-8">
+          <div className="w-44 h-44 flex justify-center items-center rounded-8">
             <img src={logo} alt="AD"></img>
           </div>
         </div>
