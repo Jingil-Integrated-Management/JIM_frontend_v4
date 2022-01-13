@@ -8,7 +8,8 @@ import webClient from '../../../utils/Webclient';
 import { AxiosResponse } from 'axios';
 
 //icons
-import { ReactComponent as ImageEmpty } from '../../../resources/image_empty.svg';
+import { ReactComponent as ImageEmpty } from '../../../resources/svg/imageEmpty.svg';
+
 
 //utils
 import getDivisionID from '../../../utils/getDivisionID';
@@ -50,6 +51,12 @@ const PatchPart = (props: PatchPartProps) => {
       return tmp;
     });
   };
+    
+  useEffect(() => {
+    if (props.part.division__main_division) {
+      getSubDivisionList(props.part.division__main_division);
+    }
+  }, []);
 
   const getSubDivisionList = async (mainDivision: String) => {
     try {
