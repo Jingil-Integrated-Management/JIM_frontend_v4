@@ -1,5 +1,5 @@
 import { PartData, OutsourceData } from '../../../types';
-import { ReactComponent as ImageEmpty } from '../../../resources/image_empty.svg';
+import { ReactComponent as ImageEmpty } from '../../../resources/svg/imageEmpty.svg';
 import formatPrice from '../../../utils/formatPrice';
 
 interface PartInfoProps {

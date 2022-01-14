@@ -1,6 +1,6 @@
 //icons
-import { ReactComponent as CloseIcon } from '../../../resources/close.svg';
-import { ReactComponent as EditIcon } from '../../../resources/edit.svg';
+import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
+import { ReactComponent as EditIcon } from '../../../resources/svg/editIcon.svg';
 
 //axios
 import webClient from '../../../utils/Webclient';

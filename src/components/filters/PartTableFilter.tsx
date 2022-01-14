@@ -12,7 +12,7 @@ import { AxiosResponse } from 'axios';
 import formatDate from '../../utils/formatDate';
 
 //icons
-import { ReactComponent as ClearIcon } from '../../resources/icon-24-trash-2.svg';
+import { ReactComponent as ClearIcon } from '../../resources/svg/clearIcon.svg';
 
 interface mainDivisionList {
   main_division: string;

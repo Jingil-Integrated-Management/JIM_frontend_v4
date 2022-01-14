@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 //icons
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { ReactComponent as Logo } from '../../resources/jim_logo.svg';
+import { ReactComponent as JimLogo } from '../../resources/svg/jimLogo.svg';
 
 //axios
 import webClient from '../../utils/Webclient';
@@ -76,7 +76,7 @@ const Navigation = (props: NavigationProps) => {
           history.go(0);
         }}
       >
-        <Logo />
+        <JimLogo />
       </div>
       <div className="flex flex-col justify-between h-100p mt-100">
         <div className="flex flex-col">

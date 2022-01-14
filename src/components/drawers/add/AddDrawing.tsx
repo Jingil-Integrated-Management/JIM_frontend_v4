@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { AxiosResponse } from 'axios';
-import { ReactComponent as Close } from '../../../resources/close.svg';
+import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
 
 import { DrawingData, OutsourceData, PartData } from '../../../types';
 
@@ -85,7 +85,7 @@ const AddDrawing = (props: addDrawingProps) => {
         <div className="h-15 flex mt-48 justify-between">
           <div className="text-title ml-16 font-bold">도면 추가하기</div>
           <div className="flex flex-row">
-            <Close
+            <CloseIcon
               className="cursor-pointer"
               onClick={() => {
                 props.setOpen(false);

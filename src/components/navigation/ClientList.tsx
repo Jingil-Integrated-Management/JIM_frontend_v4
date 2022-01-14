@@ -7,7 +7,7 @@ import { useHistory } from 'react-router';
 import { ClientData } from '../../types';
 
 //icons
-import { ReactComponent as PinnedIcon } from '../../resources/pinned.svg';
+import { ReactComponent as PinnedIcon } from '../../resources/svg/pinnedIcon.svg';
 
 //axios
 import webClient from '../../utils/Webclient';
@@ -46,7 +46,7 @@ const ClientList = (props: clientListProps) => {
 
   return (
     <>
-      {props.clientList?.map(client => (
+      {props.clientList?.map((client) => (
         <div
           className={
             'flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8' +

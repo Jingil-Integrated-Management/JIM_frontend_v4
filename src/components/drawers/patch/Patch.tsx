@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 
 //icons
-import { ReactComponent as CloseIcon } from '../../../resources/close.svg';
+import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
+
 
 //types
-import { DrawingData, PartData, ClientData } from '../../../types';
+import {
+  DrawingData,
+  PartData,
+  ClientData,
+  OutsourceData,
+} from '../../../types';
 
 //axios
 import webClient from '../../../utils/Webclient';
@@ -16,6 +22,9 @@ import { connect } from 'react-redux';
 //components
 import PatchPart from './PatchPart';
 import PatchDrawing from './PatchDrawing';
+
+//utils
+import { isExistClient } from '../../../utils/validatePatch';
 
 interface PatchProps {
   target: String;
@@ -32,24 +41,21 @@ const Patch = (props: PatchProps) => {
     { main_division: string }[]
   >([]);
   const [materialList, setMaterialList] = useState<{ name: string }[]>([]);
-  const [targetPartList, setTargetPartList] = useState<PartData[]>([]);
-  const [targetDrawing, setTargetDrawing] = useState<DrawingData | null>(null);
+  const [targetPartList, setTargetPartList] = useState<PartData[]>(props.parts);
+  const [targetDrawing, setTargetDrawing] = useState<DrawingData | undefined>(
+    props.drawing
+  );
+  const [targetOutSourcePartList, setTargetOutSourcePartList] = useState<
+    OutsourceData[]
+  >(() => {
+    let initialList: OutsourceData[] = [];
 
-  useEffect(() => {
-    getMainDivisionList();
-    getMaterialList();
-  }, []);
+    props.parts.forEach(part => {
+      if (part.outsource_info) initialList.push(part.outsource_info);
+    });
 
-  const getMainDivisionList = async () => {
-    try {
-      const response: AxiosResponse = await webClient.get(
-        `/division/main/?client=${clientId}`
-      );
-      setMainDivisionList(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    return initialList;
+  });
 
   const getMaterialList = async () => {
     try {
@@ -60,26 +66,13 @@ const Patch = (props: PatchProps) => {
     }
   };
 
-  const validateTargetDrawing = () => {
-    if (targetDrawing?.client === -1) {
-      alert('존재하지 않는 회사입니다.');
-      return false;
-    }
-
-    return true;
-  };
-
   const patchDrawing = async () => {
-    if (!props.drawing || !validateTargetDrawing()) {
+    if (!props.drawing || !isExistClient(targetDrawing?.client)) {
       return;
     }
 
     try {
-      const response: AxiosResponse = await webClient.patch(
-        `/drawing/${props.drawing.id}`,
-        targetDrawing
-      );
-      console.log(response);
+      await webClient.patch(`/drawing/${props.drawing.id}`, targetDrawing);
     } catch (error) {
       console.log(error);
     }
@@ -101,6 +94,38 @@ const Patch = (props: PatchProps) => {
     }
   };
 
+  const patchOutSource = async () => {
+    if (!props.parts[0].drawing__is_outsource) return;
+
+    targetOutSourcePartList.forEach(async outsource => {
+      try {
+        const response: AxiosResponse = await webClient.patch(
+          `/outsource/${outsource.id}`,
+          outsource
+        );
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+
+  useEffect(() => {
+    const getMainDivisionList = async () => {
+      try {
+        const response: AxiosResponse = await webClient.get(
+          `/division/main/?client=${clientId}`
+        );
+        setMainDivisionList(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getMainDivisionList();
+    getMaterialList();
+  }, [clientId]);
+
   return (
     <div
       id="patch-container"
@@ -118,10 +143,11 @@ const Patch = (props: PatchProps) => {
             />
           </div>
         </div>
-        {props.drawing && (
+        {props.drawing && targetDrawing && (
           <PatchDrawing
             drawing={props.drawing}
             clientList={props.clientList}
+            targetDrawing={targetDrawing}
             setTargetDrawing={setTargetDrawing}
           />
         )}
@@ -134,16 +160,17 @@ const Patch = (props: PatchProps) => {
             materialList={materialList}
             targetPartList={targetPartList}
             setTargetPartList={setTargetPartList}
+            targetOutSourcePartList={targetOutSourcePartList}
+            setTargetOutSourcePartList={setTargetOutSourcePartList}
           />
         ))}
         <div className="flex justify-end mt-44">
           <button
             className="text-sm h-40"
             onClick={() => {
-              console.log(targetDrawing);
-              console.log(targetPartList);
               patchDrawing();
               patchParts();
+              patchOutSource();
             }}
           >
             완료하기

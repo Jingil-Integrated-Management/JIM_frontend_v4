@@ -22,7 +22,7 @@ const Login = () => {
 
 const LoginForm = () => {
   const history = useHistory();
-  const icon = require('../resources/icon.png').default;
+  const icon = require('../resources/png/icon.png').default;
   const [form, setForm] = useState({ username: '', password: '' });
 
   const signIn = async (user: { username: string; password: string }) => {

@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
 
 //types
-import { PartData, DivisionData } from '../../../types';
+import { PartData, DivisionData, OutsourceData } from '../../../types';
 
 //axios
 import webClient from '../../../utils/Webclient';
 import { AxiosResponse } from 'axios';
 
 //icons
-import { ReactComponent as ImageEmpty } from '../../../resources/image_empty.svg';
+import { ReactComponent as ImageEmpty } from '../../../resources/svg/imageEmpty.svg';
+
 
 //utils
 import getDivisionID from '../../../utils/getDivisionID';
+
+//components
+import OutSource from './PatchOutSourcePart';
 
 interface PatchPartProps {
   part: PartData;
@@ -20,27 +24,15 @@ interface PatchPartProps {
   materialList: { name: string }[];
   targetPartList: PartData[];
   setTargetPartList: Function;
+  targetOutSourcePartList: OutsourceData[];
+  setTargetOutSourcePartList: Function;
 }
 
 const PatchPart = (props: PatchPartProps) => {
-  // TODO : OS PART일 때의 수정
-  // TODO : 도면 사진 수정
-  // TODO : 예외 처리
-
-  const { part, mainDivisionList, materialList, index } = props;
-  const [partPatchForm, setPartPatchForm] = useState({
-    x: props.part.x,
-    y: props.part.y,
-    z: props.part.z,
-    quantity: props.part.quantity,
-    price: props.part.price,
-    comment: props.part.comment,
-    drawing: props.part.drawing,
-    division: props.part.division,
-    material: props.part.material,
-    outsource: props.part.outsource,
-    file: props.part.file,
-  });
+  const { mainDivisionList, materialList, index } = props;
+  const [fileName, setFileName] = useState<string | null | undefined>(
+    props.part.file_name
+  );
   const [partInputForm, setPartInputForm] = useState({
     main_division: props.part.division__main_division,
     sub_division: props.part.division__sub_division
@@ -49,16 +41,22 @@ const PatchPart = (props: PatchPartProps) => {
   });
   const [subDivisionList, setSubDivisionList] = useState<DivisionData[]>([]);
 
+  const onInputChange = <K extends keyof PartData, V extends PartData[K]>(
+    key: K,
+    value: V
+  ) => {
+    props.setTargetPartList((prev: PartData[]) => {
+      let tmp = [...prev];
+      tmp[props.index][key] = value;
+      return tmp;
+    });
+  };
+    
   useEffect(() => {
-    props.setTargetPartList([...props.targetPartList, partPatchForm]);
     if (props.part.division__main_division) {
       getSubDivisionList(props.part.division__main_division);
     }
   }, []);
-
-  useEffect(() => {
-    props.targetPartList[index] = partPatchForm;
-  }, [partPatchForm]);
 
   const getSubDivisionList = async (mainDivision: String) => {
     try {
@@ -81,11 +79,29 @@ const PatchPart = (props: PatchPartProps) => {
     const mainDivision = isExistMainDivision(input);
 
     if (mainDivision) {
-      console.log(index);
-      console.log(mainDivision);
       getSubDivisionList(mainDivision.main_division);
     }
   };
+
+  const uploadFile = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response: AxiosResponse = await webClient.post('files/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    onInputChange('file', response.data.id);
+    setFileName(response.data.file);
+  };
+
+  useEffect(() => {
+    if (props.part.division__main_division) {
+      getSubDivisionList(props.part.division__main_division);
+    }
+  }, []);
 
   return (
     <div>
@@ -97,19 +113,30 @@ const PatchPart = (props: PatchPartProps) => {
           파트 정보
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        {!part.file_name ? (
+      <input
+        type="file"
+        id={`file_${index}`}
+        className="hidden"
+        onChange={e => {
+          if (e.target.files) uploadFile(e.target.files[0]);
+        }}
+      />
+      <label
+        className="flex justify-center items-center cursor-pointer"
+        htmlFor={`file_${index}`}
+      >
+        {!fileName ? (
           <div className="w-544 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
             <ImageEmpty />
           </div>
         ) : (
           <img
             className="w-544 h-306 mt-32 rounded-8"
-            src={`https://storage.googleapis.com/jim-storage/${part.file_name}`}
+            src={`https://storage.googleapis.com/jim-storage/${fileName}`}
             alt="part_image"
           />
         )}
-      </div>
+      </label>
       <div className="mt-24 h-72 flex">
         <div className="w-256">
           <div className="w-full text-sm font-medium leading-1.14 text-palette-grey-menuicons">
@@ -148,10 +175,11 @@ const PatchPart = (props: PatchPartProps) => {
                 ...partInputForm,
                 sub_division: e.target.value,
               });
-              setPartPatchForm({
-                ...partPatchForm,
-                division: getDivisionID(subDivisionList, e.target.value),
-              }); // TODO : -1일 경우
+              // TODO : -1일 경우
+              onInputChange(
+                'division',
+                getDivisionID(subDivisionList, e.target.value)
+              );
             }}
           />
           <datalist id={`sub_division_list_${index}`}>
@@ -173,13 +201,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.x}
-            onChange={(e) =>
-              setPartPatchForm({
-                ...partPatchForm,
-                x: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].x}
+            onChange={e => onInputChange('x', e.target.value)}
           />
         </div>
         <div className="ml-32 w-160">
@@ -188,13 +211,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.y}
-            onChange={(e) =>
-              setPartPatchForm({
-                ...partPatchForm,
-                y: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].y}
+            onChange={e => onInputChange('y', e.target.value)}
           />
         </div>
         <div className="ml-32 w-160">
@@ -203,13 +221,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.z}
-            onChange={(e) =>
-              setPartPatchForm({
-                ...partPatchForm,
-                z: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].z}
+            onChange={e => onInputChange('z', e.target.value)}
           />
         </div>
       </div>
@@ -221,13 +234,8 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`material_list_${index}`}
-            value={partPatchForm.material}
-            onChange={(e) => {
-              setPartPatchForm({
-                ...partPatchForm,
-                material: e.target.value,
-              });
-            }}
+            value={props.targetPartList[props.index].material}
+            onChange={e => onInputChange('material', e.target.value)}
           />
           <datalist id={`material_list_${index}`}>
             {materialList.map((material: { name: string }, index: number) => {
@@ -241,14 +249,14 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.quantity}
-            onChange={(e) =>
-              setPartPatchForm({
-                ...partPatchForm,
-                quantity: Number.isInteger(Number(e.target.value))
+            value={props.targetPartList[props.index].quantity}
+            onChange={e =>
+              onInputChange(
+                'quantity',
+                Number.isInteger(Number(e.target.value))
                   ? Number(e.target.value)
-                  : 0,
-              })
+                  : 0
+              )
             }
           />
         </div>
@@ -260,13 +268,8 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.price ? partPatchForm.price : ''}
-            onChange={(e) =>
-              setPartPatchForm({
-                ...partPatchForm,
-                price: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].price || ''}
+            onChange={e => onInputChange('price', e.target.value)}
           />
         </div>
         <div className="w-256 ml-32">
@@ -275,16 +278,21 @@ const PatchPart = (props: PatchPartProps) => {
           </div>
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
-            value={partPatchForm.comment ? partPatchForm.comment : ''}
-            onChange={(e) =>
-              setPartPatchForm({
-                ...partPatchForm,
-                comment: e.target.value,
-              })
-            }
+            value={props.targetPartList[props.index].comment || ''}
+            onChange={e => onInputChange('comment', e.target.value)}
           />
         </div>
       </div>
+      {props.part.drawing__is_outsource && props.part.outsource_info ? (
+        <OutSource
+          index={index}
+          targetOutSourcePartList={props.targetOutSourcePartList}
+          setTargetOutSourcePartList={props.setTargetOutSourcePartList}
+          part={props.part}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
