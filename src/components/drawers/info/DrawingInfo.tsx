@@ -17,7 +17,7 @@ const DrawingInfo = (props: drawingInfoProps) => {
         </div>
         {props.drawing.is_outsource ? (
           <div className="flex justify-center items-center w-62 h-40 ml-10 rounded-panel onOsBox">
-            외주
+            제작
           </div>
         ) : (
           <></>

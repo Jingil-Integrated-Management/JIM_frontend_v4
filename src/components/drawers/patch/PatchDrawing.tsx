@@ -35,7 +35,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
         </div>
         {props.drawing.is_outsource ? (
           <div className="flex justify-center items-center w-62 h-40 ml-10 rounded-panel onOsBox">
-            외주
+            제작
           </div>
         ) : (
           <></>
@@ -49,7 +49,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetDrawing?.name || ''}
-            onChange={e =>
+            onChange={(e) =>
               props.setTargetDrawing({
                 ...props.targetDrawing,
                 name: e.target.value,
@@ -105,7 +105,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetDrawing?.comment || ''}
-            onChange={e =>
+            onChange={(e) =>
               props.setTargetDrawing({
                 ...props.targetDrawing,
                 comment: e.target.value,
