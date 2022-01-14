@@ -49,7 +49,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetDrawing?.name || ''}
-            onChange={(e) =>
+            onChange={e =>
               props.setTargetDrawing({
                 ...props.targetDrawing,
                 name: e.target.value,
@@ -65,7 +65,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list="patch-drawing-client-list"
             value={clientName}
-            onChange={(e) => {
+            onChange={e => {
               setClientName(e.target.value);
               props.setTargetDrawing({
                 ...props.targetDrawing,
@@ -105,7 +105,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetDrawing?.comment || ''}
-            onChange={(e) =>
+            onChange={e =>
               props.setTargetDrawing({
                 ...props.targetDrawing,
                 comment: e.target.value,
