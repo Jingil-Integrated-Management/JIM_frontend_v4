@@ -108,13 +108,13 @@ const Info = (props: tableDrawerProps) => {
         ))}
         <div className="flex justify-end mt-44">
           <button
-            className="w-76 text-sm h-40"
+            className="w-76 text-sm h-40 rounded-8 partDeleteButton"
             onClick={() => validateDelete()}
           >
             삭제하기
           </button>
           <button
-            className="w-76 text-sm h-40"
+            className="w-76 text-sm h-40 rounded-8 partDeleteButton"
             onClick={() => props.setRevise(true)}
           >
             수정하기
@@ -124,7 +124,7 @@ const Info = (props: tableDrawerProps) => {
               onClick={() => {
                 finishDrawing();
               }}
-              className="w-76 text-sm h-40 onOsButton rounded-8"
+              className="w-76 text-sm h-40 rounded-8 completeButton"
             >
               완료하기
             </button>

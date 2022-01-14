@@ -70,7 +70,9 @@ const PatchPart = (props: PatchPartProps) => {
   };
 
   const isExistMainDivision = (input: string) => {
-    return mainDivisionList.find(division => division.main_division === input);
+    return mainDivisionList.find(
+      (division) => division.main_division === input
+    );
   };
 
   const getExistSubDivision = (input: string) => {
@@ -103,7 +105,7 @@ const PatchPart = (props: PatchPartProps) => {
 
   return (
     <div>
-      <div className="flex flex-row mt-50">
+      <div className="flex flex-row mt-36">
         <div className="flex justify-center items-center w-40 h-40 bg-palette-purple-index rounded-panel">
           {index + 1}
         </div>
@@ -124,12 +126,12 @@ const PatchPart = (props: PatchPartProps) => {
         htmlFor={`file_${index}`}
       >
         {!fileName ? (
-          <div className="w-504 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
+          <div className="w-544 h-306 mt-32 flex justify-center items-center rounded-8 imageBox">
             <ImageEmpty />
           </div>
         ) : (
           <img
-            className="w-504 h-306 mt-32 rounded-8"
+            className="w-544 h-306 mt-32 rounded-8"
             src={`https://storage.googleapis.com/jim-storage/${fileName}`}
             alt="part_image"
           />
@@ -141,10 +143,10 @@ const PatchPart = (props: PatchPartProps) => {
             메인 구분
           </div>
           <input
-            className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`main_division_list_${index}`}
             value={partInputForm.main_division}
-            onChange={e => {
+            onChange={(e) => {
               setPartInputForm({
                 ...partInputForm,
                 main_division: e.target.value,
@@ -165,10 +167,10 @@ const PatchPart = (props: PatchPartProps) => {
             세부 구분
           </div>
           <input
-            className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`sub_division_list_${index}`}
             value={partInputForm.sub_division}
-            onChange={e => {
+            onChange={(e) => {
               setPartInputForm({
                 ...partInputForm,
                 sub_division: e.target.value,
@@ -198,7 +200,7 @@ const PatchPart = (props: PatchPartProps) => {
             파트크기- X
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetPartList[props.index].x}
             onChange={e => onInputChange('x', e.target.value)}
           />
@@ -208,7 +210,7 @@ const PatchPart = (props: PatchPartProps) => {
             파트크기- Y
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetPartList[props.index].y}
             onChange={e => onInputChange('y', e.target.value)}
           />
@@ -218,7 +220,7 @@ const PatchPart = (props: PatchPartProps) => {
             파트크기- Z
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetPartList[props.index].z}
             onChange={e => onInputChange('z', e.target.value)}
           />
@@ -230,7 +232,7 @@ const PatchPart = (props: PatchPartProps) => {
             소재
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`material_list_${index}`}
             value={props.targetPartList[props.index].material}
             onChange={e => onInputChange('material', e.target.value)}
@@ -246,7 +248,7 @@ const PatchPart = (props: PatchPartProps) => {
             파트 개수
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetPartList[props.index].quantity}
             onChange={e =>
               onInputChange(
@@ -265,7 +267,7 @@ const PatchPart = (props: PatchPartProps) => {
             가격
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetPartList[props.index].price || ''}
             onChange={e => onInputChange('price', e.target.value)}
           />
@@ -275,7 +277,7 @@ const PatchPart = (props: PatchPartProps) => {
             비고
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             value={props.targetPartList[props.index].comment || ''}
             onChange={e => onInputChange('comment', e.target.value)}
           />

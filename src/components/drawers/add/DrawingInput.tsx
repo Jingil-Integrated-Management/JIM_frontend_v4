@@ -49,7 +49,7 @@ const DrawingInput = (props: drawingInputProps) => {
               제작
             </div>
           ) : (
-            <div className="flex justify-center items-center w-62 h-40 ml-10 rounded-panel onOsBox">
+            <div className="flex justify-center items-center w-62 h-40 ml-10 rounded-panel offOsBox">
               연마
             </div>
           )}
@@ -61,7 +61,7 @@ const DrawingInput = (props: drawingInputProps) => {
             도면명
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             onChange={(e) => {
               onInputChange('name', e.target.value);
@@ -73,7 +73,7 @@ const DrawingInput = (props: drawingInputProps) => {
             담당회사
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list="clientList"
             placeholder="내용을 입력하세요."
             onChange={(e) => {
@@ -103,7 +103,7 @@ const DrawingInput = (props: drawingInputProps) => {
               setDate(changedDate);
               onInputChange('created_at', formatDate(changedDate));
             }}
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input"
           />
         </div>
         <div className="w-256 ml-32">
@@ -111,7 +111,7 @@ const DrawingInput = (props: drawingInputProps) => {
             비고
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             onChange={(e) => {
               onInputChange('comment', e.target.value);
