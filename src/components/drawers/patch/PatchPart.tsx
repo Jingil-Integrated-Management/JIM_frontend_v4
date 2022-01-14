@@ -10,7 +10,6 @@ import { AxiosResponse } from 'axios';
 //icons
 import { ReactComponent as ImageEmpty } from '../../../resources/svg/imageEmpty.svg';
 
-
 //utils
 import getDivisionID from '../../../utils/getDivisionID';
 
@@ -51,7 +50,7 @@ const PatchPart = (props: PatchPartProps) => {
       return tmp;
     });
   };
-    
+
   useEffect(() => {
     if (props.part.division__main_division) {
       getSubDivisionList(props.part.division__main_division);
@@ -70,9 +69,7 @@ const PatchPart = (props: PatchPartProps) => {
   };
 
   const isExistMainDivision = (input: string) => {
-    return mainDivisionList.find(
-      (division) => division.main_division === input
-    );
+    return mainDivisionList.find(division => division.main_division === input);
   };
 
   const getExistSubDivision = (input: string) => {
@@ -146,7 +143,7 @@ const PatchPart = (props: PatchPartProps) => {
             className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`main_division_list_${index}`}
             value={partInputForm.main_division}
-            onChange={(e) => {
+            onChange={e => {
               setPartInputForm({
                 ...partInputForm,
                 main_division: e.target.value,
@@ -170,7 +167,7 @@ const PatchPart = (props: PatchPartProps) => {
             className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`sub_division_list_${index}`}
             value={partInputForm.sub_division}
-            onChange={(e) => {
+            onChange={e => {
               setPartInputForm({
                 ...partInputForm,
                 sub_division: e.target.value,
