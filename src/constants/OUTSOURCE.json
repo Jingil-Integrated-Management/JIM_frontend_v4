@@ -1,0 +1,10 @@
+{
+  "os_subjects": ["material", "milling", "heat_treat", "wire"],
+  "os_subjects_ko": ["소재", "밀링", "열처리", "와이어"],
+  "os_subjects_dict": {
+    "material": "소재",
+    "milling": "밀링",
+    "heat_treat": "열처리",
+    "wire": "와이어"
+  }
+}

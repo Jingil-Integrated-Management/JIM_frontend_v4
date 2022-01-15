@@ -7,7 +7,7 @@ import { useHistory } from 'react-router';
 import { ClientData } from '../../types';
 
 //icons
-import { ReactComponent as PinnedIcon } from '../../resources/pinned.svg';
+import { ReactComponent as PinnedIcon } from '../../resources/svg/pinnedIcon.svg';
 
 //axios
 import webClient from '../../utils/Webclient';
@@ -15,16 +15,19 @@ import webClient from '../../utils/Webclient';
 interface clientListProps {
   clientList: ClientData[];
   setCurrentTab: Function;
-  currentClient: string;
+  getNavigationClientList: Function;
+  currentClient: number | null;
   setCurrentClient: Function;
-  getNaviList: Function;
 }
 
 const ClientList = (props: clientListProps) => {
   const [isHoverPin, setIsHoverPin] = useState(false);
   const history = useHistory();
 
-  const updateClientPin = async (client: number, isPinned: number) => {
+  const updateClientPin = async (
+    client: number | undefined,
+    isPinned: number | undefined
+  ) => {
     try {
       if (isPinned === 1) {
         await webClient.patch(`client/${client}`, {
@@ -35,7 +38,7 @@ const ClientList = (props: clientListProps) => {
           is_pinned: 1,
         });
       }
-      props.getNaviList();
+      props.getNavigationClientList();
     } catch (error) {
       console.log(error);
     }
@@ -43,31 +46,31 @@ const ClientList = (props: clientListProps) => {
 
   return (
     <>
-      {props.clientList?.map(c => (
+      {props.clientList?.map((client) => (
         <div
           className={
-            'h-40 w-232 pl-10 flex items-center cursor-pointer item-border' +
-            (c.name === props.currentClient ? ' focus-tab' : '') +
+            'flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8' +
+            (client.id === props.currentClient ? ' navigation-focus-tab' : '') +
             (!isHoverPin ? ' hover-tab' : '')
           }
-          key={c.id}
+          key={client.id}
         >
           <div
             onClick={() => {
-              props.setCurrentTab('client');
-              props.setCurrentClient(c.name);
-              history.push(`/client`);
+              props.setCurrentClient(client.id);
+              props.setCurrentTab('/client');
+              history.push(`/client/${client.id}/part`);
             }}
             className="w-190"
           >
-            <span className="client-item">{c.name}</span>
+            <span className="navigation-client-item">{client.name}</span>
           </div>
           <PinnedIcon
             className={
-              'pin-icon mr-25' + (c.is_pinned === 2 ? ' pinned-icon' : '')
+              'pin-icon mr-25' + (client.is_pinned === 2 ? ' pinned-icon' : '')
             }
             onClick={() => {
-              updateClientPin(c.id, c.is_pinned);
+              updateClientPin(client.id, client.is_pinned);
             }}
             onMouseEnter={() => {
               setIsHoverPin(true);

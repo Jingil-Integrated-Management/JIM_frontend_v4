@@ -1,0 +1,68 @@
+{
+  "os_stats": [
+    {
+      "title": "제작 매출 합계",
+      "is_positive": true,
+      "value": "os_revenue",
+      "denominator": "total_revenue"
+    },
+    {
+      "title": "제작 순이익",
+      "is_positive": false,
+      "value": "os_profit",
+      "denominator": "os_revenue"
+    },
+    {
+      "title": "외주비 합계",
+      "is_positive": true,
+      "value": "total_os_costs",
+      "denominator": "os_revenue"
+    },
+    {
+      "title": "소재비",
+      "is_positive": true,
+      "value": "materials",
+      "denominator": "total_os_costs"
+    },
+    {
+      "title": "밀링비",
+      "is_positive": true,
+      "value": "millings",
+      "denominator": "total_os_costs"
+    },
+    {
+      "title": "열처리비",
+      "is_positive": true,
+      "value": "heat_treats",
+      "denominator": "total_os_costs"
+    },
+    {
+      "title": "와이어비",
+      "is_positive": true,
+      "value": "wires",
+      "denominator": "total_os_costs"
+    }
+  ],
+  "month_stats": [
+    {
+      "title": "총 매출",
+      "is_positive": true,
+      "value": "total_revenue"
+    },
+    {
+      "title": "총 순이익",
+      "is_positive": false,
+      "value": "total_profit"
+    },
+    {
+      "title": "연마 매출 합계",
+      "is_positive": false,
+      "value": "pol_revenue"
+    },
+    {
+      "title": "제작 매출 합계",
+      "is_positive": true,
+      "value": "os_revenue"
+    }
+  ]
+}

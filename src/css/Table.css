@@ -1,0 +1,79 @@
+/* table header */
+th:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+th:last-child {
+  border-radius: 0 15px 15px 0;
+}
+
+th {
+  @apply bg-palette-grey;
+}
+
+/* table cell */
+.MuiTableCell-head {
+  @apply text-palette-word-2;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.14 !important;
+  letter-spacing: normal !important;
+  text-align: left !important;
+  border: 0px !important;
+}
+
+.MuiTableCell-body {
+  @apply text-palette-black;
+  font-size: 14px !important;
+  font-weight: normal !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.14 !important;
+  letter-spacing: normal !important;
+  border: 0px !important;
+}
+
+/* row hover */
+.MuiTableRow-root:hover {
+  background-color: #f7f7f8;
+}
+
+.MuiTableRow-root:hover > td:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+.MuiTableRow-root:hover > td:last-child {
+  border-radius: 0 15px 15px 0;
+}
+
+/* client name tag */
+.client-name {
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.price-cell {
+  text-align: right !important;
+  flex-direction: row-reverse;
+}
+
+.collapse-arrow {
+  margin: -16px;
+  border-radius: 8px;
+}
+
+.collapse-arrow:hover {
+  background-color: #efeff1;
+}
+
+.arrow-focus:hover {
+  background-color: white !important;
+}

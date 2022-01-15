@@ -1,12 +1,13 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //router
 import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 //icons
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { ReactComponent as Logo } from '../../resources/jim_logo.svg';
+import { ReactComponent as JimLogo } from '../../resources/svg/jimLogo.svg';
 
 //axios
 import webClient from '../../utils/Webclient';
@@ -23,14 +24,15 @@ interface NavigationProps {
   setOpenSetting: Function;
 }
 
-const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
-  const [currentTab, setCurrentTab] = useState('dashboard');
-  const [isClientListOpen, setIsClientListOpen] = useState(false);
-  const [currentClient, setCurrentClient] = useState('');
+const Navigation = (props: NavigationProps) => {
+  const [currentTab, setCurrentTab] = useState<string>('/');
+  const [currentClient, setCurrentClient] = useState<number | null>(null);
+  const [isClientListOpen, setIsClientListOpen] = useState<boolean>(false);
   const [clientList, setClientList] = useState<ClientData[]>([]);
   const history = useHistory();
+  const location = useLocation();
 
-  const getNaviList = async () => {
+  const getNavigationClientList = async () => {
     try {
       const response: AxiosResponse = await webClient.get('navi/');
       setClientList(response.data as ClientData[]);
@@ -39,51 +41,58 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
     }
   };
 
-  const handleClick = (navigate: string) => {
-    if (navigate === '/') {
-      history.push('/');
-      history.go(0);
-    } else {
-      if (navigate === 'dashboard') {
-        history.push('/');
-      } else {
-        history.push(`/${navigate}`);
-      }
-      setCurrentTab(navigate);
-      setIsClientListOpen(false);
-      setCurrentClient('');
-    }
+  const route = (current: string) => {
+    history.push(current);
+    setCurrentTab(current);
+    setIsClientListOpen(false);
+    setCurrentClient(null);
   };
 
-  useLayoutEffect(() => {
-    getNaviList();
+  useEffect(() => {
+    getNavigationClientList();
   }, []);
 
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setCurrentTab('/');
+    } else if (location.pathname.includes('client')) {
+      setCurrentTab('/client');
+      setIsClientListOpen(true);
+      setCurrentClient(Number(location.pathname.replace(/[^0-9]/g, '')));
+    } else if (location.pathname.includes('statistics')) {
+      setCurrentTab('/statistics');
+    }
+  }, [location]);
+
   return (
-    <div id="navigation" className="flex flex-col pt-40 pb-40 pl-24 pr-24">
+    <div
+      id="navigation-container"
+      className="flex flex-col w-280 pt-40 pb-40 pl-24 pr-24"
+    >
       <div
         className="cursor-pointer"
         onClick={() => {
-          handleClick('/');
+          route('/');
+          history.go(0);
         }}
       >
-        <Logo />
+        <JimLogo />
       </div>
       <div className="flex flex-col justify-between h-100p mt-100">
         <div className="flex flex-col">
           <div
             className={
-              'w-232 h-40 flex items-center pl-10 cursor-pointer item-border hover-tab' +
-              (currentTab === 'dashboard' ? ' focus-tab' : '')
+              'flex items-center w-232 h-40 pl-10 cursor-pointer hover:bg-palette-grey-2-hover rounded-8' +
+              (currentTab === '/' ? ' navigation-focus-tab' : '')
             }
             onClick={() => {
-              handleClick('dashboard');
+              route('/');
             }}
           >
             <span>한눈에 보기</span>
           </div>
           <div
-            className="w-232 h-40 flex items-center pl-10 cursor-pointer item-border justify-between"
+            className="flex justify-between items-center w-232 h-40 pl-10 cursor-pointer rounded-8"
             onClick={() => setIsClientListOpen(!isClientListOpen)}
           >
             <span>회사별로 보기</span>
@@ -98,28 +107,28 @@ const Navigation = ({ openSetting, setOpenSetting }: NavigationProps) => {
             <ClientList
               clientList={clientList}
               setCurrentTab={setCurrentTab}
+              getNavigationClientList={getNavigationClientList}
               currentClient={currentClient}
               setCurrentClient={setCurrentClient}
-              getNaviList={getNaviList}
             />
           ) : (
             <></>
           )}
           <div
             className={
-              'w-232 h-40 flex items-center pl-10 cursor-pointer item-border hover-tab' +
-              (currentTab === 'statistics' ? ' focus-tab' : '')
+              'w-232 h-40 flex items-center pl-10 cursor-pointer rounded-8 hover:bg-palette-grey-2-hover' +
+              (currentTab === '/statistics' ? ' navigation-focus-tab' : '')
             }
             onClick={() => {
-              handleClick('statistics');
+              route('/statistics');
             }}
           >
             <span>통계 확인하기</span>
           </div>
           <div
-            className="w-232 h-40 flex items-center pl-10 cursor-pointer item-border hover-tab"
+            className="flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8 hover:bg-palette-grey-2-hover"
             onClick={() => {
-              setOpenSetting(!openSetting);
+              props.setOpenSetting(!props.openSetting);
             }}
           >
             <span>설정하기</span>

@@ -14,6 +14,7 @@ module.exports = {
       borderRadius: {
         panel: '16px',
         8: '8px',
+        15: '15px',
         20: '20px',
       },
     },
@@ -58,6 +59,7 @@ module.exports = {
         'gray-osbox-font': '#abacbe',
         'purple-index': '#e9e8fc',
         'purple-input': '#f3f3f8',
+        'alert-red': '#FF218C',
       },
     },
     spacing: {
@@ -182,6 +184,7 @@ module.exports = {
       208: '208px',
       220: '220px',
       232: '232px',
+      240: '240px',
       256: '256px',
       280: '280px',
       288: '288px',

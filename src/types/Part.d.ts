@@ -1,3 +1,5 @@
+import { OutsourceData } from '.';
+
 export default interface Part {
   id?: number;
   x: string;
@@ -16,8 +18,10 @@ export default interface Part {
   client__id?: number;
   file_name?: string | null;
   division__main_division?: string;
-  division__dub_division?: string;
+  division__sub_division?: string;
   drawing__name?: string;
-  outsource_info?: [] | null;
+  drawing__is_outsource?: boolean;
+  outsource_info?: OutsourceData | null;
   fileSrc?: string;
+  fileData?: Blob;
 }

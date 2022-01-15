@@ -8,7 +8,7 @@ import webClient from '../utils/Webclient';
 import { useHistory } from 'react-router-dom';
 
 //types
-import { Token } from '../types';
+import { TokenData } from '../types';
 
 const Login = () => {
   return (
@@ -22,7 +22,7 @@ const Login = () => {
 
 const LoginForm = () => {
   const history = useHistory();
-  const icon = require('../resources/icon.png').default;
+  const icon = require('../resources/png/icon.png').default;
   const [form, setForm] = useState({ username: '', password: '' });
 
   const signIn = async (user: { username: string; password: string }) => {
@@ -31,7 +31,7 @@ const LoginForm = () => {
         'auth/signin/',
         user
       );
-      const token = response.data as token;
+      const token = response.data as TokenData;
 
       localStorage.setItem('access', token.access);
       localStorage.setItem('refresh', token.refresh);

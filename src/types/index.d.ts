@@ -5,3 +5,4 @@ export { default as OutsourceData } from './Outsource';
 export { default as PartData } from './Part';
 export { default as StatsData } from './Stats';
 export { default as TokenData } from './Token';
+export { default as TableData } from './TableData';
