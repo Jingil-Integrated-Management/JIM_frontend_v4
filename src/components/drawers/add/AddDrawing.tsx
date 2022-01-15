@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 
 import { AxiosResponse } from 'axios';
-import { ReactComponent as Close } from '../../../resources/close.svg';
+import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
 
-import {
-  ClientData,
-  DrawingData,
-  OutsourceData,
-  PartData,
-} from '../../../types';
+import { DrawingData, OutsourceData, PartData } from '../../../types';
 
 import webClient from '../../../utils/Webclient';
 
@@ -17,53 +11,53 @@ import DrawingInput from './DrawingInput';
 import PartInput from './PartInput';
 
 import { Drawing, Part, OutSource } from '../../../templates';
-import postDrawing from '../../../utils/postDrawing';
+import post from '../../../utils/postDrawing';
 
 interface addDrawingProps {
   setOpen: Function;
-  clientList: ClientData[];
+  setDrawerModified: Function;
 }
 
 const AddDrawing = (props: addDrawingProps) => {
   const [drawing, setDrawing] = useState<DrawingData>(Drawing());
   const [parts, setParts] = useState<PartData[]>([]);
   const [osParts, setOsParts] = useState<OutsourceData[]>([]);
-  const [mainDivisions, setMainDivisions] = useState<
+  const [mainDivisionList, setMainDivisionList] = useState<
     { main_division: string }[]
   >([]);
-  const [materials, setMaterials] = useState<{ name: string }[]>([]);
+  const [materialList, setMaterialList] = useState<{ name: string }[]>([]);
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
   // Get inital material data
   useEffect(() => {
-    const getMaterial = async () => {
+    const getMaterialList = async () => {
       try {
         const response: AxiosResponse = await webClient.get('material/');
-        setMaterials(response.data);
+        setMaterialList(response.data);
       } catch (error) {
         console.log(error);
       }
     };
 
-    getMaterial();
-    return setMaterials([]);
+    getMaterialList();
+    return setMaterialList([]);
   }, []);
 
   // Reset main division list on client change
   useEffect(() => {
-    const getDivisions = async () => {
+    const getMainDivisionList = async () => {
       try {
         const response: AxiosResponse = await webClient.get(
           `/division/main/?client=${drawing.client}`
         );
-        setMainDivisions(response.data);
+        setMainDivisionList(response.data);
       } catch (error) {
         console.log(error);
       }
     };
 
-    if (drawing.client > -1) getDivisions();
-    return setMainDivisions([]);
+    if (drawing.client > -1) getMainDivisionList();
+    return setMainDivisionList([]);
   }, [drawing.client]);
 
   const splicePart = (index: number, action: string) => {
@@ -91,10 +85,19 @@ const AddDrawing = (props: addDrawingProps) => {
         <div className="h-15 flex mt-48 justify-between">
           <div className="text-title ml-16 font-bold">도면 추가하기</div>
           <div className="flex flex-row">
-            <Close className="cursor-pointer" />
+            <CloseIcon
+              className="cursor-pointer"
+              onClick={() => {
+                props.setOpen(false);
+              }}
+            />
           </div>
         </div>
-        <DrawingInput drawing={drawing} setDrawing={setDrawing} />
+        <DrawingInput
+          setDrawerModified={props.setDrawerModified}
+          drawing={drawing}
+          setDrawing={setDrawing}
+        />
         {parts.map((_, index) => {
           return (
             <PartInput
@@ -107,8 +110,8 @@ const AddDrawing = (props: addDrawingProps) => {
               setOsParts={setOsParts}
               splicePart={splicePart}
               isOutsource={drawing.is_outsource}
-              mainDivisions={mainDivisions}
-              materialList={materials}
+              mainDivisions={mainDivisionList}
+              materialList={materialList}
               focusedIndex={focusedIndex}
               setFocusedIndex={setFocusedIndex}
             />
@@ -117,8 +120,11 @@ const AddDrawing = (props: addDrawingProps) => {
         <div className="flex justify-end mt-44">
           {parts.length === 0 ? (
             <button
-              className="w-105 text-sm h-40 rounded-8"
-              onClick={() => splicePart(parts.length - 1, 'add')}
+              className="w-105 text-sm h-40 rounded-8 partAddButton"
+              onClick={() => {
+                splicePart(parts.length - 1, 'add');
+                props.setDrawerModified(true);
+              }}
             >
               파트 추가하기
             </button>
@@ -126,9 +132,9 @@ const AddDrawing = (props: addDrawingProps) => {
             <></>
           )}
           <button
-            className="w-76 text-sm h-40 rounded-8 text-palette-purple-on bg-palette-accent-opac-8"
+            className="w-76 text-sm h-40 rounded-8 completeButton"
             onClick={() => {
-              postDrawing(drawing, parts, osParts);
+              post(drawing, parts, osParts);
             }}
           >
             완료하기
@@ -138,9 +144,4 @@ const AddDrawing = (props: addDrawingProps) => {
     </div>
   );
 };
-
-const mapStateToProps = (state: any) => ({
-  clientList: state.clientReducer.clientList,
-});
-
-export default connect(mapStateToProps)(AddDrawing);
+export default AddDrawing;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 //icons
-import { ReactComponent as SearchIcon } from '../../resources/Vector-1.svg';
-import { ReactComponent as AddIcon } from '../../resources/Vector.svg';
-import logo from '../../resources/jingil_logo.png';
+import { ReactComponent as SearchIcon } from '../../resources/svg/searchIcon.svg';
+import { ReactComponent as AddIcon } from '../../resources/svg/addIcon.svg';
+import logo from '../../resources/png/jingilLogo.png';
 
 //router
 import { useHistory } from 'react-router';
@@ -16,6 +16,7 @@ import { ClientData } from '../../types';
 import { connect } from 'react-redux';
 
 interface topNaviProps {
+  drawerModified: boolean;
   setDrawerOpen: Function;
   clientList: ClientData[];
 }
@@ -58,12 +59,15 @@ const TopNavigation = (props: topNaviProps) => {
         <div className="flex items-center">
           <Search clientList={clientList} />
           <button
-            className="w-40 h-40 ml-4 flex justify-center items-center rounded-8 icon-button cursor-pointer"
+            className="w-44 h-44 flex justify-center items-center rounded-8 icon-button cursor-pointer relative"
             onClick={() => props.setDrawerOpen(true)}
           >
             <AddIcon />
+            {props.drawerModified && (
+              <div className="bg-palette-alert-red w-5 h-5 absolute top-10 right-10 rounded-20"></div>
+            )}
           </button>
-          <div className="w-40 h-40 ml-4 flex justify-center items-center rounded-8">
+          <div className="w-44 h-44 flex justify-center items-center rounded-8">
             <img src={logo} alt="AD"></img>
           </div>
         </div>
@@ -189,7 +193,7 @@ const Search = (props: SearchProps) => {
             autoComplete="off"
             className="search-input-text"
             placeholder="검색하기"
-            onChange={event => {
+            onChange={(event) => {
               setInputValue(event.target.value);
             }}
             onKeyPress={searchButtonEnter}

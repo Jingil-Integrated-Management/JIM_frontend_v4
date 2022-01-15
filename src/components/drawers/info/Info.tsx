@@ -1,6 +1,6 @@
 //icons
-import { ReactComponent as CloseIcon } from '../../../resources/close.svg';
-import { ReactComponent as EditIcon } from '../../../resources/edit.svg';
+import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
+import { ReactComponent as EditIcon } from '../../../resources/svg/editIcon.svg';
 
 //axios
 import webClient from '../../../utils/Webclient';
@@ -18,6 +18,7 @@ interface tableDrawerProps {
   parts: PartData[];
   setRevise: Function;
   setOpen: Function;
+  type?: string;
 }
 
 const Info = (props: tableDrawerProps) => {
@@ -107,26 +108,28 @@ const Info = (props: tableDrawerProps) => {
         ))}
         <div className="flex justify-end mt-44">
           <button
-            className="w-76 text-sm h-40"
+            className="w-76 text-sm h-40 rounded-8 partDeleteButton"
             onClick={() => validateDelete()}
           >
             삭제하기
           </button>
           <button
-            className="w-76 text-sm h-40"
+            className="w-76 text-sm h-40 rounded-8 partDeleteButton"
             onClick={() => props.setRevise(true)}
           >
             수정하기
           </button>
-          {props.drawing && (
+          {props.drawing && props.type === 'dashboard' ? (
             <button
               onClick={() => {
                 finishDrawing();
               }}
-              className="w-76 text-sm h-40 onOsButton rounded-8"
+              className="w-76 text-sm h-40 rounded-8 completeButton"
             >
               완료하기
             </button>
+          ) : (
+            <></>
           )}
         </div>
       </div>

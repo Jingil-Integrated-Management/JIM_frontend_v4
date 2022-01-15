@@ -26,6 +26,7 @@ import Patch from '../../drawers/patch/Patch';
 
 export interface drawingRowProps {
   drawing: DrawingData;
+  type: string;
   selectedCollapse: number | null;
   selectCurrentCollapse: Function;
 }
@@ -73,7 +74,7 @@ const Row = (props: drawingRowProps) => {
             ? ' arrow-focus'
             : '')
         }
-        onClick={event => openDrawer(event)}
+        onClick={(event) => openDrawer(event)}
       >
         <TableCell>{props.drawing.name}</TableCell>
         <TableCell>{props.drawing.part_count}</TableCell>
@@ -188,6 +189,7 @@ const Row = (props: drawingRowProps) => {
             parts={parts}
             drawing={props.drawing}
             setOpen={setOpen}
+            type={props.type}
           />
         )}
       </Drawer>

@@ -59,6 +59,7 @@ module.exports = {
         'gray-osbox-font': '#abacbe',
         'purple-index': '#e9e8fc',
         'purple-input': '#f3f3f8',
+        'alert-red': '#FF218C',
       },
     },
     spacing: {

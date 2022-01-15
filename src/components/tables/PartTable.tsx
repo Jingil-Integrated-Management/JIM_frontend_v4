@@ -16,7 +16,7 @@ import { PartData, ClientData } from '../../types';
 import getClientName from '../../utils/getClientName';
 
 import { TableEmpty } from './EmptyTable';
-// import Filter from '../filter/Filter';
+import PartTableFilter from '../filters/PartTableFilter';
 
 interface partTableProps {
   clientId: number;
@@ -92,11 +92,11 @@ const PartTable = (props: partTableProps) => {
       id="part-table-container"
       className="table-container w-100p h-100p pb-35 overflow-hidden"
     >
-      {/*openFilter && (
+      {openFilter && (
         <div className="filter absolute z-100">
           {openFilter && (
-            <Filter
-              client_id={props.client_id}
+            <PartTableFilter
+              clientId={props.clientId}
               setPageNum={setPageNum}
               openFilter={openFilter}
               setOpenFilter={setOpenFilter}
@@ -105,9 +105,9 @@ const PartTable = (props: partTableProps) => {
               subDivision={subDivision}
               setSubDivision={setSubDivision}
               setList={setList}
-              startDate={startDate} // for filter
-              endDate={endDate} // for filter
-              setDateRange={setDateRange} // for filter
+              startDate={startDate}
+              endDate={endDate}
+              setDateRange={setDateRange}
               isOutSource={isOutSource}
               setIsOutSource={setIsOutSource}
               isFiltered={isFiltered}
@@ -115,7 +115,7 @@ const PartTable = (props: partTableProps) => {
             />
           )}
         </div>
-      )*/}
+      )}
 
       <TableContainer className="w-100p h-100p overflow-scroll scroll-hide">
         <div className="sticky top-0 bg-white">

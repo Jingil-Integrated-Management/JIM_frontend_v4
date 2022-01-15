@@ -14,6 +14,7 @@ import { Switch, Route } from 'react-router-dom';
 const Home = () => {
   const [openSetting, setOpenSetting] = useState<boolean>(false);
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [drawerModified, setDrawerModified] = useState<boolean>(false);
 
   const closeDrawer = () => setDrawerOpen(false);
 
@@ -25,7 +26,10 @@ const Home = () => {
           id="home-content"
           className="flex justify-center flex-col items-center"
         >
-          <TopNavigation setDrawerOpen={setDrawerOpen} />
+          <TopNavigation
+            drawerModified={drawerModified}
+            setDrawerOpen={setDrawerOpen}
+          />
           <Switch>
             <Route exact path="/">
               <Dashboard />
@@ -43,7 +47,10 @@ const Home = () => {
             className={drawerOpen ? '' : 'hidden'}
             ModalProps={{ onBackdropClick: closeDrawer }}
           >
-            <AddDrawing setOpen={closeDrawer} />
+            <AddDrawing
+              setDrawerModified={setDrawerModified}
+              setOpen={closeDrawer}
+            />
           </Drawer>
         </div>
       </div>

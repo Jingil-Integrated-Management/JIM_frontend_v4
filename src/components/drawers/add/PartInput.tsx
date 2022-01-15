@@ -5,7 +5,7 @@ import getDivisionID from '../../../utils/getDivisionID';
 import getSubDivisionName from '../../../utils/getSubDivisionName';
 import webClient from '../../../utils/Webclient';
 
-import { ReactComponent as UploadImage } from '../../../resources/upload_image.svg';
+import { ReactComponent as UploadImage } from '../../../resources/svg/imageUpload.svg';
 import OutSourceInput from './OutSourceInput';
 
 interface partListControlProps {
@@ -32,7 +32,7 @@ const PartListControl = (props: partListControlProps) => {
   return (
     <div className="flex justify-end mt-32">
       <button
-        className="w-105 h-40 text-sm bg-palette-grey-2-hover item-border"
+        className="w-105 h-40 text-sm rounded-8 item-border partDeleteButton"
         onClick={() => {
           props.splicePart(props.index, 'del');
         }}
@@ -40,7 +40,7 @@ const PartListControl = (props: partListControlProps) => {
         파트 제거하기
       </button>
       <button
-        className="w-105 h-40 text-sm"
+        className="w-105 h-40 rounded-8 text-sm partAddButton"
         onClick={() => {
           props.splicePart(props.index, 'add');
         }}
@@ -99,7 +99,7 @@ const PartInput = (props: partInputProps) => {
 
   return (
     <div onClick={() => props.setFocusedIndex(props.index)}>
-      <div className="flex flex-row mt-50">
+      <div className="flex flex-row mt-36">
         <div className="flex justify-center items-center w-40 h-40 bg-palette-purple-index rounded-panel">
           {props.index + 1}
         </div>
@@ -119,7 +119,7 @@ const PartInput = (props: partInputProps) => {
         />
         {!props.parts[props.index].fileSrc ? (
           <div
-            className="w-504 h-306 mt-32 flex justify-center items-center rounded-8 imageBox cursor-pointer part-input-upload-image"
+            className="w-544 h-306 mt-32 flex justify-center items-center rounded-8 imageBox cursor-pointer part-input-upload-image"
             onClick={() => {
               inputFile.current && inputFile.current.click();
             }}
@@ -128,7 +128,7 @@ const PartInput = (props: partInputProps) => {
           </div>
         ) : (
           <img
-            className="w-504 h-306 mt-32 rounded-8 cursor-pointer"
+            className="w-544 h-306 mt-32 rounded-8 cursor-pointer"
             src={props.parts[props.index].fileSrc}
             alt="selected_part_img"
             onClick={() => {
@@ -144,7 +144,7 @@ const PartInput = (props: partInputProps) => {
           </div>
           <input
             list={`main_div${props.index}`}
-            className="client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input"
+            className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input"
             placeholder="메인 구분을 선택하세요."
             value={selectedMainDivision}
             onChange={(e) => {
@@ -166,7 +166,7 @@ const PartInput = (props: partInputProps) => {
           </div>
           <input
             list={`sub_div${props.index}`}
-            className="flex items-center client w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input"
+            className="flex items-center client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input"
             placeholder="세부 구분을 선택하세요."
             value={getSubDivisionName(
               divisionList,
@@ -201,7 +201,7 @@ const PartInput = (props: partInputProps) => {
             파트크기- X
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].x}
             onChange={(e) => {
@@ -214,7 +214,7 @@ const PartInput = (props: partInputProps) => {
             파트크기- Y
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].y}
             onChange={(e) => {
@@ -227,7 +227,7 @@ const PartInput = (props: partInputProps) => {
             파트크기- Z
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].z}
             onChange={(e) => {
@@ -242,7 +242,7 @@ const PartInput = (props: partInputProps) => {
             소재
           </div>
           <select
-            className="w-full text-sm h-48 px-12 rounded-8 bg-palette-purple-input flex items-center outline-none"
+            className="w-full text-sm mt-2 h-48 px-12 rounded-8 bg-palette-purple-input flex items-center outline-none"
             value={props.parts[props.index].material}
             onChange={(e) => onInputChange('material', e.target.value)}
           >
@@ -260,7 +260,7 @@ const PartInput = (props: partInputProps) => {
             파트 개수
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].quantity}
             onChange={(e) => {
@@ -275,7 +275,7 @@ const PartInput = (props: partInputProps) => {
             가격
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={
               props.parts[props.index].price
@@ -292,7 +292,7 @@ const PartInput = (props: partInputProps) => {
             비고
           </div>
           <input
-            className="w-full text-sm h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
+            className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={
               props.parts[props.index].comment

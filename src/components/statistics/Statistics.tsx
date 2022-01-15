@@ -17,7 +17,7 @@ import MonthStats from './MonthStats';
 
 import getGross from '../../utils/getGross';
 import formatDate from '../../utils/formatDate';
-//import StatsFilter from '../filter/StatsFilter';
+import StatsFilter from '../filters/StatsFilter';
 import getClientName from '../../utils/getClientName';
 
 import STATS from '../../constants/STATS.json';
@@ -114,23 +114,23 @@ const Statistics = (props: { clientList: ClientData[] }) => {
               inline
             />
           )}
-          {/* TODO isFilterOpen && (
+          {isFilterOpen && (
             <div className="stats_filter absolute z-100">
               {isFilterOpen && (
                 <StatsFilter
                   openFilter={isFilterOpen}
                   setOpenFilter={setIsFilterOpen}
-                  client={client}
+                  clientId={client}
                   setClient={setClient}
-                  clientList={clientList}
+                  clientList={props.clientList}
                 />
               )}
             </div>
-              )*/}
+          )}
         </div>
         <div
           id="statistics-stats-container"
-          className="flex justify-start overflow-x-scroll scroll-hide my-14 w-100p pl-1 pt-1"
+          className="flex justify-start overflow-x-scroll scroll-hide mt-12 mb-18 w-100p pl-1 pt-1"
         >
           {STATS.month_stats.map((stat, index) => {
             return (
@@ -150,10 +150,7 @@ const Statistics = (props: { clientList: ClientData[] }) => {
           id="statistics-table-container"
           className="flex flex-col w-100p overflow-scroll scroll-hide"
         >
-          <div
-            id="statistics-pol-table-container"
-            className="flex w-100p mb-18"
-          >
+          <div id="statistics-pol-table-container" className="flex w-100p">
             <DrawingTable
               clientId={client}
               tableInfo="연마 도면 목록"

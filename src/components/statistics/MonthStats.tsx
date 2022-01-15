@@ -8,7 +8,7 @@ interface StatsProps {
 
 const MonthStats = (props: StatsProps) => {
   return (
-    <div className="statistics-month-stats text-palette-black bg-palette-light-theme px-16 py-12 w-288 h-96 mr-30 flex flex-col justify-between">
+    <div className="statistics-month-stats text-palette-black bg-palette-light-theme px-16 py-12 w-288 h-96 mr-24 flex flex-col justify-between">
       <div className="statistics-month-stat-title flex">{props.title}</div>
       <div
         className={

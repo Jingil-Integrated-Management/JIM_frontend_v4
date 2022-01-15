@@ -9,7 +9,7 @@ interface StatsProps {
 
 const TableStats = (props: StatsProps) => {
   return (
-    <div className="statistics-table-stats flex text-palette-black bg-palette-light-theme justify-between mt-18 mb-12 mr-16 px-16 py-6 h-48">
+    <div className="statistics-table-stats flex text-palette-black bg-palette-light-theme justify-between mt-18 mb-14 mr-16 px-16 py-6 h-48">
       <div className="flex flex-col justify-center">
         <div className="statistics-stat-table-title flex">{props.title}</div>
         <div className="statistics-stat-table-info flex text-palette-purple-on">
