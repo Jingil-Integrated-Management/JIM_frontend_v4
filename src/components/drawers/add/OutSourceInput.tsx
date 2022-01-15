@@ -8,6 +8,7 @@ import { OutsourceData, ClientData } from '../../../types';
 import getClientID from '../../../utils/getClientID';
 
 import OUTSOURCE from '../../../constants/OUTSOURCE.json';
+import getClientName from '../../../utils/getClientName';
 
 interface outSourceControlProps {
   osParts: OutsourceData[];
@@ -55,6 +56,12 @@ const OutSourceControl = (props: outSourceControlProps) => {
         <input
           className="os_drawer_input text-sm pl-12 two"
           placeholder={(OUTSOURCE.os_subjects_dict as any)[props.subject]}
+          value={getClientName(
+            props.clientList,
+            props.osParts[props.index][
+              (props.subject + '_client') as keyof OutsourceData
+            ] as number
+          )}
           onChange={e => {
             onInputChange(
               (props.subject + '_client') as keyof OutsourceData,
@@ -79,9 +86,9 @@ const OutSourceControl = (props: outSourceControlProps) => {
           className="w-full text-sm h-44 pl-12 rounded-8 bg-palette-purple-input"
           placeholder="내용을 입력하세요."
           value={
-            props.osParts[props.index][
+            (props.osParts[props.index][
               (props.subject + '_price') as keyof OutsourceData
-            ] as string
+            ] as string) || ''
           }
           onChange={e => {
             onInputChange(
