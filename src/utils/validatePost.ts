@@ -30,7 +30,7 @@ const validatePost = (drawing: DrawingData, parts: PartData[]) => {
     } else if (parts[i].material === '') {
       alert(`${i + 1}번째 파트의 소재를 선택하세요.`);
       return false;
-    } else if (parts[i].quantity < 0) {
+    } else if (parts[i].quantity <= 0) {
       alert(`${i + 1}번째 파트의 개수를 입력하세요.`);
       return false;
     }
