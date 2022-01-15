@@ -65,6 +65,7 @@ const PatchDrawing = (props: PatchDrawingProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list="patch-drawing-client-list"
             value={clientName}
+            autoComplete="off"
             onChange={e => {
               setClientName(e.target.value);
               props.setTargetDrawing({

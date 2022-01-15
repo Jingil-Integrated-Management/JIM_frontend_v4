@@ -17,6 +17,7 @@ import { ClientData, DrawingData } from '../../types';
 import getClientName from '../../utils/getClientName';
 import { TableEmpty } from './EmptyTable';
 import DrawingTableFilter from '../filters/DrawingTableFilter';
+import OnOutsideClick from '../filters/OnOutsideClick';
 
 interface drawingTableProps {
   clientId: number;
@@ -49,6 +50,8 @@ const DrawingTable = (props: drawingTableProps) => {
     endDate: endDate,
   });
 
+  const filterRef = useRef(null);
+  OnOutsideClick(filterRef, setOpenFilter);
   const observerRef = useRef();
   const options = {
     root: document.querySelector('#drawing-table-container'),
@@ -64,7 +67,7 @@ const DrawingTable = (props: drawingTableProps) => {
 
     refCurrent.current = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && hasMore && props.type === 'client') {
-        setPageNum((page) => page + 1);
+        setPageNum(page => page + 1);
       }
     }, options);
 
@@ -81,6 +84,7 @@ const DrawingTable = (props: drawingTableProps) => {
     setPageNum(1);
     setList([]);
     setDrawingName('');
+    setIsFiltered(false);
     setDateRange([null, null]);
     setClientName(getClientName(props.clientList, props.clientId));
   }, [props.month, props.clientId]);
@@ -95,8 +99,9 @@ const DrawingTable = (props: drawingTableProps) => {
       className={
         'w-100p' + (props.type === 'client' ? ' h-100p overflow-hidden' : ' ')
       }
+      ref={filterRef}
     >
-      {openFilter && props.type !== 'dashboard' ? (
+      {openFilter && props.type === 'client' ? (
         <div className="filter absolute z-100">
           <DrawingTableFilter
             openFilter={openFilter}
@@ -109,6 +114,7 @@ const DrawingTable = (props: drawingTableProps) => {
             setPageNum={setPageNum}
             setList={setList}
             drawingName={drawingName}
+            setIsFiltered={setIsFiltered}
           />
         </div>
       ) : (
@@ -128,7 +134,7 @@ const DrawingTable = (props: drawingTableProps) => {
               <div className="client-name text-palette-black bg-palette-grey px-16 h-44 flex items-center">
                 {props.tableInfo ? props.tableInfo : clientName}
               </div>
-              {props.type !== 'dashboard' && (
+              {props.type === 'client' && (
                 <button
                   onClick={() => {
                     setOpenFilter(!openFilter);

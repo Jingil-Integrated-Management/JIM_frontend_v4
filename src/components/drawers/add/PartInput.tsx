@@ -113,7 +113,7 @@ const PartInput = (props: partInputProps) => {
           id={`file_${props.index}`}
           ref={inputFile}
           style={{ display: 'none' }}
-          onChange={(e) => {
+          onChange={e => {
             previewImage(e, props.index);
           }}
         />
@@ -147,10 +147,11 @@ const PartInput = (props: partInputProps) => {
             className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input"
             placeholder="메인 구분을 선택하세요."
             value={selectedMainDivision}
-            onChange={(e) => {
+            onChange={e => {
               setSelectedMainDivision(e.target.value);
               onInputChange('division', -1);
             }}
+            autoComplete="off"
           />
           <datalist id={`main_div${props.index}`}>
             {props.mainDivisions.map(
@@ -168,11 +169,12 @@ const PartInput = (props: partInputProps) => {
             list={`sub_div${props.index}`}
             className="flex items-center client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input"
             placeholder="세부 구분을 선택하세요."
+            autoComplete="off"
             value={getSubDivisionName(
               divisionList,
               props.parts[props.index].division
             )}
-            onChange={(e) => {
+            onChange={e => {
               onInputChange(
                 'division',
                 getDivisionID(divisionList, e.target.value)
@@ -204,7 +206,7 @@ const PartInput = (props: partInputProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].x}
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('x', e.target.value);
             }}
           ></input>
@@ -217,7 +219,7 @@ const PartInput = (props: partInputProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].y}
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('y', e.target.value);
             }}
           ></input>
@@ -230,7 +232,7 @@ const PartInput = (props: partInputProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].z}
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('z', e.target.value);
             }}
           ></input>
@@ -244,7 +246,7 @@ const PartInput = (props: partInputProps) => {
           <select
             className="w-full text-sm mt-2 h-48 px-12 rounded-8 bg-palette-purple-input flex items-center outline-none"
             value={props.parts[props.index].material}
-            onChange={(e) => onInputChange('material', e.target.value)}
+            onChange={e => onInputChange('material', e.target.value)}
           >
             {props.materialList.map((material, index) => {
               return (
@@ -263,7 +265,7 @@ const PartInput = (props: partInputProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
             value={props.parts[props.index].quantity}
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('quantity', Number(e.target.value));
             }}
           ></input>
@@ -282,7 +284,7 @@ const PartInput = (props: partInputProps) => {
                 ? (props.parts[props.index].price as string)
                 : ''
             }
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('price', e.target.value);
             }}
           ></input>
@@ -299,7 +301,7 @@ const PartInput = (props: partInputProps) => {
                 ? (props.parts[props.index].comment as string)
                 : ''
             }
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('comment', e.target.value);
             }}
           ></input>

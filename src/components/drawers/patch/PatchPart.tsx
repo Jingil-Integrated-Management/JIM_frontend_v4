@@ -143,6 +143,7 @@ const PatchPart = (props: PatchPartProps) => {
             className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`main_division_list_${index}`}
             value={partInputForm.main_division}
+            autoComplete="off"
             onChange={e => {
               setPartInputForm({
                 ...partInputForm,
@@ -167,6 +168,7 @@ const PatchPart = (props: PatchPartProps) => {
             className="client w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`sub_division_list_${index}`}
             value={partInputForm.sub_division}
+            autoComplete="off"
             onChange={e => {
               setPartInputForm({
                 ...partInputForm,
@@ -231,6 +233,7 @@ const PatchPart = (props: PatchPartProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list={`material_list_${index}`}
+            autoComplete="off"
             value={props.targetPartList[props.index].material}
             onChange={e => onInputChange('material', e.target.value)}
           />

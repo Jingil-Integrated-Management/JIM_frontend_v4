@@ -63,7 +63,7 @@ const DrawingInput = (props: drawingInputProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('name', e.target.value);
             }}
           ></input>
@@ -76,7 +76,8 @@ const DrawingInput = (props: drawingInputProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list="clientList"
             placeholder="내용을 입력하세요."
-            onChange={(e) => {
+            autoComplete="off"
+            onChange={e => {
               onInputChange(
                 'client',
                 getClientID(props.clientList, e.target.value)
@@ -85,7 +86,7 @@ const DrawingInput = (props: drawingInputProps) => {
           ></input>
           <datalist id="clientList">
             <option value="">회사 선택</option>
-            {props.clientList.map((client: ClientData) => {
+            {props.clientList?.map((client: ClientData) => {
               return <option key={client.id} value={client.name} />;
             })}
           </datalist>
@@ -113,7 +114,7 @@ const DrawingInput = (props: drawingInputProps) => {
           <input
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             placeholder="내용을 입력하세요."
-            onChange={(e) => {
+            onChange={e => {
               onInputChange('comment', e.target.value);
             }}
           ></input>

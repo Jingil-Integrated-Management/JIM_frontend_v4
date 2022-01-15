@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 //icons
 import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
 
-
 //types
 import {
   DrawingData,
@@ -24,7 +23,13 @@ import PatchPart from './PatchPart';
 import PatchDrawing from './PatchDrawing';
 
 //utils
-import { isExistClient } from '../../../utils/validatePatch';
+import {
+  isExistClient,
+  validateClient,
+  validateDrawingName,
+  validateParts,
+} from '../../../utils/validatePatch';
+import { reload } from '../../../utils/reload';
 
 interface PatchProps {
   target: String;
@@ -67,7 +72,11 @@ const Patch = (props: PatchProps) => {
   };
 
   const patchDrawing = async () => {
-    if (!props.drawing || !isExistClient(targetDrawing?.client)) {
+    if (
+      !props.drawing ||
+      !isExistClient(targetDrawing?.client) ||
+      !validateDrawingName(targetDrawing?.name)
+    ) {
       return;
     }
 
@@ -79,15 +88,13 @@ const Patch = (props: PatchProps) => {
   };
 
   const patchParts = async () => {
+    if (!validateParts(targetPartList)) return;
+
     for (let index = 0; index < props.parts.length; index++) {
       let partId = props.parts[index].id!;
 
       try {
-        const response: AxiosResponse = await webClient.patch(
-          `/part/${partId}`,
-          targetPartList[index]
-        );
-        console.log(response);
+        await webClient.patch(`/part/${partId}`, targetPartList[index]);
       } catch (error) {
         console.log(error);
       }
@@ -95,15 +102,16 @@ const Patch = (props: PatchProps) => {
   };
 
   const patchOutSource = async () => {
-    if (!props.parts[0].drawing__is_outsource) return;
+    if (
+      !props.parts[0].drawing__is_outsource ||
+      !validateClient(targetOutSourcePartList)
+    ) {
+      return;
+    }
 
     targetOutSourcePartList.forEach(async outsource => {
       try {
-        const response: AxiosResponse = await webClient.patch(
-          `/outsource/${outsource.id}`,
-          outsource
-        );
-        console.log(response);
+        await webClient.patch(`/outsource/${outsource.id}`, outsource);
       } catch (error) {
         console.log(error);
       }
@@ -171,6 +179,9 @@ const Patch = (props: PatchProps) => {
               patchDrawing();
               patchParts();
               patchOutSource();
+              setTimeout(() => {
+                reload('성공적으로 수정되었습니다.');
+              }, 500);
             }}
           >
             완료하기

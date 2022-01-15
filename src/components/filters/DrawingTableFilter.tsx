@@ -17,6 +17,7 @@ interface DrawingTableFilterProps {
   setDateRange: Function;
   setPageNum: Function;
   setList: Function;
+  setIsFiltered: Function;
   drawingName: string;
 }
 const DrawingTableFilter = (props: DrawingTableFilterProps) => {
@@ -26,22 +27,38 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
   const [selectedName, setSelectedName] = useState<string>(
     props.drawingName ? props.drawingName : ''
   );
+  const [isChanged, setIsChanged] = useState<boolean>(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const [selectedDateRange, setSelectedDateRange] = useState<
     [Date | null, Date | null]
   >([props.startDate, props.endDate]);
 
   const applyFilter = () => {
-    props.setPageNum(1);
-    props.setList([]);
-    props.setDrawingName(selectedName);
-    props.setDateRange(selectedDateRange);
+    if (isChanged) {
+      props.setPageNum(1);
+      props.setList([]);
+      props.setDrawingName(selectedName);
+      props.setDateRange(selectedDateRange);
+    }
+  };
+
+  const checkFiltered = () => {
+    if (
+      selectedName.length === 0 &&
+      selectedDateRange[0] === null &&
+      selectedDateRange[1] === null
+    ) {
+      props.setIsFiltered(false);
+    } else {
+      props.setIsFiltered(true);
+    }
   };
 
   const clearFilter = () => {
     setSelectedName('');
     setDrawingNameList([]);
     setSelectedDateRange([null, null]);
+    setIsChanged(true);
   };
 
   useEffect(() => {
@@ -73,9 +90,11 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
           className="drawer_input flex ml-16 mt-14"
           list="client-datalist"
           placeholder="도면명"
+          autoComplete="off"
           value={selectedName}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedName(e.target.value);
+            setIsChanged(true);
           }}
         />
         <datalist id="client-datalist">
@@ -93,6 +112,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
           }`}
           onClick={() => {
             setIsCalendarOpen(!isCalendarOpen);
+            setIsChanged(true);
           }}
           readOnly
         />
@@ -109,6 +129,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
                 setSelectedDateRange(update);
                 //부모 변수를 업데이트
                 if (update[1]) setIsCalendarOpen(false);
+                setIsChanged(true);
               }}
               isClearable
               inline
@@ -130,6 +151,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
           onClick={() => {
             props.setOpenFilter(!props.openFilter);
             applyFilter();
+            checkFiltered();
           }}
         >
           적용하기
