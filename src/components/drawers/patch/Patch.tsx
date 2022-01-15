@@ -29,6 +29,7 @@ import {
   validateDrawingName,
   validateParts,
 } from '../../../utils/validatePatch';
+import { reload } from '../../../utils/reload';
 
 interface PatchProps {
   target: String;
@@ -93,11 +94,7 @@ const Patch = (props: PatchProps) => {
       let partId = props.parts[index].id!;
 
       try {
-        const response: AxiosResponse = await webClient.patch(
-          `/part/${partId}`,
-          targetPartList[index]
-        );
-        console.log(response);
+        await webClient.patch(`/part/${partId}`, targetPartList[index]);
       } catch (error) {
         console.log(error);
       }
@@ -114,11 +111,7 @@ const Patch = (props: PatchProps) => {
 
     targetOutSourcePartList.forEach(async outsource => {
       try {
-        const response: AxiosResponse = await webClient.patch(
-          `/outsource/${outsource.id}`,
-          outsource
-        );
-        console.log(response);
+        await webClient.patch(`/outsource/${outsource.id}`, outsource);
       } catch (error) {
         console.log(error);
       }
@@ -186,6 +179,9 @@ const Patch = (props: PatchProps) => {
               patchDrawing();
               patchParts();
               patchOutSource();
+              setTimeout(() => {
+                reload('성공적으로 수정되었습니다.');
+              }, 500);
             }}
           >
             완료하기
