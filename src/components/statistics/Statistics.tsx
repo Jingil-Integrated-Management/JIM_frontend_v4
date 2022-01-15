@@ -29,7 +29,7 @@ const formatMonth = (date: Date) => {
 const Statistics = (props: { clientList: ClientData[] }) => {
   const [currentStats, setCurrentStats] = useState<StatsData>();
   const [prevStats, setPrevStats] = useState<StatsData>();
-  const [client, setClient] = useState<number>(324);
+  const [client, setClient] = useState<number>(-1);
   const [date, setDate] = useState<Date>(new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState<boolean>(false);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
