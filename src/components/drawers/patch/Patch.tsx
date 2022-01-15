@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 //icons
 import { ReactComponent as CloseIcon } from '../../../resources/svg/closeIcon.svg';
 
-
 //types
 import {
   DrawingData,
@@ -24,7 +23,7 @@ import PatchPart from './PatchPart';
 import PatchDrawing from './PatchDrawing';
 
 //utils
-import { isExistClient } from '../../../utils/validatePatch';
+import { isExistClient, validateClient } from '../../../utils/validatePatch';
 
 interface PatchProps {
   target: String;
@@ -95,7 +94,12 @@ const Patch = (props: PatchProps) => {
   };
 
   const patchOutSource = async () => {
-    if (!props.parts[0].drawing__is_outsource) return;
+    if (
+      !props.parts[0].drawing__is_outsource ||
+      !validateClient(targetOutSourcePartList)
+    ) {
+      return;
+    }
 
     targetOutSourcePartList.forEach(async outsource => {
       try {
