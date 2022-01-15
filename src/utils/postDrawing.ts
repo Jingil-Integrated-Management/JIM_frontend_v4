@@ -74,7 +74,7 @@ const post = async (
     }
 
     alert('도면을 성공적으로 추가하였습니다.');
-    window.location.replace('/');
+    window.location.reload();
   } catch (error) {
     console.log(error);
   }
