@@ -32,7 +32,7 @@ const DrawingInput = (props: drawingInputProps) => {
   return (
     <div className="w-full h-220">
       <div className="flex mt-53">
-        <div className="flex justify-center items-center w-95 h-40 ml-10 rounded-panel bg-palette-grey">
+        <div className="flex justify-center items-center w-95 h-40 rounded-panel bg-palette-grey">
           도면 정보
         </div>
         <div
