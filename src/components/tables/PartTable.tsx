@@ -17,6 +17,7 @@ import getClientName from '../../utils/getClientName';
 
 import { TableEmpty } from './EmptyTable';
 import PartTableFilter from '../filters/PartTableFilter';
+import OnOutsideClick from '../filters/OnOutsideClick';
 
 interface partTableProps {
   clientId: number;
@@ -51,6 +52,8 @@ const PartTable = (props: partTableProps) => {
   });
 
   const observerRef = useRef();
+  const filterRef = useRef(null);
+  OnOutsideClick(filterRef, setOpenFilter);
   const options = {
     root: document.querySelector('#drawing-table-container'),
     rootMargin: '0px',
@@ -65,7 +68,7 @@ const PartTable = (props: partTableProps) => {
 
     refCurrent.current = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && hasMore) {
-        setPageNum((page) => page + 1);
+        setPageNum(page => page + 1);
       }
     }, options);
 
@@ -91,6 +94,7 @@ const PartTable = (props: partTableProps) => {
     <div
       id="part-table-container"
       className="table-container w-100p h-100p pb-35 overflow-hidden"
+      ref={filterRef}
     >
       {openFilter && (
         <div className="filter absolute z-100">
@@ -166,7 +170,7 @@ const PartTable = (props: partTableProps) => {
                 </TableRow>
               </TableHead>
               <TableBody className="cursor-pointer">
-                {(list as PartData[])?.map((data) => (
+                {(list as PartData[])?.map(data => (
                   <Row key={data.id} part={data} />
                 ))}
               </TableBody>
