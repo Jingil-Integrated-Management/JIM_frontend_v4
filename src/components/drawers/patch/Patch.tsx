@@ -26,7 +26,8 @@ import PatchDrawing from './PatchDrawing';
 import {
   isExistClient,
   validateClient,
-  validateDivision,
+  validateDrawingName,
+  validateParts,
 } from '../../../utils/validatePatch';
 
 interface PatchProps {
@@ -70,7 +71,11 @@ const Patch = (props: PatchProps) => {
   };
 
   const patchDrawing = async () => {
-    if (!props.drawing || !isExistClient(targetDrawing?.client)) {
+    if (
+      !props.drawing ||
+      !isExistClient(targetDrawing?.client) ||
+      !validateDrawingName(targetDrawing?.name)
+    ) {
       return;
     }
 
@@ -82,7 +87,7 @@ const Patch = (props: PatchProps) => {
   };
 
   const patchParts = async () => {
-    if (!validateDivision(targetPartList)) return;
+    if (!validateParts(targetPartList)) return;
 
     for (let index = 0; index < props.parts.length; index++) {
       let partId = props.parts[index].id!;
