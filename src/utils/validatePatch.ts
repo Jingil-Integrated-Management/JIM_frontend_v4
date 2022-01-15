@@ -1,4 +1,4 @@
-import { OutsourceData } from '../types';
+import { OutsourceData, PartData } from '../types';
 import OUTSOURCE from '../constants/OUTSOURCE.json';
 
 export const isExistClient = (client_id: number | undefined) => {
@@ -26,4 +26,20 @@ export const validateClient = (outSourceList: OutsourceData[]) => {
   }
 
   return isExistOutSourceClient;
+};
+
+export const validateDivision = (partList: PartData[]) => {
+  let isExistDivision = true;
+
+  partList.forEach(part => {
+    if (part.division === -1) {
+      isExistDivision = false;
+    }
+  });
+
+  if (!isExistDivision) {
+    alert('구분을 알맞게 선택해주세요.');
+  }
+
+  return isExistDivision;
 };

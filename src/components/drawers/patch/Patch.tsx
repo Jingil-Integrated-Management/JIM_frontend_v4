@@ -23,7 +23,11 @@ import PatchPart from './PatchPart';
 import PatchDrawing from './PatchDrawing';
 
 //utils
-import { isExistClient, validateClient } from '../../../utils/validatePatch';
+import {
+  isExistClient,
+  validateClient,
+  validateDivision,
+} from '../../../utils/validatePatch';
 
 interface PatchProps {
   target: String;
@@ -78,6 +82,8 @@ const Patch = (props: PatchProps) => {
   };
 
   const patchParts = async () => {
+    if (!validateDivision(targetPartList)) return;
+
     for (let index = 0; index < props.parts.length; index++) {
       let partId = props.parts[index].id!;
 
