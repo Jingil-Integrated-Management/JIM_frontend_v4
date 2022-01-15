@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/JIM_frontend_v4/static/css/main.9b5318c7.chunk.css",
-    "main.js": "/JIM_frontend_v4/static/js/main.5563a73f.chunk.js",
-    "main.js.map": "/JIM_frontend_v4/static/js/main.5563a73f.chunk.js.map",
+    "main.css": "/JIM_frontend_v4/static/css/main.d86fae09.chunk.css",
+    "main.js": "/JIM_frontend_v4/static/js/main.f5461a1e.chunk.js",
+    "main.js.map": "/JIM_frontend_v4/static/js/main.f5461a1e.chunk.js.map",
     "runtime-main.js": "/JIM_frontend_v4/static/js/runtime-main.84e9a382.js",
     "runtime-main.js.map": "/JIM_frontend_v4/static/js/runtime-main.84e9a382.js.map",
     "static/css/2.169d8ab9.chunk.css": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.55430045.chunk.js.map": "/JIM_frontend_v4/static/js/3.55430045.chunk.js.map",
     "index.html": "/JIM_frontend_v4/index.html",
     "static/css/2.169d8ab9.chunk.css.map": "/JIM_frontend_v4/static/css/2.169d8ab9.chunk.css.map",
-    "static/css/main.9b5318c7.chunk.css.map": "/JIM_frontend_v4/static/css/main.9b5318c7.chunk.css.map",
+    "static/css/main.d86fae09.chunk.css.map": "/JIM_frontend_v4/static/css/main.d86fae09.chunk.css.map",
     "static/js/2.26df1c76.chunk.js.LICENSE.txt": "/JIM_frontend_v4/static/js/2.26df1c76.chunk.js.LICENSE.txt",
     "static/media/addIcon.75707dbb.svg": "/JIM_frontend_v4/static/media/addIcon.75707dbb.svg",
     "static/media/clearIcon.76a4d371.svg": "/JIM_frontend_v4/static/media/clearIcon.76a4d371.svg",
@@ -31,7 +31,7 @@
     "static/js/runtime-main.84e9a382.js",
     "static/css/2.169d8ab9.chunk.css",
     "static/js/2.26df1c76.chunk.js",
-    "static/css/main.9b5318c7.chunk.css",
-    "static/js/main.5563a73f.chunk.js"
+    "static/css/main.d86fae09.chunk.css",
+    "static/js/main.f5461a1e.chunk.js"
   ]
 }
