@@ -122,10 +122,6 @@
   min-height: 80px;
 }
 
-#statistics-stats-container {
-  min-height: 80px;
-}
-
 .statistics-filter:hover {
   @apply bg-palette-grey-2-hover;
 }
