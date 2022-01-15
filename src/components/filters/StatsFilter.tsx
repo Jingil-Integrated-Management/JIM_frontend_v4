@@ -29,6 +29,7 @@ const StatsFilter = (props: statsProps) => {
           className="drawer_input flex ml-16 mt-14"
           list="client-datalist"
           placeholder="회사명"
+          autoComplete="off"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedClient(e.target.value);
           }}

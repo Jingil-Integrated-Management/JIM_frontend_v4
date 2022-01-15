@@ -76,6 +76,7 @@ const DrawingInput = (props: drawingInputProps) => {
             className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center"
             list="clientList"
             placeholder="내용을 입력하세요."
+            autoComplete="off"
             onChange={e => {
               onInputChange(
                 'client',

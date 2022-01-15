@@ -55,12 +55,13 @@ const OutSourceControl = (props: outSourceControlProps) => {
         <input
           className="os_drawer_input text-sm pl-12 two"
           placeholder={(OUTSOURCE.os_subjects_dict as any)[props.subject]}
-          onChange={(e) => {
+          onChange={e => {
             onInputChange(
               (props.subject + '_client') as keyof OutsourceData,
               getClientID(props.clientList, e.target.value)
             );
           }}
+          autoComplete="off"
           list={`osClientList${props.index}`}
         />
         <datalist id={`osClientList${props.index}`}>
@@ -82,7 +83,7 @@ const OutSourceControl = (props: outSourceControlProps) => {
               (props.subject + '_price') as keyof OutsourceData
             ] as string
           }
-          onChange={(e) => {
+          onChange={e => {
             onInputChange(
               (props.subject + '_price') as keyof OutsourceData,
               e.target.value
