@@ -46,7 +46,7 @@ const ClientList = (props: clientListProps) => {
 
   return (
     <>
-      {props.clientList?.map((client) => (
+      {props.clientList?.map(client => (
         <div
           className={
             'flex items-center w-232 h-40 pl-10 cursor-pointer rounded-8' +
@@ -61,7 +61,7 @@ const ClientList = (props: clientListProps) => {
               props.setCurrentTab('/client');
               history.push(`/client/${client.id}/part`);
             }}
-            className="w-190"
+            className="w-190 h-40 flex items-center"
           >
             <span className="navigation-client-item">{client.name}</span>
           </div>
