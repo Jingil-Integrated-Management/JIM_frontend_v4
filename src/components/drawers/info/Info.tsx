@@ -10,7 +10,9 @@ import PartInfo from './PartInfo';
 import DrawingInfo from './DrawingInfo';
 
 //types
-import { DrawingData, PartData } from '../../../types';
+import { DrawingData, OutsourceData, PartData } from '../../../types';
+
+import OUTSOURCE from '../../../constants/OUTSOURCE.json';
 
 interface tableDrawerProps {
   target: string;
@@ -23,7 +25,10 @@ interface tableDrawerProps {
 
 const Info = (props: tableDrawerProps) => {
   const finishDrawing = async () => {
-    if (!isClosed()) return;
+    if (!isClosed()) {
+      alert('가격이 확정되지 않은 파트가 존재합니다.');
+      return;
+    }
 
     try {
       await webClient.patch(`drawing/${props.drawing?.id}`, {
@@ -75,10 +80,23 @@ const Info = (props: tableDrawerProps) => {
 
   const isClosed = () => {
     for (let i = 0; i < props.parts.length; i++) {
-      if (props.parts[i].price === '' || props.parts[i].price === null) {
-        alert('가격이 확정되지 않은 파트가 존재합니다.');
-        return false;
-      }
+      let isClosed = true;
+
+      if (props.parts[i].price === '' || props.parts[i].price === null)
+        isClosed = false;
+
+      if (!isClosed) return isClosed;
+
+      OUTSOURCE.os_subjects.forEach(subject => {
+        const tmpOs = props.parts[i].outsource_info;
+        if (
+          tmpOs &&
+          tmpOs[(subject + '_client') as keyof OutsourceData] &&
+          !tmpOs[(subject + '_price') as keyof OutsourceData]
+        )
+          isClosed = false;
+      });
+      if (!isClosed) return isClosed;
     }
 
     return true;

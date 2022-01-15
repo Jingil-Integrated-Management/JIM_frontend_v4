@@ -78,7 +78,7 @@ const OutSource = (props: outSourceProps) => {
       <div className="text-14 font-medium leading-1.14 text-palette-grey-menuicons">
         외주 추가하기
       </div>
-      <div className="w-544 h-48 mt-8 item-border bg-palette-gray-osbox flex items-center justify-center">
+      <div className="w-544 h-48 mt-8 rounded-8 item-border bg-palette-purple-input flex items-center justify-center">
         {OUTSOURCE.os_subjects.map((subject, index) => (
           <button
             key={index}
