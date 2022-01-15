@@ -84,6 +84,7 @@ const DrawingTable = (props: drawingTableProps) => {
     setPageNum(1);
     setList([]);
     setDrawingName('');
+    setIsFiltered(false);
     setDateRange([null, null]);
     setClientName(getClientName(props.clientList, props.clientId));
   }, [props.month, props.clientId]);
@@ -113,6 +114,7 @@ const DrawingTable = (props: drawingTableProps) => {
             setPageNum={setPageNum}
             setList={setList}
             drawingName={drawingName}
+            setIsFiltered={setIsFiltered}
           />
         </div>
       ) : (

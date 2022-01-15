@@ -56,6 +56,8 @@ const PartTableFilter = (props: filterProps) => {
     props.subDivision
   );
 
+  const [isChanged, setIsChanged] = useState<boolean>(false);
+
   const getOSStringValue = (outsource: boolean | undefined) => {
     if (outsource === undefined) return '';
     else if (outsource === true) return '제작';
@@ -106,12 +108,14 @@ const PartTableFilter = (props: filterProps) => {
   }, [props.clientId, selectedMainDivision]);
 
   const applyFilter = () => {
-    props.setPageNum(1);
-    props.setMainDivision(selectedMainDivision);
-    props.setSubDivision(selectedSubDivision);
-    props.setList([]);
-    props.setIsOutSource(getOSBoolValue(selectedIsOutSource));
-    props.setDateRange(selectedDateRange);
+    if (isChanged) {
+      props.setPageNum(1);
+      props.setMainDivision(selectedMainDivision);
+      props.setSubDivision(selectedSubDivision);
+      props.setList([]);
+      props.setIsOutSource(getOSBoolValue(selectedIsOutSource));
+      props.setDateRange(selectedDateRange);
+    }
   };
 
   const checkFiltered = () => {
@@ -133,6 +137,7 @@ const PartTableFilter = (props: filterProps) => {
     setSelectedSubDivision('');
     setSelectedIsOutsource('');
     setSelectedDateRange([null, null]);
+    setIsChanged(true);
   };
 
   return (
@@ -158,6 +163,7 @@ const PartTableFilter = (props: filterProps) => {
           value={selectedIsOutSource}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedIsOutsource(e.target.value);
+            setIsChanged(true);
           }}
         />
         <datalist id="os-datalist">
@@ -171,6 +177,7 @@ const PartTableFilter = (props: filterProps) => {
           value={selectedMainDivision}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedMainDivision(e.target.value);
+            setIsChanged(true);
           }}
         />
         <datalist id="mainDivision-datalist">
@@ -190,6 +197,7 @@ const PartTableFilter = (props: filterProps) => {
           value={selectedSubDivision}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedSubDivision(e.target.value);
+            setIsChanged(true);
           }}
         />
         <datalist id="subDivision-datalist">
@@ -227,6 +235,7 @@ const PartTableFilter = (props: filterProps) => {
               onChange={(update: [Date | null, Date | null]) => {
                 setSelectedDateRange(update);
                 if (update[1]) setIsCalendarOpen(false);
+                setIsChanged(true);
               }}
               isClearable
               inline
