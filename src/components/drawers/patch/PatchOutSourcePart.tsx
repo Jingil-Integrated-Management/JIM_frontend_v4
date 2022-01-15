@@ -132,6 +132,7 @@ const OutSourceInput = (props: OutSourceInputProps) => {
         <input
           className="os_drawer_input text-sm pl-12 two"
           placeholder={(OUTSOURCE.os_subjects_dict as any)[props.subject]}
+          autoComplete="off"
           value={
             props.targetOutSourcePartList[props.index][
               `${props.subject}_client__name` as keyof OutsourceData

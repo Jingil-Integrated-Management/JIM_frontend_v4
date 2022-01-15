@@ -73,6 +73,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
           className="drawer_input flex ml-16 mt-14"
           list="client-datalist"
           placeholder="도면명"
+          autoComplete="off"
           value={selectedName}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedName(e.target.value);

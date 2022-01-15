@@ -155,6 +155,7 @@ const PartTableFilter = (props: filterProps) => {
           className="drawer_input flex ml-16 mt-14"
           list="os-datalist"
           placeholder="제작 여부"
+          autoComplete="off"
           value={selectedIsOutSource}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedIsOutsource(e.target.value);
@@ -168,6 +169,7 @@ const PartTableFilter = (props: filterProps) => {
           className="drawer_input flex ml-16 mt-16"
           list="mainDivision-datalist"
           placeholder="구분"
+          autoComplete="off"
           value={selectedMainDivision}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedMainDivision(e.target.value);
@@ -187,6 +189,7 @@ const PartTableFilter = (props: filterProps) => {
           className="drawer_input flex ml-16 mt-14"
           list="subDivision-datalist"
           placeholder="세부 구분"
+          autoComplete="off"
           value={selectedSubDivision}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSelectedSubDivision(e.target.value);
