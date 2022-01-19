@@ -35,7 +35,20 @@
 }
 .stats_filter_container {
   width: 288px;
-  height: 226px;
+  height: 172px;
+  align-self: center;
+  flex-grow: 0;
+  box-shadow: 0 0 1px 0 rgba(67, 90, 111, 0.47), 0 4px 4px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  display: flex;
+  letter-spacing: normal;
+  color: #484964;
+  background-color: #fdfdfd;
+}
+
+.stats_filter_container_client {
+  width: 288px;
+  height: 280px;
   align-self: center;
   flex-grow: 0;
   box-shadow: 0 0 1px 0 rgba(67, 90, 111, 0.47), 0 4px 4px 0 rgba(0, 0, 0, 0.08);

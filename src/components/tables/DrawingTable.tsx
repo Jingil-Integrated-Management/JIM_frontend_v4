@@ -34,6 +34,9 @@ const DrawingTable = (props: drawingTableProps) => {
   const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const [drawingName, setDrawingName] = useState<string>('');
+  const [isOutSource, setIsOutSource] = useState<boolean | undefined>(
+    undefined
+  );
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
     null,
     null,
@@ -48,6 +51,7 @@ const DrawingTable = (props: drawingTableProps) => {
     drawingName: drawingName,
     startDate: startDate,
     endDate: endDate,
+    is_outsource: isOutSource,
   });
 
   const filterRef = useRef(null);
@@ -115,6 +119,8 @@ const DrawingTable = (props: drawingTableProps) => {
             setList={setList}
             drawingName={drawingName}
             setIsFiltered={setIsFiltered}
+            isOutSource={isOutSource}
+            setIsOutSource={setIsOutSource}
           />
         </div>
       ) : (

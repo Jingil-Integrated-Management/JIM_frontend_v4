@@ -19,6 +19,8 @@ interface DrawingTableFilterProps {
   setList: Function;
   setIsFiltered: Function;
   drawingName: string;
+  isOutSource: boolean | undefined;
+  setIsOutSource: Function;
 }
 const DrawingTableFilter = (props: DrawingTableFilterProps) => {
   const [drawingNameList, setDrawingNameList] = useState<{ name: string }[]>(
@@ -33,12 +35,29 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
     [Date | null, Date | null]
   >([props.startDate, props.endDate]);
 
+  const getOSStringValue = (outsource: boolean | undefined) => {
+    if (outsource === undefined) return '';
+    else if (outsource === true) return '제작';
+    else return '연마';
+  };
+
+  const getOSBoolValue = (outsource: string) => {
+    if (outsource === '제작') return true;
+    else if (outsource === '연마') return false;
+    else return undefined;
+  };
+
+  const [selectedIsOutSource, setSelectedIsOutsource] = useState<string>(
+    getOSStringValue(props.isOutSource)
+  );
+
   const applyFilter = () => {
     if (isChanged) {
       props.setPageNum(1);
       props.setList([]);
       props.setDrawingName(selectedName);
       props.setDateRange(selectedDateRange);
+      props.setIsOutSource(getOSBoolValue(selectedIsOutSource));
     }
   };
 
@@ -46,7 +65,8 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
     if (
       selectedName.length === 0 &&
       selectedDateRange[0] === null &&
-      selectedDateRange[1] === null
+      selectedDateRange[1] === null &&
+      selectedIsOutSource.length === 0
     ) {
       props.setIsFiltered(false);
     } else {
@@ -57,6 +77,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
   const clearFilter = () => {
     setSelectedName('');
     setDrawingNameList([]);
+    setSelectedIsOutsource('');
     setSelectedDateRange([null, null]);
     setIsChanged(true);
   };
@@ -72,7 +93,7 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
   }, [selectedName]);
 
   return (
-    <div className="stats_filter_container flex flex-col relative">
+    <div className="stats_filter_container_client flex flex-col relative ">
       <div className="filter_title flex ml-16 mt-16">
         {' '}
         도면명 검색{' '}
@@ -86,6 +107,21 @@ const DrawingTableFilter = (props: DrawingTableFilterProps) => {
         </button>
       </div>
       <div>
+        <input
+          className="drawer_input flex ml-16 mt-14"
+          list="os-datalist"
+          placeholder="제작 여부"
+          autoComplete="off"
+          value={selectedIsOutSource}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setSelectedIsOutsource(e.target.value);
+            setIsChanged(true);
+          }}
+        />
+        <datalist id="os-datalist">
+          <option value="제작" />
+          <option value="연마" />
+        </datalist>
         <input
           className="drawer_input flex ml-16 mt-14"
           list="client-datalist"
