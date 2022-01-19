@@ -192,7 +192,7 @@ const OutsourcePartInfo = (props: OutsourcePartInfoProps) => {
                   가격
                 </div>
                 <div className="w-full text-sm mt-2 h-48 pl-12 rounded-8 bg-palette-purple-input flex items-center">
-                  {outsource.price}
+                  {formatPrice(outsource.price)}
                 </div>
               </div>
             </div>
